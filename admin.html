@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>ATY — Admin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;1,400&family=Space+Grotesk:wght@400;500&display=swap" rel="stylesheet">
+<script src="projects.js"></script>
+<style>
+  :root{ --bg:#0A0A09; --panel:#11110F; --fg:#F3F1EA; --dim:#B9B6AC; --faint:#7B7A72; --accent:#C4A876; --line:#232320; --danger:#c9695a; }
+  *{ box-sizing:border-box; }
+  html,body{ margin:0; background:var(--bg); color:var(--fg); font-family:'Space Grotesk',system-ui,sans-serif; -webkit-text-size-adjust:100%; }
+  body{ padding:0 0 120px; }
+  button,select,input,textarea{ font:inherit; color:inherit; }
+  button{ cursor:pointer; background:none; border:1px solid var(--line); padding:.6rem .9rem; border-radius:6px; min-height:40px; }
+  button:hover{ border-color:var(--faint); }
+  button.primary{ background:var(--fg); color:var(--bg); border-color:var(--fg); font-weight:500; }
+  button.primary:hover{ background:#fff; }
+  button.danger{ color:var(--danger); }
+  header.top{ position:sticky; top:0; z-index:20; background:rgba(10,10,9,.94); backdrop-filter:blur(8px); border-bottom:1px solid var(--line); padding:.8rem 4vw; display:flex; flex-wrap:wrap; gap:.6rem; align-items:center; }
+  header.top h1{ font-family:'Fraunces',serif; font-weight:400; font-size:1.2rem; margin:0 auto 0 0; }
+  header.top h1 span{ color:var(--faint); font-style:italic; font-size:.9rem; margin-left:.5rem; }
+  .wrap{ padding:1.4rem 4vw; max-width:1500px; margin:0 auto; }
+  .how{ border:1px solid var(--line); background:var(--panel); border-radius:10px; padding:1rem 1.2rem; color:var(--dim); font-size:.92rem; line-height:1.7; }
+  .how b{ color:var(--fg); font-weight:500; }
+  .how ol{ margin:.4rem 0 0; padding-inline-start:1.2rem; }
+  .status{ margin:1rem 0 0; font-size:.88rem; color:var(--faint); min-height:1.3em; }
+  .status.dirty{ color:var(--accent); }
+  .cols{ display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:1.2rem; margin-top:1.4rem; align-items:start; }
+  @media (max-width:1100px){ .cols{ grid-template-columns:repeat(2,minmax(0,1fr)); } }
+  @media (max-width:640px){ .cols{ grid-template-columns:1fr; } }
+  .col{ border:1px solid var(--line); border-radius:10px; background:var(--panel); padding:1rem; min-width:0; }
+  .col h2{ font-family:'Fraunces',serif; font-weight:400; font-size:1.25rem; margin:0 0 .2rem; display:flex; justify-content:space-between; align-items:baseline; }
+  .col h2 small{ font-family:'Space Grotesk',sans-serif; color:var(--faint); font-size:.78rem; }
+  .col .hint{ color:var(--faint); font-size:.78rem; margin:0 0 .8rem; }
+  .row{ border:1px solid var(--line); border-radius:8px; padding:.7rem .75rem; margin-bottom:.6rem; background:var(--bg); }
+  .row.in-carousel{ border-left:2px solid var(--accent); }
+  .row .t{ font-size:.95rem; line-height:1.35; word-break:break-word; }
+  .row .m{ color:var(--faint); font-size:.74rem; margin-top:.15rem; display:flex; gap:.6rem; flex-wrap:wrap; }
+  .row .badge{ color:var(--accent); }
+  .row .acts{ display:flex; gap:.4rem; margin-top:.6rem; flex-wrap:wrap; align-items:center; }
+  .row .acts button{ padding:.3rem .6rem; min-height:34px; font-size:.85rem; }
+  .row .acts select{ background:var(--panel); border:1px solid var(--line); border-radius:6px; padding:.3rem .4rem; min-height:34px; font-size:.82rem; max-width:100%; }
+  .empty{ color:var(--faint); font-size:.85rem; padding:.4rem 0; }
+  /* edit dialog */
+  .scrim{ position:fixed; inset:0; background:rgba(0,0,0,.7); display:none; z-index:50; overflow:auto; padding:4vh 4vw; }
+  .scrim.open{ display:block; }
+  .dlg{ max-width:640px; margin:0 auto; background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:1.2rem 1.2rem 1.4rem; }
+  .dlg h3{ font-family:'Fraunces',serif; font-weight:400; margin:0 0 1rem; font-size:1.3rem; }
+  label{ display:block; font-size:.74rem; letter-spacing:.06em; text-transform:uppercase; color:var(--faint); margin:.9rem 0 .3rem; }
+  input[type=text],input[type=number],select.f,textarea{ width:100%; background:var(--bg); border:1px solid var(--line); border-radius:6px; padding:.65rem .7rem; font-size:1rem; }
+  input:focus,textarea:focus,select:focus{ outline:1px solid var(--accent); border-color:var(--accent); }
+  textarea{ min-height:90px; resize:vertical; }
+  .two{ display:grid; grid-template-columns:1fr 1fr; gap:.8rem; }
+  .small{ color:var(--faint); font-size:.78rem; margin-top:.3rem; line-height:1.5; }
+  .dlg .btns{ display:flex; gap:.6rem; justify-content:flex-end; margin-top:1.3rem; flex-wrap:wrap; }
+  .err{ color:var(--danger); font-size:.85rem; margin-top:.8rem; min-height:1.2em; }
+  /* export */
+  details.exp{ margin-top:1.6rem; border:1px solid var(--line); border-radius:10px; background:var(--panel); padding:.8rem 1rem; }
+  details.exp summary{ cursor:pointer; color:var(--dim); }
+  #out{ width:100%; min-height:240px; margin-top:.8rem; font-family:ui-monospace,Menlo,Consolas,monospace; font-size:.78rem; }
+  .toast{ position:fixed; left:50%; bottom:24px; transform:translateX(-50%) translateY(20px); background:var(--fg); color:var(--bg); padding:.7rem 1.1rem; border-radius:8px; opacity:0; pointer-events:none; transition:.3s; z-index:80; font-size:.92rem; max-width:90vw; }
+  .toast.show{ opacity:1; transform:translateX(-50%); }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <h1>ATY <span>admin</span></h1>
+  <button id="addBtn">+ Add video</button>
+  <button id="copyBtn" class="primary">Copy projects.js</button>
+  <button id="dlBtn">Download projects.js</button>
+  <button id="discardBtn">Discard changes</button>
+</header>
+
+<div class="wrap">
+  <div class="how">
+    <b>How it works</b> — this page changes a list, not the live site. When you are done:
+    <ol>
+      <li>Press <b>Download projects.js</b> (or <b>Copy</b> and paste it into the file on GitHub).</li>
+      <li>On GitHub open your repository, upload / replace <b>projects.js</b> (same folder as index.html), and Commit.</li>
+      <li>Wait about a minute and refresh the website.</li>
+    </ol>
+    Each category shows its first <b>5</b> videos in the carousel (gold edge). The rest appear in All Projects.
+  </div>
+  <p class="status" id="status"></p>
+  <div class="cols" id="cols"></div>
+
+  <details class="exp">
+    <summary>Show the generated file text</summary>
+    <textarea id="out" readonly spellcheck="false"></textarea>
+  </details>
+</div>
+
+<!-- edit dialog -->
+<div class="scrim" id="scrim">
+  <div class="dlg" role="dialog" aria-modal="true" aria-labelledby="dlgTitle">
+    <h3 id="dlgTitle">Edit video</h3>
+
+    <label for="fTitle">Title shown on the website</label>
+    <input type="text" id="fTitle" autocomplete="off">
+
+    <div class="two">
+      <div>
+        <label for="fDisc">Category</label>
+        <select id="fDisc" class="f">
+          <option value="film">FILMMAKER</option>
+          <option value="editing">EDITING</option>
+          <option value="ai">AI</option>
+          <option value="3d">3D</option>
+        </select>
+      </div>
+      <div>
+        <label for="fAspect">Shape of the video</label>
+        <select id="fAspect" class="f">
+          <option value="16:9">Landscape 16:9</option>
+          <option value="9:16">Vertical 9:16</option>
+          <option value="1:1">Square 1:1</option>
+          <option value="4:5">Portrait 4:5</option>
+          <option value="21:9">Wide 21:9</option>
+        </select>
+      </div>
+    </div>
+
+    <label for="fVimeo">Vimeo link or number</label>
+    <input type="text" id="fVimeo" placeholder="https://vimeo.com/1244025482" autocomplete="off" inputmode="url">
+    <div class="small">Paste the normal link. For an <b>Unlisted</b> video paste the full link including the long code after the number.</div>
+
+    <label for="fType">Type (optional)</label>
+    <input type="text" id="fType" placeholder="e.g. Commercial Film">
+
+    <label for="fRoles">My role (optional, separate with commas)</label>
+    <input type="text" id="fRoles" placeholder="Editing, Colour">
+
+    <div class="two">
+      <div>
+        <label for="fTools">Tools (optional)</label>
+        <input type="text" id="fTools" placeholder="Premiere Pro, DaVinci Resolve">
+      </div>
+      <div>
+        <label for="fYear">Year (optional)</label>
+        <input type="text" id="fYear" placeholder="2026">
+      </div>
+    </div>
+
+    <label for="fClient">Client or brand (optional)</label>
+    <input type="text" id="fClient">
+
+    <label for="fDesc">Description (optional)</label>
+    <textarea id="fDesc"></textarea>
+
+    <label for="fPoster">Thumbnail image link (optional)</label>
+    <input type="text" id="fPoster" placeholder="leave empty to use Vimeo's own thumbnail" inputmode="url">
+
+    <div class="err" id="err"></div>
+    <div class="btns">
+      <button id="cancelBtn">Cancel</button>
+      <button id="saveBtn" class="primary">Save</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+  var CATS = [ {id:'film',label:'FILMMAKER'}, {id:'editing',label:'EDITING'}, {id:'ai',label:'AI'}, {id:'3d',label:'3D'} ];
+  var CAROUSEL = 5;
+  var KEY = 'aty-admin-draft-v1';
+  var base = Array.isArray(window.PROJECTS_DATA) ? JSON.parse(JSON.stringify(window.PROJECTS_DATA)) : null;
+  var data, dirty = false, editing = null;
+
+  function $(id){ return document.getElementById(id); }
+  function toast(m){ var t=$('toast'); t.textContent=m; t.classList.add('show'); clearTimeout(toast._t); toast._t=setTimeout(function(){ t.classList.remove('show'); }, 2600); }
+  function safeGet(){ try{ return localStorage.getItem(KEY); }catch(e){ return null; } }
+  function safeSet(v){ try{ if(v==null) localStorage.removeItem(KEY); else localStorage.setItem(KEY,v); }catch(e){} }
+
+  if (!base) {
+    $('status').textContent = 'projects.js was not found next to this page, so there is nothing to edit yet. Put admin.html in the same folder as projects.js.';
+    $('addBtn').disabled = $('copyBtn').disabled = $('dlBtn').disabled = $('discardBtn').disabled = true;
+    return;
+  }
+  var baseStr = JSON.stringify(base);
+  var draft = safeGet();
+  if (draft) {
+    try { var d = JSON.parse(draft); if (d && d.base === baseStr) { data = d.data; dirty = true; } else { safeSet(null); } } catch(e){ safeSet(null); }
+  }
+  if (!data) data = JSON.parse(baseStr);
+
+  function slug(s){ return (s||'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'').slice(0,40); }
+  function vimeoId(p){ return p.vimeo && p.vimeo.id ? p.vimeo.id : ''; }
+
+  function parseVimeo(s){
+    s = (s||'').trim();
+    var idm = s.match(/(?:vimeo\.com\/(?:video\/|channels\/[^\/]+\/|groups\/[^\/]+\/videos\/)?|^)(\d{6,})/i);
+    if (!idm) return null;
+    var hm = s.match(/[?&]h=([a-z0-9]+)/i) || s.match(/vimeo\.com\/(?:video\/)?\d+\/([a-z0-9]+)/i);
+    return { id: idm[1], hash: hm ? hm[1] : null };
+  }
+  function listCSV(s){ return (s||'').split(',').map(function(x){ return x.trim(); }).filter(Boolean); }
+
+  function mark(){
+    dirty = true; safeSet(JSON.stringify({ base: baseStr, data: data }));
+    render();
+  }
+
+  function render(){
+    var cols = $('cols'); cols.innerHTML = '';
+    CATS.forEach(function(c){
+      var items = data.map(function(p,i){ return {p:p,i:i}; }).filter(function(x){ return x.p.discipline === c.id; });
+      var col = document.createElement('section'); col.className = 'col';
+      col.innerHTML = '<h2>'+c.label+'<small>'+items.length+' videos</small></h2><p class="hint">The first '+CAROUSEL+' go in the carousel.</p>';
+      if (!items.length) { var e=document.createElement('div'); e.className='empty'; e.textContent='No videos here yet.'; col.appendChild(e); }
+      items.forEach(function(x,pos){
+        var p = x.p;
+        var row = document.createElement('div'); row.className = 'row' + (pos < CAROUSEL ? ' in-carousel' : '');
+        var t = document.createElement('div'); t.className='t'; t.textContent = p.title || '(no title)';
+        var m = document.createElement('div'); m.className='m';
+        m.innerHTML = '<span>Vimeo '+(vimeoId(p)||'— none —')+'</span><span>'+((p.vimeo&&p.vimeo.aspect)||'')+'</span>' + (pos<CAROUSEL ? '<span class="badge">Carousel #'+(pos+1)+'</span>' : '');
+        var acts = document.createElement('div'); acts.className='acts';
+        function btn(label, fn, cls){ var b=document.createElement('button'); b.type='button'; b.textContent=label; if(cls) b.className=cls; b.addEventListener('click', fn); acts.appendChild(b); return b; }
+        var up = btn('↑', function(){ moveWithin(x.i, c.id, -1); }); up.setAttribute('aria-label','Move up'); if (pos===0) up.disabled = true;
+        var dn = btn('↓', function(){ moveWithin(x.i, c.id, 1); }); dn.setAttribute('aria-label','Move down'); if (pos===items.length-1) dn.disabled = true;
+        btn('Edit', function(){ openEdit(x.i); });
+        var sel = document.createElement('select'); sel.setAttribute('aria-label','Move to another category');
+        var o0=document.createElement('option'); o0.textContent='Move to…'; o0.value=''; sel.appendChild(o0);
+        CATS.forEach(function(k){ if(k.id!==c.id){ var o=document.createElement('option'); o.value=k.id; o.textContent=k.label; sel.appendChild(o); } });
+        sel.addEventListener('change', function(){ if(sel.value){ data[x.i].discipline = sel.value; var mv = data.splice(x.i,1)[0]; data.push(mv); toast('Moved to '+sel.options[sel.selectedIndex].text+' (placed last)'); mark(); } });
+        acts.appendChild(sel);
+        btn('Delete', function(){ if (confirm('Delete "'+(p.title||'this video')+'" from the list?')) { data.splice(x.i,1); mark(); } }, 'danger');
+        row.appendChild(t); row.appendChild(m); row.appendChild(acts);
+        col.appendChild(row);
+      });
+      cols.appendChild(col);
+    });
+    $('status').textContent = dirty ? 'You have unsaved changes. Press Download or Copy projects.js, then upload it to GitHub.' : 'No changes yet.';
+    $('status').className = 'status' + (dirty ? ' dirty' : '');
+    $('out').value = build();
+  }
+
+  function moveWithin(index, disc, dir){
+    var idxs = []; data.forEach(function(p,i){ if (p.discipline===disc) idxs.push(i); });
+    var at = idxs.indexOf(index), to = at + dir;
+    if (to < 0 || to >= idxs.length) return;
+    var a = idxs[at], b = idxs[to];
+    var tmp = data[a]; data[a] = data[b]; data[b] = tmp;
+    mark();
+  }
+
+  // ---------- dialog ----------
+  function openEdit(i){
+    editing = i;
+    var p = i == null ? { discipline:'film', vimeo:{ aspect:'16:9' } } : data[i];
+    $('dlgTitle').textContent = i == null ? 'Add video' : 'Edit video';
+    $('fTitle').value = p.title || '';
+    $('fDisc').value = p.discipline || 'film';
+    $('fAspect').value = (p.vimeo && p.vimeo.aspect) || '16:9';
+    if (!$('fAspect').value) { var o=document.createElement('option'); o.value=p.vimeo.aspect; o.textContent=p.vimeo.aspect; $('fAspect').appendChild(o); $('fAspect').value=p.vimeo.aspect; }
+    $('fVimeo').value = p.vimeo && p.vimeo.id ? 'https://vimeo.com/' + p.vimeo.id + (p.vimeo.hash ? '/' + p.vimeo.hash : '') : '';
+    $('fType').value = p.projectType || '';
+    $('fRoles').value = (p.roles||[]).join(', ');
+    $('fTools').value = (p.tools||[]).join(', ');
+    $('fYear').value = p.year || '';
+    $('fClient').value = p.client || '';
+    $('fDesc').value = p.description || '';
+    $('fPoster').value = p.poster || '';
+    $('err').textContent = '';
+    $('scrim').classList.add('open');
+    setTimeout(function(){ $('fTitle').focus(); }, 30);
+  }
+  function closeEdit(){ $('scrim').classList.remove('open'); editing = null; }
+
+  function save(){
+    var title = $('fTitle').value.trim();
+    if (!title) { $('err').textContent = 'Please write a title.'; return; }
+    var v = parseVimeo($('fVimeo').value);
+    if (!v) { $('err').textContent = 'Paste a Vimeo link (or the video number) so the video can play.'; return; }
+    var obj = editing == null ? {} : data[editing];
+    obj.title = title;
+    obj.discipline = $('fDisc').value;
+    obj.vimeo = { id: v.id, aspect: $('fAspect').value };
+    if (v.hash) obj.vimeo.hash = v.hash;
+    var set = function(k, val){ if (val && (!Array.isArray(val) || val.length)) obj[k] = val; else delete obj[k]; };
+    set('projectType', $('fType').value.trim());
+    set('roles', listCSV($('fRoles').value));
+    set('tools', listCSV($('fTools').value));
+    set('year', $('fYear').value.trim());
+    set('client', $('fClient').value.trim());
+    set('description', $('fDesc').value.trim());
+    set('poster', $('fPoster').value.trim());
+    if (editing == null) {
+      var base = 'v' + v.id, id = base, n = 2;
+      while (data.some(function(p){ return p.id === id; })) id = base + '-' + (n++);
+      obj.id = id; data.push(obj);
+      toast('Added to the end of ' + $('fDisc').options[$('fDisc').selectedIndex].text);
+    } else {
+      toast('Saved');
+    }
+    closeEdit(); mark();
+  }
+
+  // ---------- export ----------
+  function build(){
+    var rows = data.map(function(p){ return '  ' + JSON.stringify(p); });
+    return '/* Generated by admin.html — replace this file to update the website. */\nwindow.PROJECTS_DATA = [\n' + rows.join(',\n') + '\n];\n';
+  }
+  function copyText(s){
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      return navigator.clipboard.writeText(s).then(function(){ return true; }, function(){ return legacyCopy(s); });
+    }
+    return Promise.resolve(legacyCopy(s));
+  }
+  function legacyCopy(s){
+    var ta = $('out'); ta.value = s; ta.removeAttribute('readonly'); ta.focus(); ta.select();
+    var ok = false; try { ok = document.execCommand('copy'); } catch(e){}
+    ta.setAttribute('readonly',''); return ok;
+  }
+
+  $('addBtn').addEventListener('click', function(){ openEdit(null); });
+  $('cancelBtn').addEventListener('click', closeEdit);
+  $('saveBtn').addEventListener('click', save);
+  $('scrim').addEventListener('click', function(e){ if (e.target === $('scrim')) closeEdit(); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeEdit(); });
+  $('copyBtn').addEventListener('click', function(){
+    copyText(build()).then(function(ok){
+      if (ok) toast('Copied. Now paste it into projects.js on GitHub.');
+      else { document.querySelector('details.exp').open = true; toast('Could not copy automatically — select the text below and copy it.'); }
+    });
+  });
+  $('dlBtn').addEventListener('click', function(){
+    try {
+      var blob = new Blob([build()], { type:'text/javascript' });
+      var a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'projects.js';
+      document.body.appendChild(a); a.click(); a.remove();
+      toast('projects.js downloaded. Upload it to GitHub.');
+    } catch(e) { document.querySelector('details.exp').open = true; toast('Download is blocked here — use Copy instead.'); }
+  });
+  $('discardBtn').addEventListener('click', function(){
+    if (!dirty || confirm('Throw away all changes made on this page and go back to the live list?')) { safeSet(null); data = JSON.parse(baseStr); dirty = false; render(); toast('Back to the live list'); }
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>
