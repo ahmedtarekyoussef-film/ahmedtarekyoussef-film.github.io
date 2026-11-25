@@ -273,6 +273,66 @@
   .section-bg.on{ opacity:.42; }
   .section-bg video, .section-bg img{ width:100%; height:100%; object-fit:cover; display:block; }
   @media (max-width:700px){ .section-bg.on{ opacity:.3; } }
+  /* ---------- Editing section: scroll-scrubbed edit timeline (pure CSS/JS, no media) ---------- */
+  .tl{ margin:3.2rem 6vw 0; border:1px solid var(--line); background:linear-gradient(180deg,#0e0e0c,#0b0b0a); border-radius:3px; overflow:hidden;
+       font-family:'Space Grotesk',sans-serif; user-select:none; -webkit-user-select:none; opacity:0; transform:translateY(18px); transition:opacity 1.2s var(--ease), transform 1.2s var(--ease); }
+  .tl.in{ opacity:1; transform:none; }
+  .tl-bar{ display:flex; align-items:center; gap:1.4em; padding:.55rem .9rem; border-bottom:1px solid var(--line); font-size:.64rem; letter-spacing:.14em; color:var(--fg-faint); }
+  .tl-tc{ font-variant-numeric:tabular-nums; font-size:.92rem; letter-spacing:.06em; color:var(--accent); min-width:9.5ch; }
+  .tl-seq{ flex:1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .tl-hint{ white-space:nowrap; }
+  .tl-hint::before{ content:''; display:inline-block; width:6px; height:6px; border-radius:50%; background:#b8463a; margin-right:.6em; vertical-align:1px; box-shadow:0 0 8px #b8463a; animation:tlRec 1.6s ease-in-out infinite; }
+  @keyframes tlRec{ 50%{ opacity:.25; } }
+  .tl-body{ display:flex; }
+  .tl-labels{ flex:0 0 46px; border-right:1px solid var(--line); display:flex; flex-direction:column; }
+  .tl-labels span{ display:flex; align-items:center; justify-content:center; font-size:.6rem; letter-spacing:.1em; color:var(--fg-faint); border-bottom:1px solid #161614; }
+  .tl-labels .r-ruler{ height:26px; }
+  .tl-labels .r-v{ height:46px; } .tl-labels .r-a{ height:38px; }
+  .tl-stage{ position:relative; flex:1; overflow:hidden; cursor:ew-resize; }
+  .tl-strip{ position:relative; will-change:transform; }
+  .tl-ruler{ position:relative; height:26px; border-bottom:1px solid #161614;
+    background:repeating-linear-gradient(90deg, #2a2a26 0 1px, transparent 1px 12px) 0 100% / 100% 6px no-repeat,
+               repeating-linear-gradient(90deg, #3a3934 0 1px, transparent 1px 120px) 0 100% / 100% 12px no-repeat; }
+  .tl-ruler b{ position:absolute; top:3px; font-weight:400; font-size:.56rem; letter-spacing:.06em; color:var(--fg-faint); transform:translateX(4px); }
+  .tl-render{ position:absolute; left:0; bottom:0; height:2px; width:0; background:linear-gradient(90deg, rgba(196,168,118,.25), var(--accent)); box-shadow:0 0 10px rgba(196,168,118,.6); }
+  .tl-track{ position:relative; border-bottom:1px solid #161614; }
+  .tl-track.v{ height:46px; } .tl-track.a{ height:38px; }
+  .tl-clip{ position:absolute; top:5px; bottom:5px; border-radius:2px; overflow:hidden; cursor:pointer;
+    background:#191916; border:1px solid #2c2b27; transition:border-color .35s var(--ease), background .35s var(--ease), box-shadow .35s var(--ease); }
+  .tl-clip.ed{ background:#1e1b14; border-color:#3d3523; }
+  .tl-clip.ovl{ background:#16171a; border-color:#2a2c31; }
+  .tl-clip span{ position:absolute; left:8px; right:8px; top:50%; transform:translateY(-50%); font-size:.62rem; letter-spacing:.06em; color:var(--fg-dim);
+    white-space:nowrap; overflow:hidden; text-overflow:ellipsis; transition:color .35s var(--ease); }
+  .tl-clip::before{ content:''; position:absolute; left:0; right:0; top:0; height:2px; background:rgba(196,168,118,.0); transition:background .5s var(--ease); }
+  .tl-clip.seen::before{ background:rgba(196,168,118,.32); }
+  .tl-clip::after{ content:''; position:absolute; inset:0; transform:translateX(-120%);
+    background:linear-gradient(100deg, transparent 20%, rgba(232,210,160,.0) 35%, rgba(232,210,160,.28) 50%, rgba(232,210,160,0) 65%, transparent 80%); }
+  .tl-clip.live{ border-color:var(--accent); background:#262217; box-shadow:0 0 0 1px rgba(196,168,118,.25), 0 0 26px rgba(196,168,118,.22); }
+  .tl-clip.live span{ color:var(--fg); }
+  .tl-clip.live::after{ animation:tlSweep 2.2s var(--ease) infinite; }
+  @keyframes tlSweep{ to{ transform:translateX(120%); } }
+  .tl-clip:hover{ border-color:var(--fg-faint); }
+  .tl-clip.a{ background:#121311; border-color:#22231f; cursor:default; }
+  .tl-clip.a svg{ position:absolute; inset:3px 0; width:100%; height:calc(100% - 6px); }
+  .tl-clip.a svg path{ fill:#3b3a34; transition:fill .35s var(--ease); }
+  .tl-clip.a.live{ border-color:rgba(196,168,118,.55); background:#17160f; box-shadow:0 0 18px rgba(196,168,118,.14); }
+  .tl-clip.a.live svg path{ fill:#8f7a52; }
+  .tl-playhead{ position:absolute; top:0; bottom:0; left:30%; width:1px; background:var(--accent); pointer-events:none; z-index:3;
+    box-shadow:0 0 12px rgba(196,168,118,.9), 0 0 42px rgba(196,168,118,.35); }
+  .tl-playhead::before{ content:''; position:absolute; top:0; left:-6px; width:13px; height:15px; background:var(--accent);
+    clip-path:polygon(0 0,100% 0,100% 60%,50% 100%,0 60%); }
+  .tl-playhead::after{ content:''; position:absolute; top:0; bottom:0; left:-60px; width:120px; pointer-events:none;
+    background:radial-gradient(closest-side, rgba(196,168,118,.13), transparent); }
+  @media (max-width:700px){
+    .tl{ margin:2.2rem 5vw 0; }
+    .tl-hint, .tl-labels .r-x, .tl-track.x{ display:none; }
+    .tl-labels{ flex-basis:34px; }
+    .tl-seq{ display:none; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .tl{ transition:none; opacity:1; transform:none; }
+    .tl-clip.live::after, .tl-hint::before{ animation:none; }
+  }
   /* ---------- Showreel: four independent horizontal carousels (one per discipline) ---------- */
   #showreel{ position:relative; z-index:1; padding:10vh 0 4vh; }
   .carousel-section{ padding:5vh 0; }
@@ -1096,13 +1156,17 @@ function applyPoster(p){
 function loadVimeoThumbs(){
   PROJECTS.filter(p => p.vimeo && !p.poster).forEach(async p => {
     try {
-      const r = await fetch(`https://vimeo.com/api/oembed.json?url=${encodeURIComponent(vimeoPageUrl(p.vimeo))}&width=720`);
+      const r = await fetch(`https://vimeo.com/api/oembed.json?url=${encodeURIComponent(vimeoPageUrl(p.vimeo))}&width=1280`);
       if (!r.ok) throw new Error('oembed ' + r.status);
       const d = await r.json();
       if (!d.thumbnail_url) throw new Error('no thumbnail');
       if (!p.vimeo.aspect && d.width && d.height) p.vimeo.aspect = `${d.width}:${d.height}`;
       if (!p.duration && d.duration) { p.duration = d.duration; addDurChips(p); }
-      p.poster = d.thumbnail_url;
+      // oEmbed hands back a 640px image, which looks soft on a 760px card (and worse on retina).
+      // Vimeo's CDN serves the same frame at any size: ask for one that matches the screen.
+      const hiRes = (window.devicePixelRatio || 1) > 1.5 && window.innerWidth > 900 ? 'd_1920' : 'd_1280';
+      p.posterFallback = d.thumbnail_url;
+      p.poster = /-d_\d+(x\d+)?/.test(d.thumbnail_url) ? d.thumbnail_url.replace(/-d_\d+(x\d+)?/, '-' + hiRes) : d.thumbnail_url;
       applyPoster(p);
     } catch (e) {
       // the host page blocks requests to Vimeo (e.g. an app preview): try a public thumbnail image by video id instead
@@ -1628,6 +1692,116 @@ window.addEventListener('DOMContentLoaded', ()=>{
   const hash = location.hash.replace('#','');
   if(PROJECTS.some(p=>p.id===hash)) openDetail(hash);
 });
+</script>
+<script>
+/* Editing timeline: the selected work laid out as an edit sequence; the gold playhead scrubs with the page scroll.
+   Built from PROJECTS (real titles and durations only). No media files, pauses when off screen. */
+(function(){
+  try {
+    const host = document.querySelector('.carousel-section[data-discipline="editing"]');
+    if (!host || typeof PROJECTS === 'undefined') return;
+    const mobile = window.matchMedia('(max-width:700px)').matches;
+    const FPS = 25;
+    const dur = p => Math.max(6, +p.duration || 30);
+    const w = s => Math.round(70 + Math.sqrt(s) * (mobile ? 14 : 20));        // compressed: long films don't swallow the strip
+    const seen = new Set();
+    const vMain = PROJECTS.filter(p => (p.discipline === 'film' || p.discipline === 'editing') && !seen.has(p.vimeo && p.vimeo.id) && seen.add(p.vimeo && p.vimeo.id));
+    const vTop  = PROJECTS.filter(p => p.discipline === 'ai' || p.discipline === '3d');
+    if (vMain.length < 3) return;
+
+    const GAP = 2, LEAD = 40;
+    let x = LEAD, t = 0; const segs = [];
+    vMain.forEach(p => { const d = dur(p), cw = w(d); segs.push({ p, x0: x, x1: x + cw, t0: t, t1: t + d }); x += cw + GAP; t += d; });
+    const W = x + 160, T = t;
+
+    let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+    const wave = (cw) => {           // simple mirrored waveform path
+      const n = Math.max(8, Math.floor(cw / 4)); let d = '';
+      for (let i = 0; i < n; i++) {
+        const env = 0.35 + 0.65 * Math.abs(Math.sin(i / n * Math.PI * (2 + rnd() * 2)));
+        const h = Math.max(.06, env * (0.25 + rnd() * 0.75)) * 50;
+        const xx = (i / n * 100).toFixed(2);
+        d += `M${xx} ${50 - h}h${(80 / n).toFixed(2)}v${(h * 2).toFixed(1)}h-${(80 / n).toFixed(2)}z`;
+      }
+      return `<svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path d="${d}"/></svg>`;
+    };
+    const tc = s => { const f = Math.floor((s % 1) * FPS), ss = Math.floor(s), h = Math.floor(ss / 3600), m = Math.floor(ss / 60) % 60, sec = ss % 60;
+      return [h, m, sec, f].map(n => String(n).padStart(2, '0')).join(':'); };
+    const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;' }[c]));
+
+    const tl = document.createElement('div');
+    tl.className = 'tl';
+    tl.setAttribute('aria-label', 'Edit timeline of selected work. Scroll to scrub; select a clip to open it.');
+    let ruler = '';
+    const timeAt = px => { const s = segs.find(g => px < g.x1 + GAP) || segs[segs.length - 1];
+      return px <= s.x0 ? s.t0 : s.t0 + Math.min(1, (px - s.x0) / (s.x1 - s.x0)) * (s.t1 - s.t0); };
+    for (let px = LEAD; px < W - 120; px += 120) ruler += `<b style="left:${px}px">${tc(timeAt(px))}</b>`;
+    const clipHTML = (s, cls) => `<div class="tl-clip ${cls}" data-pid="${esc(s.p.id)}" style="left:${s.x0}px;width:${s.x1 - s.x0}px" data-cursor="view" data-cursor-label="VIEW" role="button" tabindex="-1" title="${esc(s.p.title)}"><span>${esc(s.p.title)}</span></div>`;
+    // V2: AI / 3D pieces sit above as overlay clips, spread across the cut
+    const top = vTop.map((p, i) => { const anchor = segs[Math.min(segs.length - 1, Math.round((i + .5) * segs.length / vTop.length))]; const cw = Math.round(w(dur(p)) * .8);
+      return { p, x0: anchor.x0 + 18, x1: anchor.x0 + 18 + cw }; });
+    // A2: long music beds spanning several picture clips
+    let a2 = ''; for (let i = 0; i < segs.length; i += 4) { const a = segs[i], b = segs[Math.min(segs.length - 1, i + 3)];
+      a2 += `<div class="tl-clip a" style="left:${a.x0}px;width:${b.x1 - a.x0}px">${wave(b.x1 - a.x0)}</div>`; }
+
+    tl.innerHTML = `
+      <div class="tl-bar"><span class="tl-tc">00:00:00:00</span><span class="tl-seq">SEQUENCE — SELECTED WORK · ${segs.length + top.length} CLIPS</span><span class="tl-hint">SCROLL TO SCRUB</span></div>
+      <div class="tl-body">
+        <div class="tl-labels"><span class="r-ruler"></span><span class="r-v r-x">V2</span><span class="r-v">V1</span><span class="r-a">A1</span><span class="r-a r-x">A2</span></div>
+        <div class="tl-stage">
+          <div class="tl-strip" style="width:${W}px">
+            <div class="tl-ruler">${ruler}<i class="tl-render"></i></div>
+            <div class="tl-track v x">${top.map(s => clipHTML(s, 'ovl')).join('')}</div>
+            <div class="tl-track v">${segs.map(s => clipHTML(s, s.p.discipline === 'editing' ? 'ed' : '')).join('')}</div>
+            <div class="tl-track a">${segs.map(s => `<div class="tl-clip a" style="left:${s.x0}px;width:${s.x1 - s.x0}px">${wave(s.x1 - s.x0)}</div>`).join('')}</div>
+            <div class="tl-track a x">${a2}</div>
+          </div>
+          <div class="tl-playhead"></div>
+        </div>
+      </div>`;
+    host.appendChild(tl);
+
+    const stage = tl.querySelector('.tl-stage'), strip = tl.querySelector('.tl-strip'), tcEl = tl.querySelector('.tl-tc'),
+          render = tl.querySelector('.tl-render'), head = tl.querySelector('.tl-playhead');
+    const v1 = [...tl.querySelectorAll('.tl-track.v:not(.x) .tl-clip')], a1 = [...tl.querySelectorAll('.tl-track.a:not(.x) .tl-clip')];
+    const v2 = [...tl.querySelectorAll('.tl-track.v.x .tl-clip')], a2c = [...tl.querySelectorAll('.tl-track.a.x .tl-clip')];
+
+    tl.addEventListener('click', e => { const c = e.target.closest('.tl-clip[data-pid]'); if (c && typeof openDetail === 'function') openDetail(c.dataset.pid); });
+
+    let lastLive = -1;
+    const draw = (p) => {
+      const sw = stage.clientWidth, hx = Math.round(sw * (mobile ? .38 : .3));
+      head.style.left = hx + 'px';
+      const pos = LEAD + p * (W - 160 - LEAD);                // strip x under the playhead
+      strip.style.transform = `translate3d(${(hx - pos).toFixed(1)}px,0,0)`;
+      render.style.width = pos + 'px';
+      let i = segs.findIndex(s => pos >= s.x0 && pos < s.x1 + GAP); if (i < 0) i = pos < LEAD ? -1 : segs.length - 1;
+      const s = segs[i]; const tt = s ? s.t0 + Math.min(1, (pos - s.x0) / (s.x1 - s.x0)) * (s.t1 - s.t0) : 0;
+      tcEl.textContent = tc(tt);
+      if (i !== lastLive) {
+        v1.forEach((c, k) => { c.classList.toggle('live', k === i); c.classList.toggle('seen', k < i); });
+        a1.forEach((c, k) => c.classList.toggle('live', k === i));
+        lastLive = i;
+      }
+      v2.forEach((c, k) => c.classList.toggle('live', pos >= top[k].x0 && pos < top[k].x1));
+      a2c.forEach(c => { const l = parseFloat(c.style.left); c.classList.toggle('live', pos >= l && pos < l + parseFloat(c.style.width)); });
+    };
+
+    const progress = () => { const r = tl.getBoundingClientRect(), vh = window.innerHeight;
+      return Math.min(1, Math.max(0, (vh * .92 - r.top) / (vh * .92 - vh * .08))); };
+
+    if (REDUCE_MOTION) { tl.classList.add('in'); draw(.3); return; }
+
+    let raf = 0, on = false;
+    const tick = () => { raf = 0; draw(progress()); };
+    const onScroll = () => { if (!raf) raf = requestAnimationFrame(tick); };
+    new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) { tl.classList.add('in'); if (!on) { on = true; addEventListener('scroll', onScroll, { passive: true }); addEventListener('resize', onScroll); onScroll(); } }
+      else if (on) { on = false; removeEventListener('scroll', onScroll); removeEventListener('resize', onScroll); }
+    }), { rootMargin: '120px 0px' }).observe(tl);
+    draw(progress());
+  } catch (err) { console.warn('timeline skipped', err); }
+})();
 </script>
 </body>
 </html>
