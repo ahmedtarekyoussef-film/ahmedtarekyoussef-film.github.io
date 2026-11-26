@@ -13,7 +13,7 @@ window.PROJECTS_DATA = [
   {"id": "v762968709", "title": "A Medical and Charitable Convoy for the People of Al-Arish", "discipline": "editing", "vimeo": {"id": "762968709", "aspect": "16:9"}, "projectType": "Editing", "duration": 37},
   {"id": "selected-ai", "title": "Anua", "discipline": "ai", "vimeo": {"id": "1244025482", "aspect": "9:16"}, "projectType": "AI", "duration": 25},
   {"id": "v1244025481", "title": "Villa El 7arthia AI", "discipline": "ai", "vimeo": {"id": "1244025481", "aspect": "9:16"}, "projectType": "AI", "duration": 51},
-  {"id": "v1244025480", "title": "عباية بيت AI", "discipline": "ai", "vimeo": {"id": "1244025480", "aspect": "9:16"}, "projectType": "AI", "duration": 16},
+  {"id": "v1244025480", "title": "Abaya", "discipline": "ai", "vimeo": {"id": "1244025480", "aspect": "9:16"}, "projectType": "AI", "duration": 16},
   {"id": "v1244027480", "title": "ACACIA Investment", "discipline": "film", "vimeo": {"id": "1244027480", "aspect": "9:16"}, "projectType": "Filmmaker", "duration": 65},
   {"id": "v1244025479", "title": "Canon MAXIFY MB5140", "discipline": "ai", "vimeo": {"id": "1244025479", "aspect": "9:16"}, "projectType": "AI", "duration": 27},
   {"id": "selected-3d", "title": "Body Splash", "discipline": "3d", "vimeo": {"id": "1112640654", "aspect": "9:16"}, "projectType": "3D", "animation": "static-fade", "duration": 12},
