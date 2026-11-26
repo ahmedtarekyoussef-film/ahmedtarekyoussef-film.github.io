@@ -273,65 +273,95 @@
   .section-bg.on{ opacity:.42; }
   .section-bg video, .section-bg img{ width:100%; height:100%; object-fit:cover; display:block; }
   @media (max-width:700px){ .section-bg.on{ opacity:.3; } }
-  /* ---------- Editing section: scroll-scrubbed edit timeline (pure CSS/JS, no media) ---------- */
-  .tl{ margin:3.2rem 6vw 0; border:1px solid var(--line); background:linear-gradient(180deg,#0e0e0c,#0b0b0a); border-radius:3px; overflow:hidden;
-       font-family:'Space Grotesk',sans-serif; user-select:none; -webkit-user-select:none; opacity:0; transform:translateY(18px); transition:opacity 1.2s var(--ease), transform 1.2s var(--ease); }
-  .tl.in{ opacity:1; transform:none; }
-  .tl-bar{ display:flex; align-items:center; gap:1.4em; padding:.55rem .9rem; border-bottom:1px solid var(--line); font-size:.64rem; letter-spacing:.14em; color:var(--fg-faint); }
-  .tl-tc{ font-variant-numeric:tabular-nums; font-size:.92rem; letter-spacing:.06em; color:var(--accent); min-width:9.5ch; }
-  .tl-seq{ flex:1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-  .tl-hint{ white-space:nowrap; }
-  .tl-hint::before{ content:''; display:inline-block; width:6px; height:6px; border-radius:50%; background:#b8463a; margin-right:.6em; vertical-align:1px; box-shadow:0 0 8px #b8463a; animation:tlRec 1.6s ease-in-out infinite; }
-  @keyframes tlRec{ 50%{ opacity:.25; } }
-  .tl-body{ display:flex; }
-  .tl-labels{ flex:0 0 46px; border-right:1px solid var(--line); display:flex; flex-direction:column; }
-  .tl-labels span{ display:flex; align-items:center; justify-content:center; font-size:.6rem; letter-spacing:.1em; color:var(--fg-faint); border-bottom:1px solid #161614; }
-  .tl-labels .r-ruler{ height:26px; }
-  .tl-labels .r-v{ height:46px; } .tl-labels .r-a{ height:38px; }
-  .tl-stage{ position:relative; flex:1; overflow:hidden; cursor:ew-resize; }
-  .tl-strip{ position:relative; will-change:transform; }
-  .tl-ruler{ position:relative; height:26px; border-bottom:1px solid #161614;
-    background:repeating-linear-gradient(90deg, #2a2a26 0 1px, transparent 1px 12px) 0 100% / 100% 6px no-repeat,
-               repeating-linear-gradient(90deg, #3a3934 0 1px, transparent 1px 120px) 0 100% / 100% 12px no-repeat; }
-  .tl-ruler b{ position:absolute; top:3px; font-weight:400; font-size:.56rem; letter-spacing:.06em; color:var(--fg-faint); transform:translateX(4px); }
-  .tl-render{ position:absolute; left:0; bottom:0; height:2px; width:0; background:linear-gradient(90deg, rgba(196,168,118,.25), var(--accent)); box-shadow:0 0 10px rgba(196,168,118,.6); }
-  .tl-track{ position:relative; border-bottom:1px solid #161614; }
-  .tl-track.v{ height:46px; } .tl-track.a{ height:38px; }
-  .tl-clip{ position:absolute; top:5px; bottom:5px; border-radius:2px; overflow:hidden; cursor:pointer;
-    background:#191916; border:1px solid #2c2b27; transition:border-color .35s var(--ease), background .35s var(--ease), box-shadow .35s var(--ease); }
-  .tl-clip.ed{ background:#1e1b14; border-color:#3d3523; }
-  .tl-clip.ovl{ background:#16171a; border-color:#2a2c31; }
-  .tl-clip span{ position:absolute; left:8px; right:8px; top:50%; transform:translateY(-50%); font-size:.62rem; letter-spacing:.06em; color:var(--fg-dim);
-    white-space:nowrap; overflow:hidden; text-overflow:ellipsis; transition:color .35s var(--ease); }
-  .tl-clip::before{ content:''; position:absolute; left:0; right:0; top:0; height:2px; background:rgba(196,168,118,.0); transition:background .5s var(--ease); }
-  .tl-clip.seen::before{ background:rgba(196,168,118,.32); }
-  .tl-clip::after{ content:''; position:absolute; inset:0; transform:translateX(-120%);
-    background:linear-gradient(100deg, transparent 20%, rgba(232,210,160,.0) 35%, rgba(232,210,160,.28) 50%, rgba(232,210,160,0) 65%, transparent 80%); }
-  .tl-clip.live{ border-color:var(--accent); background:#262217; box-shadow:0 0 0 1px rgba(196,168,118,.25), 0 0 26px rgba(196,168,118,.22); }
-  .tl-clip.live span{ color:var(--fg); }
-  .tl-clip.live::after{ animation:tlSweep 2.2s var(--ease) infinite; }
-  @keyframes tlSweep{ to{ transform:translateX(120%); } }
-  .tl-clip:hover{ border-color:var(--fg-faint); }
-  .tl-clip.a{ background:#121311; border-color:#22231f; cursor:default; }
-  .tl-clip.a svg{ position:absolute; inset:3px 0; width:100%; height:calc(100% - 6px); }
-  .tl-clip.a svg path{ fill:#3b3a34; transition:fill .35s var(--ease); }
-  .tl-clip.a.live{ border-color:rgba(196,168,118,.55); background:#17160f; box-shadow:0 0 18px rgba(196,168,118,.14); }
-  .tl-clip.a.live svg path{ fill:#8f7a52; }
-  .tl-playhead{ position:absolute; top:0; bottom:0; left:30%; width:1px; background:var(--accent); pointer-events:none; z-index:3;
-    box-shadow:0 0 12px rgba(196,168,118,.9), 0 0 42px rgba(196,168,118,.35); }
-  .tl-playhead::before{ content:''; position:absolute; top:0; left:-6px; width:13px; height:15px; background:var(--accent);
-    clip-path:polygon(0 0,100% 0,100% 60%,50% 100%,0 60%); }
-  .tl-playhead::after{ content:''; position:absolute; top:0; bottom:0; left:-60px; width:120px; pointer-events:none;
-    background:radial-gradient(closest-side, rgba(196,168,118,.13), transparent); }
+  /* ---------- Editing section: an NLE-style timeline panel (generic editor look; no third-party logos). Pure CSS/JS ---------- */
+  .pr{ --hw:150px; --blue:#2d8ceb; --vid:#8d86d9; --vid2:#a68be0; --ovl:#cf7aa6; --aud:#3f9a6b;
+       margin:3.2rem 6vw 0; background:#1d1d1d; border:1px solid #2a2a2a; border-radius:4px; overflow:hidden;
+       font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; font-size:11px; color:#b9b9b9;
+       user-select:none; -webkit-user-select:none; box-shadow:0 30px 80px rgba(0,0,0,.45), 0 0 0 1px rgba(45,140,235,.0);
+       opacity:0; transform:translateY(18px); transition:opacity 1.2s var(--ease), transform 1.2s var(--ease), box-shadow .6s ease; }
+  .pr.in{ opacity:1; transform:none; box-shadow:0 30px 80px rgba(0,0,0,.45), 0 0 0 1px rgba(45,140,235,.55); }
+  /* panel tabs */
+  .pr-tabs{ display:flex; align-items:stretch; height:28px; background:#1a1a1a; border-bottom:1px solid #2a2a2a; }
+  .pr-tab{ display:flex; align-items:center; gap:.7em; padding:0 14px; color:#8c8c8c; white-space:nowrap; }
+  .pr-tab.on{ color:#e8e8e8; background:#1d1d1d; box-shadow:inset 0 -2px 0 var(--blue); }
+  .pr-tab .x{ color:#6f6f6f; font-size:12px; } .pr-tab .m{ color:#8c8c8c; letter-spacing:-1px; }
+  .pr-hint{ margin-left:auto; display:flex; align-items:center; padding:0 12px; color:#6f6f6f; letter-spacing:.12em; font-size:10px; white-space:nowrap; }
+  .pr-hint::before{ content:''; width:6px; height:6px; border-radius:50%; background:#d9453b; margin-right:.7em; box-shadow:0 0 8px #d9453b; animation:prRec 1.6s ease-in-out infinite; }
+  @keyframes prRec{ 50%{ opacity:.25; } }
+  /* body grid: headers | tracks | v-scroll */
+  .pr-body{ display:grid; grid-template-columns:var(--hw) 1fr 12px; }
+  .pr-left{ background:#232323; border-right:1px solid #2f2f2f; }
+  .pr-tcbox{ height:46px; padding:5px 10px 0; border-bottom:1px solid #2f2f2f; }
+  .pr-tc{ color:var(--blue); font-size:17px; font-variant-numeric:tabular-nums; letter-spacing:.02em; line-height:1.15; }
+  .pr-tools{ display:flex; gap:9px; margin-top:4px; }
+  .pr-tools svg{ width:12px; height:12px; fill:none; stroke:#9a9a9a; stroke-width:1.4; }
+  .pr-tools svg.on{ stroke:var(--blue); }
+  .pr-row{ display:flex; align-items:center; gap:4px; padding:0 6px; border-bottom:1px solid #1b1b1b; overflow:hidden; }
+  .pr-row.v{ height:52px; } .pr-row.a{ height:44px; } .pr-row.e{ height:26px; }
+  .pr-row .ic{ width:14px; height:14px; flex:0 0 14px; display:grid; place-items:center; }
+  .pr-row .ic svg{ width:12px; height:12px; fill:none; stroke:#8d8d8d; stroke-width:1.3; }
+  .pr-row b{ font-weight:500; display:inline-grid; place-items:center; min-width:22px; height:16px; padding:0 3px; border-radius:2px; color:#c9c9c9; background:#2e2e2e; border:1px solid #3a3a3a; font-size:10px; }
+  .pr-row b.tgt{ background:#3a3a3a; } .pr-row b.tgt.on{ background:#3b5f8c; border-color:#4f7fb8; color:#fff; }
+  .pr-row b.ms{ min-width:16px; background:#2a2a2a; color:#9a9a9a; }
+  .pr-row .nm{ margin-left:auto; color:#7d7d7d; font-size:10px; }
+  .pr-right{ position:relative; overflow:hidden; background:#1d1d1d; cursor:ew-resize; }
+  .pr-strip{ position:relative; will-change:transform; }
+  /* ruler */
+  .pr-ruler{ position:relative; height:46px; border-bottom:1px solid #2f2f2f; background:#232323; }
+  .pr-ruler::after{ content:''; position:absolute; left:0; right:0; bottom:8px; height:12px;
+    background:repeating-linear-gradient(90deg,#5a5a5a 0 1px,transparent 1px 12px) 0 100%/100% 5px no-repeat,
+               repeating-linear-gradient(90deg,#7a7a7a 0 1px,transparent 1px 60px) 0 100%/100% 8px no-repeat,
+               repeating-linear-gradient(90deg,#9a9a9a 0 1px,transparent 1px 120px) 0 100%/100% 12px no-repeat; }
+  .pr-ruler b{ position:absolute; top:8px; font-weight:400; font-size:10px; color:#9a9a9a; transform:translateX(4px); font-variant-numeric:tabular-nums; }
+  .pr-render{ position:absolute; left:0; right:0; bottom:0; height:4px; background:#c8a52a; opacity:.8; }
+  .pr-render i{ position:absolute; left:0; top:0; bottom:0; width:0; background:#3fae4f; }
+  /* tracks */
+  .pr-track{ position:relative; border-bottom:1px solid #1b1b1b; background:#1f1f1f; }
+  .pr-track:nth-child(odd){ background:#1d1d1d; }
+  .pr-track.v{ height:52px; } .pr-track.a{ height:44px; } .pr-track.e{ height:26px; }
+  .pr-clip{ position:absolute; top:2px; bottom:2px; border-radius:2px; overflow:hidden; cursor:pointer; color:#101010;
+    background:var(--vid); border:1px solid rgba(0,0,0,.45); box-shadow:inset 0 1px 0 rgba(255,255,255,.18);
+    transition:filter .3s ease, box-shadow .3s ease; }
+  .pr-clip.ed{ background:var(--vid2); } .pr-clip.ovl{ background:var(--ovl); }
+  .pr-clip .th{ position:absolute; left:0; top:0; bottom:0; width:0; background:#000 center/cover; transition:width .4s ease; border-right:1px solid rgba(0,0,0,.5); }
+  .pr-clip.has-th .th{ width:var(--thw,54px); }
+  .pr-clip .lb{ position:absolute; left:6px; right:6px; top:3px; display:flex; align-items:center; gap:4px; white-space:nowrap; overflow:hidden; font-size:10.5px; font-weight:500; }
+  .pr-clip.has-th .lb{ left:calc(var(--thw,54px) + 5px); }
+  .pr-clip .fx{ flex:0 0 auto; font-size:9px; font-weight:700; font-style:italic; padding:0 3px; border-radius:2px; background:rgba(0,0,0,.28); color:#f3d36b; }
+  .pr-clip .lb span{ overflow:hidden; text-overflow:ellipsis; }
+  .pr-clip::before{ content:''; position:absolute; left:0; right:0; bottom:0; height:40%; background:linear-gradient(180deg,transparent,rgba(0,0,0,.16)); pointer-events:none; }
+  .pr-clip::after{ content:''; position:absolute; inset:0; transform:translateX(-120%); pointer-events:none;
+    background:linear-gradient(100deg,transparent 25%,rgba(255,255,255,.0) 38%,rgba(255,255,255,.45) 50%,rgba(255,255,255,0) 62%,transparent 75%); }
+  .pr-clip.live{ filter:brightness(1.18) saturate(1.05); box-shadow:inset 0 0 0 1px #fff, 0 0 18px rgba(255,255,255,.18); }
+  .pr-clip.live::after{ animation:prSweep 2.1s ease-in-out infinite; }
+  @keyframes prSweep{ to{ transform:translateX(120%); } }
+  .pr-clip:hover{ filter:brightness(1.1); }
+  .pr-clip.a{ background:var(--aud); cursor:default; }
+  .pr-clip.a svg{ position:absolute; left:0; right:0; top:14px; bottom:3px; width:100%; height:calc(100% - 17px); }
+  .pr-clip.a svg path{ fill:rgba(210,255,225,.55); }
+  .pr-clip.a .lb{ color:#0d1f14; }
+  /* playhead */
+  .pr-ph{ position:absolute; top:0; bottom:0; left:30%; width:1px; background:var(--blue); pointer-events:none; z-index:4; box-shadow:0 0 10px rgba(45,140,235,.7); }
+  .pr-ph::before{ content:''; position:absolute; top:20px; left:-7px; width:15px; height:18px; background:var(--blue);
+    clip-path:polygon(0 0,100% 0,100% 62%,50% 100%,0 62%); }
+  /* scrollbars */
+  .pr-vs{ background:#1a1a1a; border-left:1px solid #2a2a2a; position:relative; }
+  .pr-vs i{ position:absolute; left:3px; right:3px; top:52px; height:38%; border-radius:4px; background:#3a3a3a; }
+  .pr-bottom{ display:grid; grid-template-columns:var(--hw) 1fr 12px; height:16px; background:#1a1a1a; border-top:1px solid #2a2a2a; }
+  .pr-hs{ position:relative; }
+  .pr-hs i{ position:absolute; top:3px; bottom:3px; left:0; width:20%; border-radius:6px; background:#3a3a3a; }
+  .pr-hs i::before, .pr-hs i::after{ content:''; position:absolute; top:0; width:10px; height:10px; border-radius:50%; background:#575757; }
+  .pr-hs i::before{ left:0; } .pr-hs i::after{ right:0; }
   @media (max-width:700px){
-    .tl{ margin:2.2rem 5vw 0; }
-    .tl-hint, .tl-labels .r-x, .tl-track.x{ display:none; }
-    .tl-labels{ flex-basis:34px; }
-    .tl-seq{ display:none; }
+    .pr{ --hw:80px; margin:2.2rem 5vw 0; }
+    .pr-hint, .pr-tab:not(.on), .pr-tools, .pr-row .ic, .pr-row b.src, .pr-row b.ms, .pr-row .nm, .pr-row.x, .pr-track.x{ display:none; }
+    .pr-tc{ font-size:11px; padding-top:12px; letter-spacing:0; }
+    .pr-tcbox{ padding:5px 6px 0; }
+    .pr-row{ justify-content:center; }
   }
   @media (prefers-reduced-motion: reduce){
-    .tl{ transition:none; opacity:1; transform:none; }
-    .tl-clip.live::after, .tl-hint::before{ animation:none; }
+    .pr{ transition:none; opacity:1; transform:none; }
+    .pr-clip.live::after, .pr-hint::before{ animation:none; }
   }
   /* ---------- Showreel: four independent horizontal carousels (one per discipline) ---------- */
   #showreel{ position:relative; z-index:1; padding:10vh 0 4vh; }
@@ -376,10 +406,12 @@
   .carousel-visual .media-fill:has(> img){ transform:translate3d(var(--px,0px),0,0) scale(1.1); will-change:transform; }
 
   /* ---- vertical (9:16) videos: show the whole poster over a blurred copy of itself instead of cropping it ---- */
-  .carousel-visual.portrait::before, .card-visual.portrait::before{ content:''; position:absolute; inset:-12%; background:var(--poster) center / cover; filter:blur(26px) brightness(.45); }
-  .carousel-visual.portrait .media-fill, .card-visual.portrait .media-fill{ z-index:1; }
-  .carousel-visual.portrait .media-fill img, .card-visual.portrait .media-fill img{ object-fit:contain; }
-  .carousel-visual.portrait .media-fill:has(> img){ transform:none; will-change:auto; }
+  /* ---- every thumbnail is shown whole ("fit"): the full frame sits over a blurred copy of itself, nothing is cropped ---- */
+  .carousel-visual.fit::before, .card-visual.fit::before{ content:''; position:absolute; inset:-12%; background:var(--poster) center / cover; filter:blur(26px) brightness(.45); }
+  .carousel-visual.fit .media-fill, .card-visual.fit .media-fill{ z-index:1; }
+  .carousel-visual.fit .media-fill img, .card-visual.fit .media-fill img{ object-fit:contain; object-position:50% 50%; }
+  .carousel-visual.fit .media-fill:has(> img){ transform:none; will-change:auto; }
+  .carousel-card:hover .carousel-visual.fit img, .card:hover .card-visual.fit img{ transform:scale(1.02); }
 
   /* ---- filter change: visible cards re-enter in sequence ---- */
   .card.refresh{ animation:gridIn .8s var(--ease) backwards; animation-delay:calc(var(--d,0) * 70ms); }
@@ -485,7 +517,7 @@
 
   /* grid */
   .grid{
-    display:grid; grid-template-columns:repeat(12,1fr); gap:2.4vw 2vw; margin-top:4.5rem;
+    display:grid; grid-template-columns:repeat(12,minmax(0,1fr)); gap:2.4vw 2vw; margin-top:4.5rem;
   }
   .card{grid-column:span 6; cursor:pointer;}
   .card.hidden{display:none;}
@@ -613,7 +645,7 @@
     .feat-grid{grid-template-columns:1fr;}
     .about-grid{grid-template-columns:1fr; gap:4rem;}
     .card{grid-column:span 12 !important;}
-    .grid{gap:3.4rem;}
+    .grid{row-gap:3.4rem; column-gap:0;}   /* one card per row: a column gap here would push 11 gaps' width past the screen */
     .detail-head{grid-template-columns:1fr; gap:2.4rem;}
     .detail-facts{grid-template-columns:repeat(2,1fr);}
     .contact-links{gap:1.4rem 2rem;}
@@ -890,6 +922,8 @@ const HERO_MEDIA = {
 const PROJECTS_BUILTIN = [
   { id: "selected-film", title: "Umrah and Visit Forum in Medina", discipline: "film", vimeo: { id: "1112641202", aspect: "16:9" }, projectType: "Filmmaker", roles: [], year: "", client: null,
     mediaType: "placeholder", image: null, video: null, poster: null, hoverPreview: false, animation: "cinematic-parallax", tools: [], description: "", extra: [] },
+  { id: "v1244019008-film", title: "Hamada Helal & Wael Al Fashny — Ashtaq", discipline: "film", vimeo: { id: "1244019008", aspect: "16:9" }, projectType: "Filmmaker", roles: [], year: "", client: null,
+    mediaType: "placeholder", image: null, video: null, poster: null, hoverPreview: false, animation: "cinematic-parallax", tools: [], description: "", extra: [] },
   { id: "v936409710", title: "Heaven Dental Clinic", discipline: "film", vimeo: { id: "936409710", aspect: "16:9" }, projectType: "Filmmaker", roles: [], year: "", client: null,
     mediaType: "placeholder", image: null, video: null, poster: null, hoverPreview: false, animation: "cinematic-parallax", tools: [], description: "", extra: [] },
   { id: "v873673924", title: "Mohamed Ramadan's Concert in Aswan", discipline: "film", vimeo: { id: "873673924", aspect: "16:9" }, projectType: "Filmmaker", roles: [], year: "", client: null,
@@ -905,8 +939,6 @@ const PROJECTS_BUILTIN = [
   { id: "v666304578", title: "Ngm El Arab 2021", discipline: "film", vimeo: { id: "666304578", aspect: "16:9" }, projectType: "Filmmaker", roles: [], year: "", client: null,
     mediaType: "placeholder", image: null, video: null, poster: null, hoverPreview: false, animation: "cinematic-parallax", tools: [], description: "", extra: [] },
   { id: "v1244021887", title: "Desoki & Soda 2", discipline: "film", vimeo: { id: "1244021887", aspect: "16:9" }, projectType: "Filmmaker", roles: [], year: "", client: null,
-    mediaType: "placeholder", image: null, video: null, poster: null, hoverPreview: false, animation: "cinematic-parallax", tools: [], description: "", extra: [] },
-  { id: "selected-editing", title: "Hamada Helal & Wael Al Fashny — Ashtaq", discipline: "editing", vimeo: { id: "1244019008", aspect: "16:9" }, projectType: "Editing", roles: [], year: "", client: null,
     mediaType: "placeholder", image: null, video: null, poster: null, hoverPreview: false, animation: "cinematic-parallax", tools: [], description: "", extra: [] },
   { id: "v1244024762", title: "Carpet Factory", discipline: "editing", vimeo: { id: "1244024762", aspect: "16:9" }, projectType: "Editing", roles: [], year: "", client: null,
     mediaType: "placeholder", image: null, video: null, poster: null, hoverPreview: false, animation: "cinematic-parallax", tools: [], description: "", extra: [] },
@@ -1147,7 +1179,8 @@ function applyPoster(p){
       img.classList.add('loaded');
       fill.innerHTML = '';
       fill.appendChild(img);
-      if (isPortraitVimeo(p)) { vis.classList.add('portrait'); vis.style.setProperty('--poster', `url("${p.poster}")`); }
+      vis.classList.add('fit'); if (isPortraitVimeo(p)) vis.classList.add('portrait');
+      vis.style.setProperty('--poster', `url("${p.poster}")`);
     });
     img.addEventListener('error', () => { if (p.posterFallback && p.poster !== p.posterFallback) { p.poster = p.posterFallback; applyPoster(p); } });
     img.src = p.poster;
@@ -1694,8 +1727,8 @@ window.addEventListener('DOMContentLoaded', ()=>{
 });
 </script>
 <script>
-/* Editing timeline: the selected work laid out as an edit sequence; the gold playhead scrubs with the page scroll.
-   Built from PROJECTS (real titles and durations only). No media files, pauses when off screen. */
+/* Editing timeline: the selected work laid out as an edit sequence in an NLE-style panel; the playhead scrubs with
+   the page scroll. Built from PROJECTS (real titles and durations only). No media files; idle when off screen. */
 (function(){
   try {
     const host = document.querySelector('.carousel-section[data-discipline="editing"]');
@@ -1703,102 +1736,118 @@ window.addEventListener('DOMContentLoaded', ()=>{
     const mobile = window.matchMedia('(max-width:700px)').matches;
     const FPS = 25;
     const dur = p => Math.max(6, +p.duration || 30);
-    const w = s => Math.round(70 + Math.sqrt(s) * (mobile ? 14 : 20));        // compressed: long films don't swallow the strip
+    const w = s => Math.round(80 + Math.sqrt(s) * (mobile ? 14 : 21));
     const seen = new Set();
     const vMain = PROJECTS.filter(p => (p.discipline === 'film' || p.discipline === 'editing') && !seen.has(p.vimeo && p.vimeo.id) && seen.add(p.vimeo && p.vimeo.id));
     const vTop  = PROJECTS.filter(p => p.discipline === 'ai' || p.discipline === '3d');
     if (vMain.length < 3) return;
 
-    const GAP = 2, LEAD = 40;
+    const GAP = 0, LEAD = 30;
     let x = LEAD, t = 0; const segs = [];
     vMain.forEach(p => { const d = dur(p), cw = w(d); segs.push({ p, x0: x, x1: x + cw, t0: t, t1: t + d }); x += cw + GAP; t += d; });
-    const W = x + 160, T = t;
+    const W = x + 160;
 
-    let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
-    const wave = (cw) => {           // simple mirrored waveform path
-      const n = Math.max(8, Math.floor(cw / 4)); let d = '';
-      for (let i = 0; i < n; i++) {
-        const env = 0.35 + 0.65 * Math.abs(Math.sin(i / n * Math.PI * (2 + rnd() * 2)));
-        const h = Math.max(.06, env * (0.25 + rnd() * 0.75)) * 50;
-        const xx = (i / n * 100).toFixed(2);
-        d += `M${xx} ${50 - h}h${(80 / n).toFixed(2)}v${(h * 2).toFixed(1)}h-${(80 / n).toFixed(2)}z`;
-      }
-      return `<svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path d="${d}"/></svg>`;
-    };
-    const tc = s => { const f = Math.floor((s % 1) * FPS), ss = Math.floor(s), h = Math.floor(ss / 3600), m = Math.floor(ss / 60) % 60, sec = ss % 60;
-      return [h, m, sec, f].map(n => String(n).padStart(2, '0')).join(':'); };
+    let seed = 11; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+    const wave = cw => { const n = Math.max(10, Math.floor(cw / 3)); let d = '';
+      for (let i = 0; i < n; i++) { const env = .35 + .65 * Math.abs(Math.sin(i / n * Math.PI * (2 + rnd() * 3)));
+        const h = Math.max(.05, env * (.2 + rnd() * .8)) * 50, xx = (i / n * 100).toFixed(2);
+        d += `M${xx} ${50 - h}h${(70 / n).toFixed(2)}v${(h * 2).toFixed(1)}h-${(70 / n).toFixed(2)}z`; }
+      return `<svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path d="${d}"/></svg>`; };
+    const tc = s => { const f = Math.floor((s % 1) * FPS), ss = Math.floor(s);
+      return [Math.floor(ss / 3600), Math.floor(ss / 60) % 60, ss % 60, f].map(n => String(n).padStart(2, '0')).join(':'); };
     const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;' }[c]));
-
-    const tl = document.createElement('div');
-    tl.className = 'tl';
-    tl.setAttribute('aria-label', 'Edit timeline of selected work. Scroll to scrub; select a clip to open it.');
-    let ruler = '';
-    const timeAt = px => { const s = segs.find(g => px < g.x1 + GAP) || segs[segs.length - 1];
+    const timeAt = px => { const s = segs.find(g => px < g.x1) || segs[segs.length - 1];
       return px <= s.x0 ? s.t0 : s.t0 + Math.min(1, (px - s.x0) / (s.x1 - s.x0)) * (s.t1 - s.t0); };
-    for (let px = LEAD; px < W - 120; px += 120) ruler += `<b style="left:${px}px">${tc(timeAt(px))}</b>`;
-    const clipHTML = (s, cls) => `<div class="tl-clip ${cls}" data-pid="${esc(s.p.id)}" style="left:${s.x0}px;width:${s.x1 - s.x0}px" data-cursor="view" data-cursor-label="VIEW" role="button" tabindex="-1" title="${esc(s.p.title)}"><span>${esc(s.p.title)}</span></div>`;
-    // V2: AI / 3D pieces sit above as overlay clips, spread across the cut
-    const top = vTop.map((p, i) => { const anchor = segs[Math.min(segs.length - 1, Math.round((i + .5) * segs.length / vTop.length))]; const cw = Math.round(w(dur(p)) * .8);
-      return { p, x0: anchor.x0 + 18, x1: anchor.x0 + 18 + cw }; });
-    // A2: long music beds spanning several picture clips
+
+    const I = {   // tiny line icons drawn for this panel
+      snap:'<svg viewBox="0 0 12 12"><path d="M2 2v4a4 4 0 0 0 8 0V2M2 4h2M8 4h2"/></svg>',
+      link:'<svg viewBox="0 0 12 12"><path d="M5 7l2-2M4 5L2.5 6.5a2 2 0 0 0 3 3L7 8M8 7l1.5-1.5a2 2 0 0 0-3-3L5 4"/></svg>',
+      mark:'<svg viewBox="0 0 12 12"><path d="M3 2h6v8L6 8 3 10z"/></svg>',
+      wren:'<svg viewBox="0 0 12 12"><path d="M7.5 2a2.5 2.5 0 0 0 2.5 3L5 10 2 7l5-5z"/></svg>',
+      lock:'<svg viewBox="0 0 12 12"><rect x="2.5" y="5.5" width="7" height="5" rx="1"/><path d="M4 5.5V4a2 2 0 0 1 4 0v1.5"/></svg>',
+      eye:'<svg viewBox="0 0 12 12"><path d="M1 6s2-3.5 5-3.5S11 6 11 6 9 9.5 6 9.5 1 6 1 6z"/><circle cx="6" cy="6" r="1.4"/></svg>',
+      sync:'<svg viewBox="0 0 12 12"><path d="M2 6a4 4 0 0 1 7-2.6M10 6a4 4 0 0 1-7 2.6M9 1.5v2H7M3 10.5v-2h2"/></svg>',
+      mic:'<svg viewBox="0 0 12 12"><rect x="4.5" y="1.5" width="3" height="5.5" rx="1.5"/><path d="M3 6a3 3 0 0 0 6 0M6 9v1.5"/></svg>'
+    };
+    const vHead = (n, on, cls) => `<div class="pr-row v ${cls}"><span class="ic">${I.lock}</span><b class="src">V${n}</b><b class="tgt${on ? ' on' : ''}">V${n}</b><span class="ic">${I.sync}</span><span class="ic">${I.eye}</span></div>`;
+    const aHead = (n, on, cls) => `<div class="pr-row a ${cls}"><span class="ic">${I.lock}</span><b class="src">A${n}</b><b class="tgt${on ? ' on' : ''}">A${n}</b><b class="ms">M</b><b class="ms">S</b><span class="ic">${I.mic}</span></div>`;
+    const eHead = (l) => `<div class="pr-row e x"><span class="ic">${I.lock}</span><b class="src">${l}</b><b class="tgt">${l}</b></div>`;
+
+    const clip = (s, cls, i) => `<div class="pr-clip ${cls}" data-pid="${esc(s.p.id)}" style="left:${s.x0}px;width:${s.x1 - s.x0}px" data-cursor="view" data-cursor-label="VIEW" title="${esc(s.p.title)}"><i class="th"></i><div class="lb">${i % 3 === 0 ? '<em class="fx">fx</em>' : ''}<span>${esc(s.p.title)}</span></div></div>`;
+    const top = vTop.map((p, i) => { const a = segs[Math.min(segs.length - 1, Math.round((i + .5) * segs.length / vTop.length))], cw = Math.round(w(dur(p)) * .8);
+      return { p, x0: a.x0 + 24, x1: a.x0 + 24 + cw }; });
     let a2 = ''; for (let i = 0; i < segs.length; i += 4) { const a = segs[i], b = segs[Math.min(segs.length - 1, i + 3)];
-      a2 += `<div class="tl-clip a" style="left:${a.x0}px;width:${b.x1 - a.x0}px">${wave(b.x1 - a.x0)}</div>`; }
+      a2 += `<div class="pr-clip a" style="left:${a.x0}px;width:${b.x1 - a.x0}px"><div class="lb"><span>Music Bed ${i / 4 + 1}</span></div>${wave(b.x1 - a.x0)}</div>`; }
+    let ruler = ''; for (let px = LEAD; px < W - 120; px += 120) ruler += `<b style="left:${px}px">${tc(timeAt(px))}</b>`;
 
-    tl.innerHTML = `
-      <div class="tl-bar"><span class="tl-tc">00:00:00:00</span><span class="tl-seq">SEQUENCE — SELECTED WORK · ${segs.length + top.length} CLIPS</span><span class="tl-hint">SCROLL TO SCRUB</span></div>
-      <div class="tl-body">
-        <div class="tl-labels"><span class="r-ruler"></span><span class="r-v r-x">V2</span><span class="r-v">V1</span><span class="r-a">A1</span><span class="r-a r-x">A2</span></div>
-        <div class="tl-stage">
-          <div class="tl-strip" style="width:${W}px">
-            <div class="tl-ruler">${ruler}<i class="tl-render"></i></div>
-            <div class="tl-track v x">${top.map(s => clipHTML(s, 'ovl')).join('')}</div>
-            <div class="tl-track v">${segs.map(s => clipHTML(s, s.p.discipline === 'editing' ? 'ed' : '')).join('')}</div>
-            <div class="tl-track a">${segs.map(s => `<div class="tl-clip a" style="left:${s.x0}px;width:${s.x1 - s.x0}px">${wave(s.x1 - s.x0)}</div>`).join('')}</div>
-            <div class="tl-track a x">${a2}</div>
-          </div>
-          <div class="tl-playhead"></div>
+    const pr = document.createElement('div');
+    pr.className = 'pr';
+    pr.setAttribute('aria-label', 'Edit timeline of selected work. Scroll to scrub; select a clip to open it.');
+    pr.innerHTML = `
+      <div class="pr-tabs"><span class="pr-tab on"><span class="x">×</span>Selected Work<span class="m">≡</span></span><span class="pr-tab">Showreel 2026</span><span class="pr-hint">SCROLL TO SCRUB</span></div>
+      <div class="pr-body">
+        <div class="pr-left">
+          <div class="pr-tcbox"><div class="pr-tc">00:00:00:00</div><div class="pr-tools">${I.snap.replace('<svg', '<svg class="on"')}${I.link.replace('<svg', '<svg class="on"')}${I.mark}${I.wren}</div></div>
+          ${eHead('V3')}${vHead(2, false, 'x')}${vHead(1, true, '')}${aHead(1, true, '')}${aHead(2, false, 'x')}${eHead('A3')}
         </div>
-      </div>`;
-    host.appendChild(tl);
+        <div class="pr-right">
+          <div class="pr-strip" style="width:${W}px">
+            <div class="pr-ruler">${ruler}<div class="pr-render"><i></i></div></div>
+            <div class="pr-track e x"></div>
+            <div class="pr-track v x">${top.map((s, i) => clip(s, 'ovl', i + 1)).join('')}</div>
+            <div class="pr-track v">${segs.map((s, i) => clip(s, s.p.discipline === 'editing' ? 'ed' : '', i)).join('')}</div>
+            <div class="pr-track a">${segs.map(s => `<div class="pr-clip a" style="left:${s.x0}px;width:${s.x1 - s.x0}px">${wave(s.x1 - s.x0)}</div>`).join('')}</div>
+            <div class="pr-track a x">${a2}</div>
+            <div class="pr-track e x"></div>
+          </div>
+          <div class="pr-ph"></div>
+        </div>
+        <div class="pr-vs"><i></i></div>
+      </div>
+      <div class="pr-bottom"><span></span><div class="pr-hs"><i></i></div><span></span></div>`;
+    host.appendChild(pr);
 
-    const stage = tl.querySelector('.tl-stage'), strip = tl.querySelector('.tl-strip'), tcEl = tl.querySelector('.tl-tc'),
-          render = tl.querySelector('.tl-render'), head = tl.querySelector('.tl-playhead');
-    const v1 = [...tl.querySelectorAll('.tl-track.v:not(.x) .tl-clip')], a1 = [...tl.querySelectorAll('.tl-track.a:not(.x) .tl-clip')];
-    const v2 = [...tl.querySelectorAll('.tl-track.v.x .tl-clip')], a2c = [...tl.querySelectorAll('.tl-track.a.x .tl-clip')];
+    const right = pr.querySelector('.pr-right'), strip = pr.querySelector('.pr-strip'), tcEl = pr.querySelector('.pr-tc'),
+          rend = pr.querySelector('.pr-render i'), ph = pr.querySelector('.pr-ph'), hs = pr.querySelector('.pr-hs i');
+    const v1 = [...pr.querySelectorAll('.pr-track.v:not(.x) .pr-clip')], a1 = [...pr.querySelectorAll('.pr-track.a:not(.x) .pr-clip')];
+    const v2 = [...pr.querySelectorAll('.pr-track.v.x .pr-clip')], a2c = [...pr.querySelectorAll('.pr-track.a.x .pr-clip')];
 
-    tl.addEventListener('click', e => { const c = e.target.closest('.tl-clip[data-pid]'); if (c && typeof openDetail === 'function') openDetail(c.dataset.pid); });
+    pr.addEventListener('click', e => { const c = e.target.closest('.pr-clip[data-pid]'); if (c && typeof openDetail === 'function') openDetail(c.dataset.pid); });
 
-    let lastLive = -1;
-    const draw = (p) => {
-      const sw = stage.clientWidth, hx = Math.round(sw * (mobile ? .38 : .3));
-      head.style.left = hx + 'px';
-      const pos = LEAD + p * (W - 160 - LEAD);                // strip x under the playhead
+    // head-frame thumbnails, as an editor shows on expanded video tracks (uses the posters the cards already loaded)
+    let tries = 0; const thumbs = () => { let missing = 0;
+      pr.querySelectorAll('.pr-clip[data-pid]:not(.has-th)').forEach(c => { const p = PROJECTS.find(q => q.id === c.dataset.pid);
+        if (p && p.poster) { const th = c.querySelector('.th'); th.style.backgroundImage = `url("${p.poster}")`;
+          const port = typeof isPortraitVimeo === 'function' && isPortraitVimeo(p); c.style.setProperty('--thw', (port ? 28 : 78) + 'px');
+          if (c.offsetWidth > (port ? 70 : 130)) c.classList.add('has-th'); } else missing++; });
+      if (missing && ++tries < 12) setTimeout(thumbs, 1500); };
+    setTimeout(thumbs, 1200);
+
+    let last = -1;
+    const draw = p => {
+      const sw = right.clientWidth, hx = Math.round(sw * (mobile ? .38 : .3));
+      ph.style.left = hx + 'px';
+      const pos = LEAD + p * (W - 160 - LEAD);
       strip.style.transform = `translate3d(${(hx - pos).toFixed(1)}px,0,0)`;
-      render.style.width = pos + 'px';
-      let i = segs.findIndex(s => pos >= s.x0 && pos < s.x1 + GAP); if (i < 0) i = pos < LEAD ? -1 : segs.length - 1;
-      const s = segs[i]; const tt = s ? s.t0 + Math.min(1, (pos - s.x0) / (s.x1 - s.x0)) * (s.t1 - s.t0) : 0;
-      tcEl.textContent = tc(tt);
-      if (i !== lastLive) {
-        v1.forEach((c, k) => { c.classList.toggle('live', k === i); c.classList.toggle('seen', k < i); });
-        a1.forEach((c, k) => c.classList.toggle('live', k === i));
-        lastLive = i;
-      }
+      rend.style.width = pos + 'px';
+      const vis = Math.min(1, sw / W); hs.style.width = (vis * 100).toFixed(1) + '%'; hs.style.left = ((1 - vis) * p * 100).toFixed(2) + '%';
+      let i = segs.findIndex(s => pos >= s.x0 && pos < s.x1); if (i < 0) i = pos < LEAD ? -1 : segs.length - 1;
+      const s = segs[i]; tcEl.textContent = tc(s ? s.t0 + Math.min(1, (pos - s.x0) / (s.x1 - s.x0)) * (s.t1 - s.t0) : 0);
+      if (i !== last) { v1.forEach((c, k) => c.classList.toggle('live', k === i)); a1.forEach((c, k) => c.classList.toggle('live', k === i)); last = i; }
       v2.forEach((c, k) => c.classList.toggle('live', pos >= top[k].x0 && pos < top[k].x1));
       a2c.forEach(c => { const l = parseFloat(c.style.left); c.classList.toggle('live', pos >= l && pos < l + parseFloat(c.style.width)); });
     };
+    const progress = () => { const r = pr.getBoundingClientRect(), vh = window.innerHeight;
+      return Math.min(1, Math.max(0, (vh * .92 - r.top) / (vh * .84))); };
 
-    const progress = () => { const r = tl.getBoundingClientRect(), vh = window.innerHeight;
-      return Math.min(1, Math.max(0, (vh * .92 - r.top) / (vh * .92 - vh * .08))); };
-
-    if (REDUCE_MOTION) { tl.classList.add('in'); draw(.3); return; }
-
+    if (REDUCE_MOTION) { pr.classList.add('in'); draw(.3); return; }
     let raf = 0, on = false;
     const tick = () => { raf = 0; draw(progress()); };
     const onScroll = () => { if (!raf) raf = requestAnimationFrame(tick); };
     new IntersectionObserver(es => es.forEach(e => {
-      if (e.isIntersecting) { tl.classList.add('in'); if (!on) { on = true; addEventListener('scroll', onScroll, { passive: true }); addEventListener('resize', onScroll); onScroll(); } }
+      if (e.isIntersecting) { pr.classList.add('in'); if (!on) { on = true; addEventListener('scroll', onScroll, { passive: true }); addEventListener('resize', onScroll); onScroll(); } }
       else if (on) { on = false; removeEventListener('scroll', onScroll); removeEventListener('resize', onScroll); }
-    }), { rootMargin: '120px 0px' }).observe(tl);
+    }), { rootMargin: '120px 0px' }).observe(pr);
     draw(progress());
   } catch (err) { console.warn('timeline skipped', err); }
 })();

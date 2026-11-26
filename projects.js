@@ -8,7 +8,6 @@ window.PROJECTS_DATA = [
   {"id": "v705699515", "title": "DODGE Gym Promo", "discipline": "film", "vimeo": {"id": "705699515", "aspect": "16:9"}, "projectType": "Filmmaker", "duration": 63},
   {"id": "v666304578", "title": "Ngm El Arab 2021", "discipline": "film", "vimeo": {"id": "666304578", "aspect": "16:9"}, "projectType": "Filmmaker", "duration": 42},
   {"id": "v1244021887", "title": "Desoki & Soda 2", "discipline": "film", "vimeo": {"id": "1244021887", "aspect": "16:9"}, "projectType": "Filmmaker", "duration": 62},
-  {"id": "selected-editing", "title": "Hamada Helal & Wael Al Fashny — Ashtaq", "discipline": "editing", "vimeo": {"id": "1244019008", "aspect": "16:9"}, "projectType": "Editing", "duration": 237},
   {"id": "v1244024762", "title": "Carpet Factory", "discipline": "editing", "vimeo": {"id": "1244024762", "aspect": "16:9"}, "projectType": "Editing", "duration": 52},
   {"id": "v762968709", "title": "A Medical and Charitable Convoy for the People of Al-Arish", "discipline": "editing", "vimeo": {"id": "762968709", "aspect": "16:9"}, "projectType": "Editing", "duration": 37},
   {"id": "selected-ai", "title": "Anua", "discipline": "ai", "vimeo": {"id": "1244025482", "aspect": "9:16"}, "projectType": "AI", "duration": 25},
