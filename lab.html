@@ -2369,15 +2369,15 @@ window.addEventListener('DOMContentLoaded', ()=>{
       const f = document.createElement('iframe');
       f.allow = 'autoplay; fullscreen; picture-in-picture'; f.title = p.title;
       f.src = `https://player.vimeo.com/video/${v.id}?${v.hash ? 'h=' + v.hash + '&' : ''}autoplay=1&title=0&byline=0&portrait=0&dnt=1&api=1&color=c4a876`;
-      f.addEventListener('load', () => ['timeupdate', 'ended', 'play'].forEach(ev => f.contentWindow.postMessage(JSON.stringify({ method: 'addEventListener', value: ev }), 'https://player.vimeo.com')));
+      f.addEventListener('load', () => ['playProgress', 'finish', 'timeupdate', 'ended'].forEach(ev => f.contentWindow.postMessage(JSON.stringify({ method: 'addEventListener', value: ev }), 'https://player.vimeo.com')));
       frame.appendChild(f); player = f; playing = true; frame.classList.add('playing'); frame.removeAttribute('data-cursor');
     };
     addEventListener('message', e => {
       if (!player || e.origin !== 'https://player.vimeo.com' || e.source !== player.contentWindow) return;
       let m = e.data; try { if (typeof m === 'string') m = JSON.parse(m); } catch (_) { return; }
-      if (m.event === 'ready') ['timeupdate', 'ended', 'play'].forEach(ev => player.contentWindow.postMessage(JSON.stringify({ method: 'addEventListener', value: ev }), 'https://player.vimeo.com'));
-      if (m.event === 'timeupdate' && m.data) setTime(sel, +m.data.seconds || 0);
-      if (m.event === 'ended' && sel < list.length - 1) select(sel + 1, true);        // keeps playing down the timeline, like a real sequence
+      if (m.event === 'ready') ['playProgress', 'finish', 'timeupdate', 'ended'].forEach(ev => player.contentWindow.postMessage(JSON.stringify({ method: 'addEventListener', value: ev }), 'https://player.vimeo.com'));
+      if ((m.event === 'playProgress' || m.event === 'timeupdate') && m.data) setTime(sel, +m.data.seconds || 0);   // Vimeo's postMessage API names it playProgress
+      if ((m.event === 'finish' || m.event === 'ended') && sel < list.length - 1) select(sel + 1, true);        // keeps playing down the timeline, like a real sequence
     });
 
     frame.addEventListener('click', () => { if (!playing && sel >= 0) start(sel); });
