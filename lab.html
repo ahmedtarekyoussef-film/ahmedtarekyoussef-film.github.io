@@ -1,0 +1,2232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex,nofollow">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AHMED TAREK — Filmmaker / Editor / AI Creative / 3D Artist</title>
+<meta name="description" content="Ahmed Tarek is a filmmaker, video editor, AI creative and 3D artist. Visual storytelling across film, post, AI and 3D.">
+<meta name="theme-color" content="#0A0A09">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="AHMED TAREK — Filmmaker / Editor / AI Creative / 3D Artist">
+<meta property="og:description" content="Visual storytelling across film, post, AI & 3D.">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:image" content="https://ahmedtarekyoussef-film.github.io/media-og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Ahmed Tarek Youssef — filmmaker with camera">
+<meta property="og:url" content="https://ahmedtarekyoussef-film.github.io/">
+<meta property="og:site_name" content="AHMED TAREK YOUSSEF">
+<meta name="twitter:image" content="https://ahmedtarekyoussef-film.github.io/media-og-image.jpg">
+<link rel="canonical" href="https://ahmedtarekyoussef-film.github.io/">
+<link rel="preload" as="image" href="media-hero.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,340;0,9..144,440;0,9..144,560;1,9..144,440&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg:#0A0A09;
+    --bg-raised:#0F0F0E;
+    --fg:#F3F1EA;
+    --fg-dim:#9C9A92;
+    --fg-faint:#5A5952;
+    --line:#232320;
+    --accent:#C4A876;
+    --ease:cubic-bezier(.16,.8,.24,1);
+    --nav-h:76px;
+
+    box-sizing:border-box;
+    padding-top:env(safe-area-inset-top,0px);
+    padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  *,*::before,*::after{box-sizing:inherit;}
+  html{scroll-behavior:smooth;scroll-padding-top:calc(var(--nav-h) + env(safe-area-inset-top,0px));height:100%;overflow-x:hidden;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important;}
+  }
+  body{
+    margin:0;
+    min-height:100%;
+    background:var(--bg);
+    color:var(--fg);
+    font-family:'Space Grotesk',system-ui,-apple-system,'Segoe UI',sans-serif;
+    -webkit-font-smoothing:antialiased;
+
+  }
+  ::selection{background:var(--accent);color:#0A0A09;}
+  img,video{max-width:100%;display:block;}
+  a{color:inherit;text-decoration:none;}
+  button{font-family:inherit;background:none;border:none;color:inherit;cursor:pointer;padding:0;}
+
+  h1,h2,h3{
+    font-family:'Fraunces',Georgia,serif;
+    font-weight:440;
+    line-height:0.98;
+    letter-spacing:-0.01em;
+    margin:0;
+  }
+  .eyebrow{font-size:0.72rem; letter-spacing:0.14em; color:var(--fg-faint); font-weight:500;}
+
+  .wrap{max-width:1400px; margin:0 auto; padding-left:6vw; padding-right:6vw;}
+  section{position:relative;}
+
+  /* ---------- Reveal ---------- */
+  .reveal{opacity:0; transform:translateY(18px); transition:opacity .9s var(--ease), transform .9s var(--ease);}
+  .reveal.in{opacity:1; transform:none;}
+
+
+  /* ---------- Living background for everything after the hero ----------
+     One sticky layer made of 4 soft colour glows, a thin light streak, a vignette and static film grain.
+     Only transforms/opacity animate (GPU-friendly); scroll moves the glows along a gentle path. */
+  #afterHero{ position:relative; z-index:2; background:var(--bg); overflow:clip; }
+  #afterHero > section, #afterHero > footer{ position:relative; z-index:1; }
+  .fx{ position:sticky; top:0; height:100vh; height:100svh; margin-bottom:-100vh; margin-bottom:-100svh; z-index:0; pointer-events:none; overflow:hidden; contain:layout paint; }
+  .fx-blob{ position:absolute; left:50%; top:50%; width:95vmax; height:95vmax; margin:-47.5vmax 0 0 -47.5vmax; opacity:0; transition:opacity 1.8s ease; will-change:transform; }
+  .fx-blob > i{ position:absolute; inset:0; border-radius:50%; animation:fxDrift 26s ease-in-out infinite alternate; }
+  .b-gold   > i{ background:radial-gradient(closest-side, rgba(196,168,118,.20), rgba(196,168,118,0)); }
+  .b-teal   > i{ background:radial-gradient(closest-side, rgba(70,125,135,.20), rgba(70,125,135,0)); animation-duration:31s; animation-direction:alternate-reverse; }
+  .b-violet > i{ background:radial-gradient(closest-side, rgba(115,95,175,.18), rgba(115,95,175,0)); animation-duration:37s; }
+  .b-copper > i{ background:radial-gradient(closest-side, rgba(180,100,60,.19), rgba(180,100,60,0)); animation-duration:29s; animation-direction:alternate-reverse; }
+  @keyframes fxDrift{ from{ transform:translate3d(-6%,-4%,0) scale(.92); } to{ transform:translate3d(6%,5%,0) scale(1.08); } }
+  /* which glows are lit depends on the section in view (set by script on <html data-tone>) */
+  html:not([data-tone]) .b-gold, html[data-tone="base"] .b-gold{ opacity:.85; }
+  html:not([data-tone]) .b-teal, html[data-tone="base"] .b-teal{ opacity:.6; }
+  html[data-tone="film"] .b-gold{ opacity:1; }   html[data-tone="film"] .b-copper{ opacity:.55; }
+  html[data-tone="editing"] .b-teal{ opacity:1; } html[data-tone="editing"] .b-gold{ opacity:.5; }
+  html[data-tone="ai"] .b-violet{ opacity:1; }    html[data-tone="ai"] .b-teal{ opacity:.55; }
+  html[data-tone="3d"] .b-copper{ opacity:1; }    html[data-tone="3d"] .b-gold{ opacity:.5; }
+  .fx-streak{ position:absolute; left:-30%; width:160%; top:34%; height:1px; opacity:.8; will-change:transform;
+    background:linear-gradient(90deg, rgba(243,241,234,0), rgba(196,168,118,.0) 18%, rgba(243,241,234,.26) 50%, rgba(196,168,118,0) 82%, rgba(243,241,234,0)); }
+  .fx-vig{ position:absolute; inset:0; background:radial-gradient(ellipse at 50% 45%, rgba(10,10,9,0) 50%, rgba(10,10,9,.55) 100%); }
+  .fx-grain{ position:absolute; inset:0; opacity:.07; background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .6 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"); }
+  @media (max-width:860px){ .fx-blob{ width:130vmax; height:130vmax; margin:-65vmax 0 0 -65vmax; } .fx-streak{ display:none; } }
+  @media (prefers-reduced-motion: reduce){ .fx-blob > i{ animation:none; } .fx-blob{ transition:none; } }
+
+  /* ---------- Motion vocabulary (shared keyframes) ---------- */
+  @keyframes cardIn{ from{opacity:0; transform:translateY(24px);} to{opacity:1; transform:none;} }
+  @keyframes wipeIn{ from{clip-path:inset(0 100% 0 0);} to{clip-path:inset(0 0 0 0);} }
+  @keyframes gridIn{ from{opacity:0; transform:translateY(22px) scale(.985);} to{opacity:1; transform:none;} }
+  @keyframes riseIn{ from{opacity:0; transform:translateY(22px);} to{opacity:1; transform:none;} }
+  @keyframes letterbox{ from{clip-path:inset(50% 0 50% 0);} to{clip-path:inset(0 0 0 0);} }
+  @keyframes playRing{ 0%{opacity:.7; transform:scale(1);} 100%{opacity:0; transform:scale(1.9);} }
+
+  /* closing headline: wipes open while rising */
+  .contact-title.reveal{ opacity:1; clip-path:inset(0 0 100% 0); transform:translateY(34px); transition:clip-path 1.3s var(--ease), transform 1.3s var(--ease); }
+  .contact-title.reveal.in{ clip-path:inset(-6% 0 -18% 0); transform:none; }
+
+  /* ---------- Custom cursor ---------- */
+  #cursor{
+    position:fixed; top:0; left:0; width:74px; height:74px; border-radius:50%;
+    pointer-events:none; z-index:900; mix-blend-mode:difference;
+    display:flex; align-items:center; justify-content:center;
+    transform:translate(-50%,-50%) scale(0);
+    transition:transform .28s var(--ease), background .28s var(--ease);
+    background:transparent; border:1px solid var(--fg);
+    font-size:.62rem; letter-spacing:.08em; color:var(--fg); text-align:center;
+    will-change:transform;
+  }
+  #cursor.on{transform:translate(-50%,-50%) scale(1);}
+  #cursor.fill{background:var(--fg); border-color:var(--fg);}
+  @media (hover:none), (pointer:coarse){ #cursor{display:none;} }
+
+  /* ---------- Nav ---------- */
+  #nav{
+    position:fixed; top:0; left:0; right:0; z-index:500; height:var(--nav-h);
+    padding-top:env(safe-area-inset-top,0px);
+    display:flex; align-items:center; justify-content:space-between;
+    padding-left:6vw; padding-right:6vw;
+    background:transparent;
+    border-bottom:1px solid transparent;
+    transition:background .5s var(--ease), border-color .5s var(--ease);
+  }
+  #nav.solid{ background:rgba(10,10,9,0.86); backdrop-filter:blur(10px); border-color:var(--line); }
+  .brand{font-family:'Fraunces',serif; font-size:1.02rem; letter-spacing:.01em;}
+  .brand-logo{ display:flex; align-items:center; line-height:0; }
+  .brand-logo img{ display:block; height:20px; width:auto; }
+  @media (max-width:600px){ .brand-logo img{ height:21px; } }
+  .navlinks{display:flex; gap:2.6rem; font-size:.82rem; letter-spacing:.04em;}
+  .navlinks a{position:relative; padding:4px 0; color:var(--fg-dim); transition:color .3s var(--ease);}
+  .navlinks a:hover, .navlinks a:focus-visible{color:var(--fg);}
+  .navlinks a::after{content:'';position:absolute; left:0; bottom:0; width:0; height:1px; background:var(--accent); transition:width .35s var(--ease);}
+  .navlinks a:hover::after{width:100%;}
+  #menuBtn{display:none; width:34px; height:24px; position:relative;}
+  #menuBtn span{position:absolute; left:0; right:0; height:1px; background:var(--fg); transition:transform .3s var(--ease), opacity .3s var(--ease);}
+  #menuBtn span:nth-child(1){top:0;}
+  #menuBtn span:nth-child(2){top:11px;}
+  #menuBtn span:nth-child(3){top:22px;}
+  #menuBtn.open span:nth-child(1){transform:translateY(11px) rotate(45deg);}
+  #menuBtn.open span:nth-child(2){opacity:0;}
+  #menuBtn.open span:nth-child(3){transform:translateY(-11px) rotate(-45deg);}
+
+  #mobileNav{
+    position:fixed; inset:0; z-index:480; background:var(--bg);
+    display:flex; flex-direction:column; justify-content:center; gap:2rem;
+    padding:0 8vw; transform:translateY(-100%); transition:transform .5s var(--ease);
+  }
+  #mobileNav.open{transform:translateY(0);}
+  #mobileNav a{font-family:'Fraunces',serif; font-size:2.6rem;}
+
+  /* ---------- Hero ---------- */
+  #hero{
+    min-height:100svh; display:flex; flex-direction:column; justify-content:flex-end;
+    padding-top:calc(var(--nav-h) + 4vh); padding-bottom:8vh;
+    overflow:hidden; isolation:isolate;
+    --hero-pos:62% 40%;
+    position:sticky; top:0; z-index:1;
+  }
+  /* -------- Responsive art direction for the hero photo --------
+     The photo is landscape (subject + camera sit right-of-centre). Cover-crop
+     math differs a lot between a wide desktop screen and a tall phone screen,
+     so each tier gets its own focal point rather than one crop scaled down. */
+  @media (min-width:1025px){ #hero{ --hero-pos:62% 40%; } }          /* desktop landscape: composition is nearly uncropped */
+  @media (min-width:601px) and (max-width:1024px){ #hero{ --hero-pos:66% 42%; } } /* tablet: recalculated independently */
+  @media (max-width:600px){ #hero{ --hero-pos:68% 46%; } }            /* mobile portrait: dedicated crop, camera + filmmaker kept together */
+  @media (max-width:900px) and (orientation:landscape){ #hero{ --hero-pos:56% 38%; } } /* phone rotated on its side */
+
+  /* ---------- Living hero background (BACKGROUND / MIDGROUND / FOREGROUND) ---------- */
+  #heroBg{ position:absolute; inset:0; z-index:0; overflow:hidden; background:var(--bg-raised); transform-origin:center; transition:transform .5s var(--ease); }
+  .hero-bg-scale{ position:absolute; inset:0; transform-origin:center; animation:heroDrift 32s ease-in-out infinite alternate; }
+  .hero-bg-parallax{ position:absolute; inset:-6%; will-change:transform; transition:transform .5s var(--ease); }
+  .hero-bg-parallax img, .hero-bg-parallax video{ width:100%; height:100%; object-fit:cover; object-position:var(--hero-pos, 50% 42%); }
+  .hero-bg-parallax .ph{ position:absolute; inset:0; height:100%; }
+  @keyframes heroDrift{
+    0%{ transform:scale(1) translate3d(0,0,0); }
+    100%{ transform:scale(1.06) translate3d(-1.2%,-1%,0); }
+  }
+  /* midground: subtle film grain, sits between the visual and the readability overlay */
+  .hero-bg-texture{
+    position:absolute; inset:0; z-index:1; pointer-events:none; opacity:.16; mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    background-size:180px 180px;
+  }
+  /* readability overlay: darker toward the left where the type sits, and toward the bottom;
+     kept clear over the right side so the subject stays fully visible */
+  .hero-bg-overlay{
+    position:absolute; inset:0; z-index:2; pointer-events:none;
+    background:
+      linear-gradient(90deg, rgba(10,10,9,.6) 0%, rgba(10,10,9,.22) 40%, rgba(10,10,9,0) 62%),
+      linear-gradient(180deg, rgba(10,10,9,.04) 0%, rgba(10,10,9,.5) 100%);
+    transition:opacity .3s linear;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .hero-bg-scale{ animation:none; }
+    .hero-bg-parallax{ transition:none; transform:none !important; }
+  }
+  @media (max-width:860px){
+    .hero-bg-scale{ animation-duration:44s; }
+    @keyframes heroDrift{ 0%{ transform:scale(1) translate3d(0,0,0); } 100%{ transform:scale(1.025) translate3d(0,-.4%,0); } }
+  }
+
+  .hero-content{ position:relative; z-index:3; will-change:transform, opacity; transition:transform .15s linear, opacity .15s linear; }
+  @media (prefers-reduced-motion: reduce){ .hero-content{ transition:none; } }
+  .hero-grid{ max-width:min(640px, 60vw); }
+  .hero-name{ font-size:clamp(2.5rem, 6.4vw, 5.6rem); white-space:normal; }
+  .hero-name .nobrk{ white-space:nowrap; display:inline-block; }
+  .hero-roles{margin-top:1.3rem; font-size:.86rem; letter-spacing:.12em; color:var(--fg-dim); display:flex; flex-wrap:wrap; gap:.55em .9em;}
+  .hero-roles span:not(:last-child)::after{content:'/'; margin-left:.9em; color:var(--fg-faint);}
+  .hero-side{padding-bottom:.4rem; margin-top:2.6rem;}
+  .hero-statement{font-family:'Fraunces',serif; font-weight:400; font-style:italic; font-size:clamp(1.1rem,1.7vw,1.5rem); color:var(--fg-dim); line-height:1.35; max-width:22ch;}
+  .hero-cta-row{margin-top:2.4rem; display:flex; align-items:center; gap:2.2rem; flex-wrap:wrap;}
+  .btn-primary{
+    display:inline-flex; align-items:center; gap:.6em; font-size:.82rem; letter-spacing:.08em;
+    padding:.95em 1.7em; border:1px solid var(--fg); position:relative; overflow:hidden;
+  }
+  .btn-primary span{position:relative; z-index:2; transition:color .45s var(--ease);}
+  .btn-primary::before{content:'';position:absolute; inset:0; background:var(--fg); transform:translateY(101%); transition:transform .45s var(--ease); z-index:1;}
+  .btn-primary:hover::before{transform:translateY(0);}
+  .btn-primary:hover span{color:var(--bg);}
+  .scroll-hint{font-size:.72rem; letter-spacing:.1em; color:var(--fg-faint); display:flex; align-items:center; gap:.7em;}
+  .scroll-hint .line{width:34px; height:1px; background:var(--fg-faint); position:relative; overflow:hidden;}
+  .scroll-hint .line::after{content:'';position:absolute; left:-100%; top:0; bottom:0; width:100%; background:var(--accent); animation:scrollline 2.6s linear infinite;}
+  @keyframes scrollline{ to{left:100%;} }
+  @media (prefers-reduced-motion: reduce){ .scroll-hint .line::after{animation:none; left:0;} }
+
+  /* ---------- placeholder visual ---------- */
+  .ph{
+    background:
+      repeating-linear-gradient(115deg, rgba(243,241,234,0.05) 0px, rgba(243,241,234,0.05) 1px, transparent 1px, transparent 34px),
+      var(--bg-raised);
+    display:flex; align-items:flex-end; justify-content:space-between;
+    padding:1.1rem 1.3rem; color:var(--fg-faint); font-size:.66rem; letter-spacing:.08em;
+  }
+  .ph .idx{font-family:'Fraunces',serif; font-size:1.6rem; color:var(--fg-faint); font-style:italic;}
+  .media-fill{position:absolute; inset:0; width:100%; height:100%;}
+  .media-fill img, .media-fill video{width:100%; height:100%; object-fit:cover;}
+  .media-fill .ph{position:absolute; inset:0; height:100%;}
+
+  /* ---------- Section headers ---------- */
+  .sec-head{display:flex; align-items:baseline; justify-content:space-between; gap:2rem; margin-bottom:3.4rem; flex-wrap:wrap;}
+  .sec-title{font-size:clamp(2.1rem,4.4vw,3.6rem);}
+  .sec-count{font-size:.78rem; color:var(--fg-faint); letter-spacing:.05em;}
+
+  section#work{padding:12vh 0 10vh;}
+
+
+  /* ---- AI section: quiet looping backdrop (small file, plays only while visible) ---- */
+  .carousel-section.has-bg{ position:relative; overflow:hidden; isolation:isolate; }
+  .carousel-section.has-bg > .carousel-head, .carousel-section.has-bg > .carousel-viewport{ position:relative; z-index:1; }
+  .section-bg{ position:absolute; inset:0; z-index:0; pointer-events:none; opacity:0; transition:opacity 1.4s var(--ease);
+    -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 22%,#000 78%,transparent 100%); mask-image:linear-gradient(180deg,transparent 0,#000 22%,#000 78%,transparent 100%); }
+  .section-bg.on{ opacity:.42; }
+  .section-bg video, .section-bg img{ width:100%; height:100%; object-fit:cover; display:block; }
+  @media (max-width:700px){ .section-bg.on{ opacity:.3; } }
+  /* ---------- Editing section: an NLE-style timeline panel (generic editor look; no third-party logos). Pure CSS/JS ---------- */
+  .pr{ --hw:150px; --blue:#2d8ceb; --vid:#8d86d9; --vid2:#a68be0; --ovl:#cf7aa6; --aud:#3f9a6b;
+       margin:3.2rem 6vw 0; background:#1d1d1d; border:1px solid #2a2a2a; border-radius:4px; overflow:hidden;
+       font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; font-size:11px; color:#b9b9b9;
+       user-select:none; -webkit-user-select:none; box-shadow:0 30px 80px rgba(0,0,0,.45), 0 0 0 1px rgba(45,140,235,.0);
+       opacity:0; transform:translateY(18px); transition:opacity 1.2s var(--ease), transform 1.2s var(--ease), box-shadow .6s ease; }
+  .pr.in{ opacity:1; transform:none; box-shadow:0 30px 80px rgba(0,0,0,.45), 0 0 0 1px rgba(45,140,235,.55); }
+  /* panel tabs */
+  .pr-tabs{ display:flex; align-items:stretch; height:28px; background:#1a1a1a; border-bottom:1px solid #2a2a2a; }
+  .pr-tab{ display:flex; align-items:center; gap:.7em; padding:0 14px; color:#8c8c8c; white-space:nowrap; }
+  .pr-tab.on{ color:#e8e8e8; background:#1d1d1d; box-shadow:inset 0 -2px 0 var(--blue); }
+  .pr-tab .x{ color:#6f6f6f; font-size:12px; } .pr-tab .m{ color:#8c8c8c; letter-spacing:-1px; }
+  .pr-hint{ margin-left:auto; display:flex; align-items:center; padding:0 12px; color:#6f6f6f; letter-spacing:.12em; font-size:10px; white-space:nowrap; }
+  .pr-hint::before{ content:''; width:6px; height:6px; border-radius:50%; background:#d9453b; margin-right:.7em; box-shadow:0 0 8px #d9453b; animation:prRec 1.6s ease-in-out infinite; }
+  @keyframes prRec{ 50%{ opacity:.25; } }
+  /* body grid: headers | tracks | v-scroll */
+  .pr-body{ display:grid; grid-template-columns:var(--hw) 1fr 12px; }
+  .pr-left{ background:#232323; border-right:1px solid #2f2f2f; }
+  .pr-tcbox{ height:46px; padding:5px 10px 0; border-bottom:1px solid #2f2f2f; }
+  .pr-tc{ color:var(--blue); font-size:17px; font-variant-numeric:tabular-nums; letter-spacing:.02em; line-height:1.15; }
+  .pr-tools{ display:flex; gap:9px; margin-top:4px; }
+  .pr-tools svg{ width:12px; height:12px; fill:none; stroke:#9a9a9a; stroke-width:1.4; }
+  .pr-tools svg.on{ stroke:var(--blue); }
+  .pr-row{ display:flex; align-items:center; gap:4px; padding:0 6px; border-bottom:1px solid #1b1b1b; overflow:hidden; }
+  .pr-row.v{ height:52px; } .pr-row.a{ height:44px; } .pr-row.e{ height:26px; }
+  .pr-row .ic{ width:14px; height:14px; flex:0 0 14px; display:grid; place-items:center; }
+  .pr-row .ic svg{ width:12px; height:12px; fill:none; stroke:#8d8d8d; stroke-width:1.3; }
+  .pr-row b{ font-weight:500; display:inline-grid; place-items:center; min-width:22px; height:16px; padding:0 3px; border-radius:2px; color:#c9c9c9; background:#2e2e2e; border:1px solid #3a3a3a; font-size:10px; }
+  .pr-row b.tgt{ background:#3a3a3a; } .pr-row b.tgt.on{ background:#3b5f8c; border-color:#4f7fb8; color:#fff; }
+  .pr-row b.ms{ min-width:16px; background:#2a2a2a; color:#9a9a9a; }
+  .pr-row .nm{ margin-left:auto; color:#7d7d7d; font-size:10px; }
+  .pr-right{ position:relative; overflow:hidden; background:#1d1d1d; cursor:ew-resize; }
+  .pr-strip{ position:relative; will-change:transform; }
+  /* ruler */
+  .pr-ruler{ position:relative; height:46px; border-bottom:1px solid #2f2f2f; background:#232323; }
+  .pr-ruler::after{ content:''; position:absolute; left:0; right:0; bottom:8px; height:12px;
+    background:repeating-linear-gradient(90deg,#5a5a5a 0 1px,transparent 1px 12px) 0 100%/100% 5px no-repeat,
+               repeating-linear-gradient(90deg,#7a7a7a 0 1px,transparent 1px 60px) 0 100%/100% 8px no-repeat,
+               repeating-linear-gradient(90deg,#9a9a9a 0 1px,transparent 1px 120px) 0 100%/100% 12px no-repeat; }
+  .pr-ruler b{ position:absolute; top:8px; font-weight:400; font-size:10px; color:#9a9a9a; transform:translateX(4px); font-variant-numeric:tabular-nums; }
+  .pr-render{ position:absolute; left:0; right:0; bottom:0; height:4px; background:#c8a52a; opacity:.8; }
+  .pr-render i{ position:absolute; left:0; top:0; bottom:0; width:0; background:#3fae4f; }
+  /* tracks */
+  .pr-track{ position:relative; border-bottom:1px solid #1b1b1b; background:#1f1f1f; }
+  .pr-track:nth-child(odd){ background:#1d1d1d; }
+  .pr-track.v{ height:52px; } .pr-track.a{ height:44px; } .pr-track.e{ height:26px; }
+  .pr-clip{ position:absolute; top:2px; bottom:2px; border-radius:2px; overflow:hidden; cursor:pointer; color:#101010;
+    background:var(--vid); border:1px solid rgba(0,0,0,.45); box-shadow:inset 0 1px 0 rgba(255,255,255,.18);
+    transition:filter .3s ease, box-shadow .3s ease; }
+  .pr-clip.ed{ background:var(--vid2); } .pr-clip.ovl{ background:var(--ovl); }
+  .pr-clip .th{ position:absolute; left:0; top:0; bottom:0; width:0; background:#000 center/cover; transition:width .4s ease; border-right:1px solid rgba(0,0,0,.5); }
+  .pr-clip.has-th .th{ width:var(--thw,54px); }
+  .pr-clip .lb{ position:absolute; left:6px; right:6px; top:3px; display:flex; align-items:center; gap:4px; white-space:nowrap; overflow:hidden; font-size:10.5px; font-weight:500; }
+  .pr-clip.has-th .lb{ left:calc(var(--thw,54px) + 5px); }
+  .pr-clip .fx{ flex:0 0 auto; font-size:9px; font-weight:700; font-style:italic; padding:0 3px; border-radius:2px; background:rgba(0,0,0,.28); color:#f3d36b; }
+  .pr-clip .lb span{ overflow:hidden; text-overflow:ellipsis; }
+  .pr-clip::before{ content:''; position:absolute; left:0; right:0; bottom:0; height:40%; background:linear-gradient(180deg,transparent,rgba(0,0,0,.16)); pointer-events:none; }
+  .pr-clip::after{ content:''; position:absolute; inset:0; transform:translateX(-120%); pointer-events:none;
+    background:linear-gradient(100deg,transparent 25%,rgba(255,255,255,.0) 38%,rgba(255,255,255,.45) 50%,rgba(255,255,255,0) 62%,transparent 75%); }
+  .pr-clip.live{ filter:brightness(1.18) saturate(1.05); box-shadow:inset 0 0 0 1px #fff, 0 0 18px rgba(255,255,255,.18); }
+  .pr-clip.live::after{ animation:prSweep 2.1s ease-in-out infinite; }
+  @keyframes prSweep{ to{ transform:translateX(120%); } }
+  .pr-clip:hover{ filter:brightness(1.1); }
+  .pr-clip.a{ background:var(--aud); cursor:default; }
+  .pr-clip.a svg{ position:absolute; left:0; right:0; top:14px; bottom:3px; width:100%; height:calc(100% - 17px); }
+  .pr-clip.a svg path{ fill:rgba(210,255,225,.55); }
+  .pr-clip.a .lb{ color:#0d1f14; }
+  /* playhead */
+  .pr-ph{ position:absolute; top:0; bottom:0; left:30%; width:1px; background:var(--blue); pointer-events:none; z-index:4; box-shadow:0 0 10px rgba(45,140,235,.7); }
+  .pr-ph::before{ content:''; position:absolute; top:20px; left:-7px; width:15px; height:18px; background:var(--blue);
+    clip-path:polygon(0 0,100% 0,100% 62%,50% 100%,0 62%); }
+  /* scrollbars */
+  .pr-vs{ background:#1a1a1a; border-left:1px solid #2a2a2a; position:relative; }
+  .pr-vs i{ position:absolute; left:3px; right:3px; top:52px; height:38%; border-radius:4px; background:#3a3a3a; }
+  .pr-bottom{ display:grid; grid-template-columns:var(--hw) 1fr 12px; height:16px; background:#1a1a1a; border-top:1px solid #2a2a2a; }
+  .pr-hs{ position:relative; }
+  .pr-hs i{ position:absolute; top:3px; bottom:3px; left:0; width:20%; border-radius:6px; background:#3a3a3a; }
+  .pr-hs i::before, .pr-hs i::after{ content:''; position:absolute; top:0; width:10px; height:10px; border-radius:50%; background:#575757; }
+  .pr-hs i::before{ left:0; } .pr-hs i::after{ right:0; }
+  @media (max-width:700px){
+    .pr{ --hw:80px; margin:2.2rem 5vw 0; }
+    .pr-hint, .pr-tab:not(.on), .pr-tools, .pr-row .ic, .pr-row b.src, .pr-row b.ms, .pr-row .nm, .pr-row.x, .pr-track.x{ display:none; }
+    .pr-tc{ font-size:11px; padding-top:12px; letter-spacing:0; }
+    .pr-tcbox{ padding:5px 6px 0; }
+    .pr-row{ justify-content:center; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .pr{ transition:none; opacity:1; transform:none; }
+    .pr-clip.live::after, .pr-hint::before{ animation:none; }
+  }
+  /* ================= EDIT SUITE (lab) =================
+     Scroll: the room resolves from a zoom-blur, the camera pushes into the monitor, the monitor becomes an
+     NLE-style workspace, and further scrolling scrubs the sequences. Generic editor look, no third-party logos. */
+  #suite{ position:relative; z-index:1; background:#050505; }
+  .sx-stage{ position:sticky; top:0; height:100vh; height:100svh; overflow:hidden; background:#050505; }
+  .sx-cam{ position:absolute; left:0; top:0; transform-origin:0 0; will-change:transform; }
+  .sx-cam img{ display:block; width:100%; height:100%; user-select:none; -webkit-user-drag:none; }
+  .sx-ghost{ position:absolute; inset:0; transform-origin:50% 50%; opacity:0; pointer-events:none; }
+  .sx-room-shade{ position:absolute; inset:0; pointer-events:none;
+    background:radial-gradient(120% 90% at 50% 45%, transparent 45%, rgba(0,0,0,.65) 100%),
+               linear-gradient(180deg, #050505 0, transparent 14%, transparent 80%, #050505 100%); }
+  .sx-cap{ position:absolute; left:6vw; bottom:7vh; z-index:6; pointer-events:none; color:var(--fg);
+    font-family:'Space Grotesk',sans-serif; transition:opacity .4s ease; }
+  .sx-cap small{ display:block; font-size:.68rem; letter-spacing:.32em; color:var(--accent); margin-bottom:.8rem; }
+  .sx-cap b{ font-family:'Fraunces',serif; font-weight:400; font-size:clamp(1.6rem,3.4vw,3rem); letter-spacing:-.01em; }
+  .sx-cap span{ display:block; margin-top:.8rem; font-size:.72rem; letter-spacing:.22em; color:var(--fg-dim); }
+
+  /* the screen: positioned each frame over the monitor, grows to the full viewport */
+  .sx-screen{ position:absolute; z-index:4; overflow:hidden; background:#151515; border-radius:2px;
+    box-shadow:0 0 60px rgba(70,120,255,.18); }
+  .sx-screen::after{ content:''; position:absolute; inset:0; pointer-events:none; z-index:20; opacity:var(--glass,.0);
+    background:linear-gradient(115deg, rgba(255,255,255,.10) 0, rgba(255,255,255,0) 32%), radial-gradient(140% 120% at 50% 50%, transparent 55%, rgba(0,0,0,.55)); }
+  .sx-ui{ position:absolute; left:0; top:0; transform-origin:0 0; display:grid; color:#b9b9b9;
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; font-size:11px;
+    grid-template-columns: 30% 1fr; grid-template-rows: 28px 56% 1fr; gap:3px; background:#0f0f0f; padding:3px; user-select:none; -webkit-user-select:none; }
+  .sx-bar{ grid-column:1 / -1; display:flex; align-items:center; gap:22px; padding:0 14px; background:#1b1b1b; color:#8a8a8a; white-space:nowrap; overflow:hidden; }
+  .sx-bar .on{ color:#e6e6e6; box-shadow:inset 0 -2px 0 #2d8ceb; padding:7px 0; }
+  .sx-bar .sp{ margin-left:auto; color:#666; letter-spacing:.14em; font-size:10px; }
+  .sx-panel{ background:#1d1d1d; border-radius:3px; overflow:hidden; display:flex; flex-direction:column; min-width:0; min-height:0; }
+  .sx-tabs{ display:flex; height:26px; flex:0 0 26px; align-items:stretch; border-bottom:1px solid #2a2a2a; background:#1a1a1a; overflow:hidden; }
+  .sx-tabs span{ display:flex; align-items:center; padding:0 12px; color:#878787; white-space:nowrap; cursor:pointer; }
+  .sx-tabs span.on{ color:#ececec; background:#1d1d1d; box-shadow:inset 0 -2px 0 #2d8ceb; }
+  .sx-tabs span em{ font-style:normal; color:#666; margin-left:6px; }
+
+  /* metadata / effect controls */
+  .sx-meta{ padding:12px 14px; overflow:hidden; display:flex; flex-direction:column; gap:7px; }
+  .sx-meta .clipname{ color:#d8d8d8; font-size:12px; padding-bottom:8px; border-bottom:1px solid #2a2a2a; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .sx-meta .row{ display:flex; justify-content:space-between; gap:10px; }
+  .sx-meta .row span:first-child{ color:#7d7d7d; }
+  .sx-meta .row span:last-child{ color:#4ea1ff; font-variant-numeric:tabular-nums; text-align:right; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .sx-meta .grp{ margin-top:6px; color:#a8a8a8; display:flex; align-items:center; gap:6px; }
+  .sx-meta .grp i{ font-style:italic; font-weight:700; font-size:9px; color:#f3d36b; background:#2b2b2b; padding:0 3px; border-radius:2px; }
+  .sx-meta .grp::before{ content:'›'; color:#666; }
+
+  /* program monitor */
+  .sx-prog .sx-tabs span:first-child{ color:#ececec; }
+  .sx-view{ position:relative; flex:1; min-height:0; background:#0c0c0c; display:grid; place-items:center; cursor:pointer; }
+  .sx-frame{ position:relative; height:100%; max-width:100%; aspect-ratio:16/9; background:#000; overflow:hidden; }
+  .sx-frame img{ position:absolute; inset:0; width:100%; height:100%; object-fit:contain; opacity:0; transition:opacity .35s ease, filter .25s ease, transform .4s ease; }
+  .sx-frame img.on{ opacity:1; }
+  .sx-frame.scrub img{ filter:blur(5px) brightness(.85); transform:scale(1.03); }
+  .sx-frame iframe{ position:absolute; border:0; opacity:0; transition:opacity .6s ease; pointer-events:none; }
+  .sx-frame iframe.wide{ inset:0; width:100%; height:100%; }
+  .sx-frame iframe.tall{ top:0; bottom:0; left:50%; height:100%; aspect-ratio:9/16; transform:translateX(-50%); }
+  .sx-frame iframe.live{ opacity:1; }
+  .sx-frame .badge{ position:absolute; left:10px; top:10px; z-index:3; font-size:10px; letter-spacing:.14em; color:#fff; background:rgba(0,0,0,.45); padding:3px 7px; border-radius:2px; opacity:0; transition:opacity .4s; }
+  .sx-frame .badge::before{ content:''; display:inline-block; width:6px; height:6px; border-radius:50%; background:#e0463c; margin-right:6px; vertical-align:1px; }
+  .sx-frame.playing .badge{ opacity:1; }
+  .sx-frame .open{ position:absolute; right:10px; bottom:10px; z-index:3; font-size:10px; letter-spacing:.16em; color:#fff; background:rgba(0,0,0,.5); padding:5px 9px; border-radius:2px; opacity:0; transition:opacity .3s; }
+  .sx-view:hover .open{ opacity:1; }
+  .sx-trans{ height:34px; flex:0 0 34px; display:flex; align-items:center; gap:14px; padding:0 12px; border-top:1px solid #262626; }
+  .sx-trans .tc{ color:#2d8ceb; font-size:14px; font-variant-numeric:tabular-nums; min-width:96px; }
+  .sx-trans .du{ color:#8a8a8a; font-variant-numeric:tabular-nums; margin-left:auto; }
+  .sx-trans .fit{ color:#8a8a8a; border:1px solid #333; padding:1px 6px; border-radius:2px; }
+  .sx-trans .btns{ display:flex; gap:12px; margin:0 auto; }
+  .sx-trans .btns svg{ width:13px; height:13px; fill:#9a9a9a; }
+  .sx-trans .btns svg.play{ fill:#e6e6e6; }
+
+  /* project bin */
+  .sx-bin{ overflow:hidden; padding:6px; display:flex; flex-direction:column; gap:3px; }
+  .sx-item{ display:flex; align-items:center; gap:8px; padding:4px 6px; border-radius:2px; cursor:pointer; color:#b0b0b0; min-width:0; }
+  .sx-item i{ flex:0 0 46px; height:26px; background:#000 center/cover; border-radius:1px; }
+  .sx-item span{ flex:1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .sx-item em{ font-style:normal; color:#777; font-variant-numeric:tabular-nums; }
+  .sx-item:hover{ background:#262626; }
+  .sx-item.on{ background:#2b3b52; color:#fff; }
+
+  /* timeline */
+  .sx-lowR{ display:grid; grid-template-columns:1fr 18px; gap:3px; min-width:0; min-height:0; }
+  .sx-tl .sx-tabs span{ gap:8px; }
+  .sx-tl .sx-tabs span::before{ content:'×'; color:#666; }
+  .sx-tlbody{ position:relative; flex:1; display:grid; grid-template-columns:96px 1fr; min-height:0; }
+  .sx-heads{ background:#232323; border-right:1px solid #2f2f2f; display:flex; flex-direction:column; }
+  .sx-heads .tcs{ height:40px; padding:4px 8px; border-bottom:1px solid #2f2f2f; color:#2d8ceb; font-size:13px; font-variant-numeric:tabular-nums; }
+  .sx-heads .h{ flex:1; display:flex; align-items:center; gap:4px; padding:0 6px; border-bottom:1px solid #1b1b1b; }
+  .sx-heads .h b{ font-weight:500; font-size:10px; min-width:22px; height:16px; display:inline-grid; place-items:center; border-radius:2px; background:#2e2e2e; border:1px solid #3a3a3a; color:#c9c9c9; }
+  .sx-heads .h b.on{ background:#3b5f8c; border-color:#4f7fb8; color:#fff; }
+  .sx-heads .h.v{ flex:1.25; }
+  .sx-tracks{ position:relative; overflow:hidden; cursor:grab; touch-action:pan-y; display:flex; flex-direction:column; }
+  .sx-tracks.drag{ cursor:grabbing; }
+  .sx-strip[hidden]{ display:none !important; }
+  .sx-strip{ position:relative; display:flex; flex-direction:column; height:100%; will-change:transform; }
+  .sx-ruler{ position:relative; height:40px; flex:0 0 40px; background:#232323; border-bottom:1px solid #2f2f2f; }
+  .sx-ruler::after{ content:''; position:absolute; left:0; right:0; bottom:6px; height:10px;
+    background:repeating-linear-gradient(90deg,#555 0 1px,transparent 1px 12px) 0 100%/100% 4px no-repeat,
+               repeating-linear-gradient(90deg,#999 0 1px,transparent 1px 120px) 0 100%/100% 10px no-repeat; }
+  .sx-ruler b{ position:absolute; top:6px; font-weight:400; font-size:10px; color:#9a9a9a; transform:translateX(4px); font-variant-numeric:tabular-nums; white-space:nowrap; }
+  .sx-ruler .rb{ position:absolute; left:0; right:0; bottom:0; height:3px; background:#c8a52a; opacity:.8; }
+  .sx-ruler .rb i{ position:absolute; left:0; top:0; bottom:0; width:0; background:#3fae4f; }
+  .sx-tr{ position:relative; flex:1; border-bottom:1px solid #1a1a1a; background:#1f1f1f; }
+  .sx-tr.v{ flex:1.25; } .sx-tr:nth-child(odd){ background:#1c1c1c; }
+  .sx-c{ position:absolute; top:2px; bottom:2px; border-radius:2px; overflow:hidden; background:#8d86d9; border:1px solid rgba(0,0,0,.45); color:#111; cursor:pointer;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.18); transition:filter .25s, box-shadow .25s; }
+  .sx-c.ed{ background:#a68be0; } .sx-c.ai{ background:#cf7aa6; } .sx-c.d3{ background:#d9a35a; }
+  .sx-c .th{ position:absolute; left:0; top:0; bottom:0; width:var(--thw,64px); background:#000 center/cover; border-right:1px solid rgba(0,0,0,.5); }
+  .sx-c .lb{ position:absolute; left:calc(var(--thw,64px) + 6px); right:6px; top:4px; font-size:10.5px; font-weight:500; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .sx-c.a{ background:#3f9a6b; cursor:default; }
+  .sx-c.a svg{ position:absolute; left:0; top:3px; width:100%; height:calc(100% - 6px); }
+  .sx-c.a svg path{ fill:rgba(210,255,225,.55); }
+  .sx-c::after{ content:''; position:absolute; inset:0; transform:translateX(-120%); pointer-events:none;
+    background:linear-gradient(100deg,transparent 25%,rgba(255,255,255,.45) 50%,transparent 75%); }
+  .sx-c.live{ filter:brightness(1.18); box-shadow:inset 0 0 0 1px #fff, 0 0 18px rgba(255,255,255,.2); }
+  .sx-c.live::after{ animation:sxSweep 2s ease-in-out infinite; }
+  @keyframes sxSweep{ to{ transform:translateX(120%); } }
+  .sx-ph{ position:absolute; top:0; bottom:0; left:40%; width:1px; background:#2d8ceb; z-index:5; pointer-events:none; box-shadow:0 0 10px rgba(45,140,235,.7); }
+  .sx-ph::before{ content:''; position:absolute; top:16px; left:-7px; width:15px; height:18px; background:#2d8ceb; clip-path:polygon(0 0,100% 0,100% 62%,50% 100%,0 62%); }
+  .sx-meters{ background:#1d1d1d; border-radius:3px; display:flex; gap:3px; padding:30px 3px 6px; align-items:flex-end; }
+  .sx-meters i{ flex:1; height:6%; background:linear-gradient(0deg,#3fae4f 0 70%,#d8c13a 70% 88%,#e0463c 88%); border-radius:1px; transition:height .12s linear; }
+
+  /* mobile: monitor on top, timeline under it; bin + effect controls hidden */
+  @media (max-width:760px){
+    .sx-ui{ grid-template-columns:1fr; grid-template-rows:auto 1fr; }
+    .sx-bar, .sx-meta-p, .sx-bin-p, .sx-meters{ display:none !important; }
+    .sx-prog{ grid-column:1; }
+    .sx-view{ flex:0 0 auto; aspect-ratio:16/9; }
+    .sx-frame{ width:100%; height:auto; }
+    .sx-lowR{ grid-template-columns:1fr; grid-column:1; }
+    .sx-tlbody{ grid-template-columns:54px 1fr; }
+    .sx-heads .tcs{ font-size:0; }
+    .sx-trans .btns svg:not(.play){ display:none; }
+    .sx-tracks{ touch-action:pan-y; }
+    .sx-cap{ bottom:12vh; }
+  }
+  @media (prefers-reduced-motion: reduce){ .sx-c.live::after{ animation:none; } .sx-frame.scrub img{ filter:none; transform:none; } }
+  /* ---------- Showreel: four independent horizontal carousels (one per discipline) ---------- */
+  #showreel{ position:relative; z-index:1; padding:10vh 0 4vh; }
+  .carousel-section{ padding:5vh 0; }
+  .carousel-section + .carousel-section{ margin-top:1vh; }
+  .carousel-head{ display:flex; align-items:baseline; gap:1em; margin-bottom:2.2rem; padding:0 6vw; }
+  .carousel-head.reveal{ opacity:1; transform:none; transition:none; } /* the row stays put; its parts animate in */
+  .carousel-num{ font-family:'Fraunces',serif; font-style:italic; font-size:1.1rem; color:var(--fg-faint); opacity:0; transform:translateY(8px); transition:opacity .8s var(--ease) .1s, transform .8s var(--ease) .1s; }
+  .carousel-label{ font-family:'Fraunces',serif; font-size:clamp(1.5rem,3vw,2.3rem); display:inline-block; overflow:hidden; line-height:1.18; padding-bottom:.06em; }
+  .carousel-label > span{ display:inline-block; transform:translateY(112%); transition:transform 1s var(--ease) .15s; }
+  .carousel-head::after{ content:''; flex:1; align-self:center; height:1px; background:var(--line); transform:scaleX(0); transform-origin:left; transition:transform 1.4s var(--ease) .35s; }
+  .carousel-head.in .carousel-num{ opacity:1; transform:none; }
+  .carousel-head.in .carousel-label > span{ transform:none; }
+  .carousel-head.in::after{ transform:scaleX(1); }
+
+  .carousel-viewport{ position:relative; }
+  .carousel-track{
+    display:flex; align-items:flex-start; gap:1.6vw; overflow-x:auto; overflow-y:hidden; scroll-snap-type:x proximity;
+    padding:0 6vw 1.4rem; scroll-padding-left:6vw; margin-bottom:-1.4rem;
+    -webkit-overflow-scrolling:touch; scrollbar-width:none; cursor:grab;
+    scroll-behavior:smooth;
+  }
+  .carousel-track::-webkit-scrollbar{ display:none; }
+  .carousel-track.dragging{ cursor:grabbing; scroll-snap-type:none; scroll-behavior:auto; }
+  .carousel-track:focus-visible{ outline:1px solid var(--accent); outline-offset:4px; }
+
+  /* ---- motion: cards rise in one after another; each image wipes open like a shutter ---- */
+  .carousel-track.reveal{ opacity:1; transform:none; transition:none; }
+  .carousel-track:not(.in) .carousel-card{ opacity:0; }
+  .carousel-track.in .carousel-card{ animation:cardIn 1.1s var(--ease) backwards; animation-delay:calc(min(var(--i,0), 5) * 110ms); }
+  .carousel-track.in .carousel-visual{ animation:wipeIn 1.2s var(--ease) backwards; animation-delay:calc(min(var(--i,0), 5) * 110ms + 120ms); }
+
+  /* ---- hover: border lifts, title gets an accent underline, play button emits a soft ring ---- */
+  .carousel-visual{ transition:border-color .5s var(--ease); }
+  .carousel-card:hover .carousel-visual{ border-color:var(--fg-faint); }
+  .carousel-card .card-title{ display:inline; padding-bottom:2px; background:linear-gradient(var(--accent),var(--accent)) 0 100% / 0 1px no-repeat; transition:background-size .6s var(--ease); }
+  .carousel-card:hover .card-title{ background-size:100% 1px; }
+  .carousel-play::after{ content:''; position:absolute; inset:-1px; border-radius:50%; border:1px solid rgba(243,241,234,.55); opacity:0; pointer-events:none; }
+  @media (hover:hover){ .carousel-card:hover .carousel-play::after{ animation:playRing 1.7s var(--ease) infinite; } }
+
+  /* ---- depth: a real photo drifts slightly slower than its card while the carousel moves ---- */
+  .carousel-visual .media-fill:has(> img){ transform:translate3d(var(--px,0px),0,0) scale(1.1); will-change:transform; }
+
+  /* ---- vertical (9:16) videos: show the whole poster over a blurred copy of itself instead of cropping it ---- */
+  /* ---- every thumbnail is shown whole ("fit"): the full frame sits over a blurred copy of itself, nothing is cropped ---- */
+  .carousel-visual.fit::before, .card-visual.fit::before{ content:''; position:absolute; inset:-12%; background:var(--poster) center / cover; filter:blur(26px) brightness(.45); }
+  .carousel-visual.fit .media-fill, .card-visual.fit .media-fill{ z-index:1; }
+  .carousel-visual.fit .media-fill img, .card-visual.fit .media-fill img{ object-fit:contain; object-position:50% 50%; }
+  .carousel-visual.fit .media-fill:has(> img){ transform:none; will-change:auto; }
+  .carousel-card:hover .carousel-visual.fit img, .card:hover .card-visual.fit img{ transform:scale(1.02); }
+
+  /* ---- filter change: visible cards re-enter in sequence ---- */
+  .card.refresh{ animation:gridIn .8s var(--ease) backwards; animation-delay:calc(var(--d,0) * 70ms); }
+
+  @media (prefers-reduced-motion: reduce){
+    .carousel-track .carousel-card, .carousel-track .carousel-visual, .card.refresh{ animation:none !important; opacity:1 !important; transform:none !important; clip-path:none !important; }
+    .carousel-num, .carousel-label > span, .carousel-head::after{ opacity:1; transform:none; transition:none; }
+    .carousel-visual .media-fill:has(> img){ transform:none; will-change:auto; }
+    .carousel-card:hover .carousel-play::after{ animation:none; }
+    .contact-title.reveal{ clip-path:none; transform:none; transition:none; }
+    #detail.enter .detail-hero, #detail.enter .detail-title, #detail.enter .detail-facts > div,
+    #detail.enter .detail-desc, #detail.enter .detail-extra, #detail.enter .next-project{ animation:none !important; }
+  }
+
+  .carousel-card{ flex:0 0 auto; width:min(62vw, 760px); scroll-snap-align:start; }
+  .carousel-visual{
+    aspect-ratio:16/9; overflow:hidden; position:relative; background:#16160f;
+    border:1px solid var(--line);
+  }
+  .carousel-visual .ph{ background:repeating-linear-gradient(115deg, rgba(243,241,234,0.065) 0px, rgba(243,241,234,0.065) 1px, transparent 1px, transparent 30px), #16160f; }
+  .carousel-visual img, .carousel-visual video{ width:100%; height:100%; object-fit:cover; transition:transform .8s var(--ease); }
+  .carousel-card:hover .carousel-visual img, .carousel-card:hover .carousel-visual video{ transform:scale(1.03); }
+  .carousel-play{
+    position:absolute; inset:0; margin:auto; width:58px; height:58px; border-radius:50%;
+    border:1px solid rgba(243,241,234,.7); background:rgba(10,10,9,.35); backdrop-filter:blur(2px);
+    display:flex; align-items:center; justify-content:center; z-index:2;
+    transition:transform .3s var(--ease), background .3s var(--ease);
+  }
+  .carousel-play svg{ width:16px; height:16px; fill:var(--fg); margin-left:3px; }
+  .carousel-card:hover .carousel-play{ transform:scale(1.08); background:rgba(10,10,9,.55); }
+  .carousel-card video.carousel-native{ background:#000; object-fit:contain; }
+  @media (prefers-reduced-motion: reduce){ .carousel-track{ scroll-behavior:auto; } }
+
+  /* Fixed min-height so every card in a row — including the View All card, which has
+     no title/metadata — resolves to the same natural height. A flex row's own height
+     is set by its tallest item regardless of align-items, so a shorter item still
+     leaves empty space below the row itself; align-items:flex-start alone can't fix
+     that. The View All card gets a matching hidden spacer (see JS) instead of real
+     metadata, so its total height is identical without any visible blank space. */
+  .carousel-meta{ margin-top:.9rem; min-height:5.2rem; }
+
+  /* ---- View All card: a navigation element, not a video card ---- */
+  .view-all-card .carousel-visual{
+    display:flex; flex-direction:column; align-items:flex-start; justify-content:space-between;
+    background:#121210; border-color:var(--fg-faint);
+    padding:1.8rem; cursor:pointer; transition:background .3s var(--ease), border-color .3s var(--ease);
+  }
+  .view-all-card .carousel-visual:hover{ background:#19190f; border-color:var(--accent); }
+  .view-all-arrow{
+    align-self:flex-end; font-family:'Fraunces',serif; font-style:italic;
+    font-size:clamp(1.9rem,3.6vw,2.6rem); color:var(--fg); line-height:1;
+    transition:transform .35s var(--ease);
+  }
+  .view-all-card .carousel-visual:hover .view-all-arrow{ transform:translate(4px,-4px); }
+  .view-all-text{ font-size:.76rem; letter-spacing:.12em; line-height:1.5; color:var(--fg-dim); max-width:15ch; text-align:left; }
+  .view-all-card button.carousel-play{ display:none; }
+  .carousel-arrow{
+    position:absolute; top:40%; translate:0 -50%; width:42px; height:42px; border-radius:50%;
+    border:1px solid var(--line); background:rgba(10,10,9,.6); color:var(--fg); z-index:3;
+    display:flex; align-items:center; justify-content:center; font-size:1.1rem;
+    transition:border-color .3s var(--ease), opacity .3s var(--ease);
+  }
+  .carousel-arrow:hover{ border-color:var(--fg); }
+  .carousel-arrow.prev{ left:1.4vw; }
+  .carousel-arrow.next{ right:1.4vw; }
+  .carousel-arrow[disabled]{ opacity:.25; pointer-events:none; }
+  .carousel-dots{ display:flex; gap:.6rem; padding:1.4rem 6vw 0; }
+  .carousel-dot{ width:7px; height:7px; border-radius:50%; background:var(--fg-faint); opacity:.5; transition:background .3s ease, opacity .3s ease, transform .3s ease; }
+  .carousel-dot.active{ background:var(--fg); opacity:1; transform:scale(1.15); }
+
+  @media (hover:none){ .carousel-arrow{ display:none; } }
+  @media (max-width:600px){
+    #showreel{ padding:5vh 0 2vh; }
+    .carousel-section{ padding:3.2vh 0; }
+    .carousel-head{ margin-bottom:1.1rem; }
+    .carousel-card{ width:76vw; }
+    .carousel-track{ gap:4vw; }
+    .carousel-meta{ margin-top:.6rem; min-height:4.6rem; }
+    .carousel-track{ padding-bottom:0; margin-bottom:0; }
+    .carousel-dots{ padding-top:1.1rem; }
+    .view-all-card .carousel-visual{ padding:1.3rem; }
+  }
+
+  #featured{padding-top:2vh;}
+
+  .feat-grid{display:grid; grid-template-columns:1.3fr .9fr; gap:4vw; align-items:end; margin-bottom:14vh; cursor:pointer;}
+  .feat-visual{aspect-ratio:16/10.5; overflow:hidden; position:relative;}
+  .feat-info{padding-bottom:.6rem;}
+  .feat-tag{font-size:.72rem; letter-spacing:.12em; color:var(--accent); margin-bottom:1.1rem;}
+  .feat-title{font-size:clamp(1.9rem,3.6vw,3rem); margin-bottom:1rem;}
+  .feat-role{color:var(--fg-dim); font-size:.86rem; letter-spacing:.03em; margin-bottom:1.6rem;}
+  .feat-line{display:flex; align-items:center; gap:.8em; font-size:.8rem; color:var(--fg-faint); letter-spacing:.06em;}
+  .feat-line .arrow{transition:transform .4s var(--ease);}
+  .feat-grid:hover .arrow{transform:translateX(6px);}
+  .feat-grid:hover .feat-visual img, .feat-grid:hover .feat-visual video{transform:scale(1.035);}
+  .feat-visual img, .feat-visual video{width:100%; height:100%; object-fit:cover; transition:transform 1.1s var(--ease);}
+
+  /* filters */
+  .filters{display:flex; gap:2rem; flex-wrap:wrap;}
+  .filter-btn{font-size:.8rem; letter-spacing:.06em; color:var(--fg-faint); padding-bottom:.35rem; border-bottom:1px solid transparent; transition:color .3s var(--ease), border-color .3s var(--ease);}
+  .filter-btn:hover{color:var(--fg-dim);}
+  .filter-btn.active{color:var(--fg); border-color:var(--accent);}
+
+  /* grid */
+  .grid{
+    display:grid; grid-template-columns:repeat(12,minmax(0,1fr)); gap:2.4vw 2vw; margin-top:4.5rem;
+  }
+  .card{grid-column:span 6; cursor:pointer;}
+  .card.hidden{display:none;}
+  .card:nth-child(6n+1){grid-column:span 7;}
+  .card:nth-child(6n+2){grid-column:span 5;}
+  .card:nth-child(6n+3){grid-column:span 5;}
+  .card:nth-child(6n+4){grid-column:span 7;}
+  .card:nth-child(6n+5){grid-column:span 8;}
+  .card:nth-child(6n+6){grid-column:span 4;}
+  .card-visual{aspect-ratio:4/3; overflow:hidden; position:relative;}
+  .card-visual img, .card-visual video{width:100%; height:100%; object-fit:cover; transform:scale(1); opacity:0; transition:transform 1s var(--ease), opacity .5s ease;}
+  .card-visual img.loaded, .card-visual video.loaded{opacity:1;}
+  .card:hover .anim-cinematic-parallax img, .card:hover .anim-cinematic-parallax video{transform:scale(1.045);}
+  .anim-static-fade img, .anim-static-fade video{transition:opacity .6s ease;}
+  .card-meta{margin-top:1rem;}
+  .card-title{font-family:'Fraunces',serif; font-size:1.18rem; font-weight:440;}
+  .card-tags{display:flex; flex-direction:column; gap:.3rem; margin-top:.5rem;}
+  .card-type{font-size:.78rem; color:var(--fg-dim); letter-spacing:.02em;}
+  .card-roles{font-size:.66rem; color:var(--fg-faint); letter-spacing:.08em;}
+
+  /* ---------- About ---------- */
+  #about{padding:14vh 0; border-top:1px solid var(--line);}
+  .about-grid{display:grid; grid-template-columns:1.1fr .9fr; gap:6vw;}
+  .about-head{font-size:clamp(2.3rem,5vw,4rem); max-width:11ch;}
+  .about-copy{margin-top:2.2rem; color:var(--fg-dim); font-size:1.02rem; line-height:1.7; max-width:46ch;}
+  .about-disciplines{margin-top:3rem; display:grid; grid-template-columns:repeat(2,1fr); gap:1.4rem 1rem;}
+  .discipline{border-top:1px solid var(--line); padding-top:.9rem; font-size:.86rem; letter-spacing:.04em; color:var(--fg-dim);}
+  .about-tools{}
+  .tools-label{font-size:.72rem; letter-spacing:.12em; color:var(--fg-faint); margin-bottom:1.2rem;}
+  .tools-list{display:flex; flex-wrap:wrap; gap:.6em .7em;}
+  .tool-chip{font-size:.78rem; color:var(--fg-dim); border:1px solid var(--line); padding:.5em 1em; letter-spacing:.02em;}
+
+  /* ---------- Contact ---------- */
+  #contact{padding:16vh 0 10vh; border-top:1px solid var(--line);}
+  .contact-title{font-size:clamp(2.8rem,7.4vw,6.2rem);}
+  .contact-sub{margin-top:1.6rem; color:var(--fg-dim); font-size:1rem;}
+  .contact-links{margin-top:5rem; display:flex; flex-wrap:wrap; gap:1.2rem 3rem; border-top:1px solid var(--line); padding-top:2rem;}
+  .contact-links a{font-size:.9rem; letter-spacing:.04em; color:var(--fg-dim); display:flex; align-items:center; gap:.5em; transition:color .3s var(--ease);}
+  .contact-links a:hover{color:var(--fg);}
+
+  footer{padding:2.4rem 6vw 3rem; display:flex; flex-direction:column; gap:1.8rem;}
+  .footer-bottom{display:flex; justify-content:space-between; color:var(--fg-faint); font-size:.72rem; letter-spacing:.05em; flex-wrap:wrap; gap:.6rem;}
+
+  .social-links{ display:flex; justify-content:center; align-items:center; gap:1.1rem; }
+  .social-links a, .social-links .social-disabled{
+    display:flex; align-items:center; justify-content:center;
+    width:44px; height:44px; border-radius:50%; border:1px solid var(--line);
+    color:var(--fg-dim); transition:color .3s var(--ease), border-color .3s var(--ease), transform .3s var(--ease);
+  }
+  .social-links svg{ width:17px; height:17px; fill:currentColor; }
+  .social-links a:hover, .social-links a:focus-visible{ color:var(--fg); border-color:var(--fg-dim); transform:translateY(-3px); }
+  .social-links .social-disabled{ opacity:.32; cursor:default; }
+  @media (prefers-reduced-motion: reduce){ .social-links a:hover{ transform:none; } }
+
+  /* ---------- Project detail overlay ---------- */
+  #detail{
+    position:fixed; inset:0; z-index:700; background:var(--bg);
+    overflow-y:auto; -webkit-overflow-scrolling:touch;
+    transform:translateY(100%); transition:transform .6s var(--ease);
+  }
+  #detail.open{transform:translateY(0);}
+  .detail-top{
+    position:sticky; top:0; z-index:5; display:flex; justify-content:space-between; align-items:center;
+    padding:1.4rem 6vw; background:rgba(10,10,9,0.86); backdrop-filter:blur(10px); border-bottom:1px solid var(--line);
+    padding-top:calc(1.4rem + env(safe-area-inset-top,0px));
+  }
+  .detail-close{font-size:.8rem; letter-spacing:.08em; color:var(--fg-dim); display:flex; align-items:center; gap:.6em;}
+  .detail-close:hover{color:var(--fg);}
+  .detail-hero{aspect-ratio:16/9; width:100%; position:relative; overflow:hidden;}
+  /* Vimeo player stage: black letterbox around an aspect-ratio container. --vw / --vh come from the
+     project's `vimeo.aspect`, so the player always keeps the video's true ratio (no padding hack). */
+  .detail-hero.vimeo-stage{
+    --stage-h:min(80svh, 900px);   /* max player height: comfortable on desktop, safe on short phone screens */
+    aspect-ratio:auto; background:#000;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .vimeo-ratio{
+    position:relative; background:#000;
+    width:min(100%, calc(var(--stage-h) * var(--vw, 16) / var(--vh, 9)));
+    aspect-ratio:var(--vw, 16) / var(--vh, 9);
+  }
+  .vimeo-ratio iframe{ position:absolute; inset:0; width:100%; height:100%; border:0; display:block; }
+  .vimeo-fallback{
+    position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center;
+    gap:1.4rem; padding:1.5rem; text-align:center;
+  }
+  .vimeo-fallback p{ margin:0; max-width:24ch; font-size:.82rem; line-height:1.6; color:var(--fg-dim); }
+  .detail-body{padding:5vh 6vw 12vh;}
+  .detail-head{display:grid; grid-template-columns:1.4fr 1fr; gap:4vw; padding-bottom:4vh; margin-bottom:4vh; border-bottom:1px solid var(--line);}
+  .detail-title{font-size:clamp(2rem,4.6vw,3.6rem);}
+  .detail-facts{display:grid; grid-template-columns:repeat(auto-fit,minmax(130px,1fr)); gap:1.4rem;}
+  .detail-facts > div[hidden]{display:none;}
+  .detail-desc[hidden]{display:none;}
+  .dur-chip{ position:absolute; right:.8rem; bottom:.75rem; z-index:3; font-size:.68rem; letter-spacing:.1em; font-variant-numeric:tabular-nums; padding:.28rem .55rem; background:rgba(10,10,9,.74); border:1px solid rgba(243,241,234,.16); color:var(--fg-dim); border-radius:3px; pointer-events:none; }
+  .fact-label{font-size:.66rem; letter-spacing:.1em; color:var(--fg-faint); margin-bottom:.5rem;}
+  .fact-val{font-size:.88rem; color:var(--fg-dim);}
+  .detail-desc{max-width:60ch; color:var(--fg-dim); line-height:1.75; font-size:1rem; margin-bottom:6vh;}
+  .detail-extra{display:grid; gap:2vh; margin-bottom:6vh;}
+  .detail-extra .ph{aspect-ratio:16/9;}
+  .next-project{border-top:1px solid var(--line); padding-top:4vh; display:flex; justify-content:space-between; align-items:center; cursor:pointer;}
+  .next-label{font-size:.7rem; letter-spacing:.1em; color:var(--fg-faint); margin-bottom:.5rem;}
+  .next-title{font-family:'Fraunces',serif; font-size:clamp(1.6rem,3.4vw,2.4rem);}
+  .next-arrow{font-size:1.6rem; transition:transform .4s var(--ease);}
+  .next-project:hover .next-arrow{transform:translateX(10px);}
+
+  /* detail page entrance: the stage opens like a cinema letterbox, then the text rises in sequence */
+  #detail.enter .detail-hero{ animation:letterbox 1.1s var(--ease) .3s backwards; }
+  #detail.enter .detail-title{ animation:riseIn .9s var(--ease) .6s backwards; }
+  #detail.enter .detail-facts > div{ animation:riseIn .9s var(--ease) backwards; }
+  #detail.enter .detail-facts > div:nth-child(1){ animation-delay:.70s; }
+  #detail.enter .detail-facts > div:nth-child(2){ animation-delay:.78s; }
+  #detail.enter .detail-facts > div:nth-child(3){ animation-delay:.86s; }
+  #detail.enter .detail-facts > div:nth-child(4){ animation-delay:.94s; }
+  #detail.enter .detail-desc{ animation:riseIn .9s var(--ease) 1s backwards; }
+  #detail.enter .detail-extra, #detail.enter .next-project{ animation:riseIn .9s var(--ease) 1.1s backwards; }
+
+  /* ---------- responsive ---------- */
+  @media (max-width:860px){
+    .navlinks{display:none;}
+    #menuBtn{display:block;}
+    .hero-grid{max-width:100%;}
+    .hero-side{margin-top:2.6rem;}
+    .hero-bg-overlay{ background:linear-gradient(180deg, rgba(10,10,9,.15) 0%, rgba(10,10,9,.3) 45%, rgba(10,10,9,.78) 100%) !important; }
+    .hero-name{white-space:normal;}
+    .feat-grid{grid-template-columns:1fr;}
+    .about-grid{grid-template-columns:1fr; gap:4rem;}
+    .card{grid-column:span 12 !important;}
+    .grid{row-gap:3.4rem; column-gap:0;}   /* one card per row: a column gap here would push 11 gaps' width past the screen */
+    .detail-head{grid-template-columns:1fr; gap:2.4rem;}
+    .detail-facts{grid-template-columns:repeat(2,1fr);}
+    .contact-links{gap:1.4rem 2rem;}
+  }
+
+  /* -------- Dedicated mobile-portrait hero layout --------
+     Full vertical extent of the photo is always visible on a narrow phone
+     (cover crops width, not height), so the cleanest space for type is the
+     upper part of the frame, above the filmmaker — not the bottom, which
+     is where he and the camera sit. Top-anchor the hero content here and
+     tighten spacing so it comfortably clears him. */
+  @media (max-width:600px){
+    #hero{ justify-content:flex-start; padding-top:calc(var(--nav-h) + 3.2vh); padding-bottom:4vh; }
+    .hero-name{ font-size:clamp(2.1rem, 9vw, 2.9rem); }
+    .hero-roles{ margin-top:.7rem; font-size:.72rem; gap:.4em .6em; }
+    .hero-side{ margin-top:1.5rem; }
+    .hero-statement{ font-size:.86rem; max-width:24ch; opacity:.78; }
+    .hero-cta-row{ margin-top:1.4rem; gap:1.4rem; }
+    .scroll-hint{ display:none; }
+    .mobile-scroll-ind{ display:block; }
+  }
+  .mobile-scroll-ind{
+    display:none; position:absolute; left:50%; bottom:calc(3.2vh + env(safe-area-inset-bottom,0px));
+    transform:translateX(-50%); width:1px; height:30px; z-index:3; overflow:hidden; opacity:.5;
+  }
+  .mobile-scroll-ind span{
+    position:absolute; top:-100%; left:0; width:1px; height:100%; background:var(--fg);
+    animation:mobileScrollInd 2.4s ease-in-out infinite;
+  }
+  @keyframes mobileScrollInd{ 0%{ top:-100%; } 60%{ top:100%; } 100%{ top:100%; } }
+  @media (prefers-reduced-motion: reduce){ .mobile-scroll-ind span{ animation:none; top:0; } }
+</style>
+</head>
+<body>
+
+<div id="cursor"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#hero" class="brand brand-logo"><img src="media-logo-aty.png" alt="ATY" /></a>
+  <div class="navlinks">
+    <a href="#work">WORK</a>
+    <a href="#about">ABOUT</a>
+    <a href="#contact">CONTACT</a>
+  </div>
+  <button id="menuBtn" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+</nav>
+<div id="mobileNav" aria-hidden="true">
+  <a href="#work">Work</a>
+  <a href="#about">About</a>
+  <a href="#contact">Contact</a>
+</div>
+
+<main>
+  <!-- HERO -->
+  <section id="hero">
+    <!-- BACKGROUND: living image/video layer, driven by HERO_MEDIA below -->
+    <div id="heroBg" aria-hidden="true">
+      <div class="hero-bg-scale">
+        <div class="hero-bg-parallax" id="heroBgParallax"></div>
+      </div>
+      <!-- MIDGROUND: filmic texture -->
+      <div class="hero-bg-texture"></div>
+      <!-- readability treatment, kept as light as possible -->
+      <div class="hero-bg-overlay" id="heroBgOverlay"></div>
+    </div>
+
+    <!-- FOREGROUND -->
+    <div class="wrap hero-content" id="heroContent">
+      <div class="hero-grid">
+        <div>
+          <h1 class="hero-name reveal"><span class="nobrk">AHMED TAREK</span> <span class="nobrk">YOUSSEF</span></h1>
+          <div class="hero-roles reveal">
+            <span>FILMMAKER</span><span>EDITOR</span><span>AI CREATIVE</span><span>3D ARTIST</span>
+          </div>
+        </div>
+        <div class="hero-side reveal">
+          <p class="hero-statement">Visual storytelling across film, post, AI &amp; 3D.</p>
+          <div class="hero-cta-row">
+            <a href="#work" class="btn-primary" data-cursor="view"><span>VIEW MY WORK</span></a>
+            <span class="scroll-hint"><span class="line"></span>SCROLL TO EXPLORE</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mobile-scroll-ind" aria-hidden="true"><span></span></div>
+  </section>
+
+  <!-- Everything after the hero shares one living background (light CSS layers, no canvas / WebGL) -->
+  <div id="afterHero">
+  <div class="fx" id="fx" aria-hidden="true">
+    <div class="fx-blob b-gold"><i></i></div>
+    <div class="fx-blob b-teal"><i></i></div>
+    <div class="fx-blob b-violet"><i></i></div>
+    <div class="fx-blob b-copper"><i></i></div>
+    <div class="fx-streak"></div>
+    <div class="fx-vig"></div>
+    <div class="fx-grain"></div>
+  </div>
+
+  <!-- SHOWREEL: four independent horizontal carousels (Filmmaker / Editing / AI / 3D).
+       These four carousels ARE the Selected Work experience — built entirely from
+       PROJECTS below, so there is no separate duplicate "Selected Work" block. -->
+  <!-- EDIT SUITE (lab) -->
+  <section id="suite" aria-label="The edit suite: selected work on a timeline">
+    <div class="sx-stage">
+      <div class="sx-cam" aria-hidden="true"><img class="base" src="media-suite-room.jpg" alt="" width="1452" height="815" decoding="async"><img class="sx-ghost" src="media-suite-room.jpg" alt=""><img class="sx-ghost" src="media-suite-room.jpg" alt=""><img class="sx-ghost" src="media-suite-room.jpg" alt=""></div>
+      <div class="sx-room-shade" aria-hidden="true"></div>
+      <div class="sx-screen"><div class="sx-ui"></div></div>
+      <div class="sx-cap" aria-hidden="true"><small>THE EDIT SUITE</small><b>Step into the edit.</b><span>SCROLL TO ENTER</span></div>
+    </div>
+  </section>
+
+  <section id="showreel" aria-label="Selected work"></section>
+
+  <!-- WORK -->
+  <section id="work" class="wrap" data-tone="base">
+    <div class="sec-head reveal">
+      <h2 class="sec-title">All Projects</h2>
+      <div class="filters" role="tablist" aria-label="Filter projects by category">
+        <button class="filter-btn active" data-filter="all">ALL</button>
+        <button class="filter-btn" data-filter="film">FILMMAKER</button>
+        <button class="filter-btn" data-filter="editing">EDITING</button>
+        <button class="filter-btn" data-filter="ai">AI</button>
+        <button class="filter-btn" data-filter="3d">3D</button>
+      </div>
+    </div>
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="wrap" data-tone="base">
+    <div class="about-grid">
+      <div class="reveal">
+        <h2 class="about-head">I create visual stories.</h2>
+        <p class="about-copy">I work across filmmaking, editing, AI-driven production and 3D to build cinematic visual content — moving between camera, timeline and render engine to find whatever tells the story best.</p>
+        <div class="about-disciplines">
+          <div class="discipline">Filmmaking</div>
+          <div class="discipline">Editing</div>
+          <div class="discipline">AI</div>
+          <div class="discipline">3D</div>
+        </div>
+      </div>
+      <div class="about-tools reveal">
+        <div class="tools-label">TOOLS</div>
+        <div class="tools-list">
+          <span class="tool-chip">Premiere Pro</span>
+          <span class="tool-chip">After Effects</span>
+          <span class="tool-chip">DaVinci Resolve</span>
+          <span class="tool-chip">Blender</span>
+          <span class="tool-chip">Photoshop</span>
+          <span class="tool-chip">Lightroom</span>
+          <span class="tool-chip">Kling</span>
+          <span class="tool-chip">Veo</span>
+          <span class="tool-chip">Seedance</span>
+          <span class="tool-chip">Higgsfield</span>
+          <span class="tool-chip">Magnific</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="wrap" data-tone="base">
+    <h2 class="contact-title reveal">Let's create<br>something.</h2>
+    <p class="contact-sub reveal">Available for selected creative projects.</p>
+    <div class="contact-links reveal">
+      <a id="contactEmail" href="#contact" hidden></a>
+      <a id="contactInstagram" href="#contact" target="_blank" rel="noopener noreferrer">INSTAGRAM</a>
+      <a id="contactLinkedin" href="#contact" target="_blank" rel="noopener noreferrer">LINKEDIN</a>
+    </div>
+  </section>
+
+<footer>
+  <div class="social-links" id="socialLinks" aria-label="Social media"></div>
+  <div class="footer-bottom">
+    <span>© 2026 AHMED TAREK YOUSSEF</span>
+    <span>FILMMAKER · POST · AI · 3D</span>
+  </div>
+</footer>
+  </div><!-- /afterHero -->
+</main>
+
+<!-- PROJECT DETAIL OVERLAY -->
+<div id="detail" role="dialog" aria-modal="true" aria-hidden="true">
+  <div class="detail-top">
+    <span class="brand brand-logo" id="detailBrand" role="img" aria-label="ATY"></span>
+    <button class="detail-close" id="detailClose" aria-label="Close project"><span>CLOSE</span> ✕</button>
+  </div>
+  <div class="detail-hero" id="detailHero"></div>
+  <div class="detail-body wrap">
+    <div class="detail-head">
+      <h2 class="detail-title" id="detailTitle"></h2>
+      <div class="detail-facts">
+        <div><div class="fact-label">TYPE</div><div class="fact-val" id="detailType"></div></div>
+        <div><div class="fact-label">ROLE</div><div class="fact-val" id="detailRole"></div></div>
+        <div><div class="fact-label">TOOLS</div><div class="fact-val" id="detailTools"></div></div>
+        <div><div class="fact-label">YEAR / CLIENT</div><div class="fact-val" id="detailYear"></div></div>
+        <div><div class="fact-label">DURATION</div><div class="fact-val" id="detailDur"></div></div>
+        <div><div class="fact-label">FORMAT</div><div class="fact-val" id="detailFmt"></div></div>
+      </div>
+    </div>
+    <p class="detail-desc" id="detailDesc"></p>
+    <div class="detail-extra" id="detailExtra"></div>
+    <div class="next-project" id="nextProject">
+      <div>
+        <div class="next-label">NEXT PROJECT</div>
+        <div class="next-title" id="nextTitle"></div>
+      </div>
+      <div class="next-arrow">→</div>
+    </div>
+  </div>
+</div>
+
+<script src="projects.js?v=20261126b"></script>
+<script>
+/* =========================================================================
+   HERO BACKGROUND MEDIA
+   -------------------------------------------------------------------------
+   Plug your own photograph or video in here — nothing else needs to change.
+
+     type       'placeholder' | 'image' | 'video'
+     image      path/URL to a photo (used when type is 'image')
+     video      path/URL to a video file (used when type is 'video')
+     poster     poster frame shown while the video loads
+     animation  'cinematic-drift' (default — slow zoom + parallax) |
+                'static-fade'     (no autonomous motion, just a fade in)
+   ========================================================================= */
+const HERO_MEDIA = {
+  type: "image",
+  image: "media-hero.png",
+  video: null,
+  poster: null,
+  animation: "cinematic-drift"
+};
+
+/* =========================================================================
+   PROJECT DATA
+   -------------------------------------------------------------------------
+   Add / edit projects here. Nothing in the markup or CSS needs to change.
+
+   The four MAIN disciplines are FILM / EDITING / AI / 3D — that's what the
+   WORK filter and the "01/02/03/04" showreel are built around. Everything
+   else (Commercial, Documentary, Product, Social, CGI, etc.) is a project
+   TYPE or a ROLE TAG that sits under one of those four — never a top-level
+   category — so a project you both filmed and edited only needs one entry,
+   carrying both role tags, instead of appearing twice.
+
+   Fields:
+     id          unique slug, used for routing/linking
+     title       project title. Use a neutral placeholder (e.g. "Selected
+                 Film Project") until you have a real project/client name —
+                 don't use a project TYPE ("Commercial", "Documentary") as
+                 if it were the title.
+     discipline  one of: film | editing | ai | 3d — drives the WORK filter
+                 and the showreel grouping. This is the only field the
+                 filter reads; it is NOT where "commercial" / "documentary"
+                 / "product" etc. go.
+     projectType short label for what kind of film/edit/AI piece/3D piece
+                 this is, e.g. "Commercial Film", "Documentary Editing",
+                 "AI Commercial", "Product Visualization"
+     roles       array of role tags, e.g. ["Cinematography","Editing"]
+     year        production year
+     client      client / brand name, or null for a personal / placeholder piece
+     mediaType   'placeholder' | 'image' | 'video'  — what the card & detail
+                 page render. 'video' shows the poster and plays the video
+                 on hover (desktop) / when opened (detail page).
+     image       path/URL to a still (used when mediaType is 'image', and
+                 as the fallback thumbnail for 'video' before it plays)
+     video       path/URL to a video file (used when mediaType is 'video')
+     poster      poster frame for the video
+     hoverPreview whether the video should preview on hover (desktop) —
+                 set false for a project you'd rather only play inside its
+                 own detail page
+     animation   'cinematic-parallax' (default — subtle hover zoom) |
+                 'static-fade'        (no hover zoom, just fades in)
+     tools       array of software/tools used, e.g. ["Blender","After Effects"]
+     description short paragraph for the project page
+     extra       optional array of extra media blocks, e.g.
+                 [{ label:'Behind the scenes' }, { label:'Before / After' }]
+   ========================================================================= */
+/* Real projects pulled from the Vimeo library. Only title, Vimeo ID and aspect ratio are verified;
+   projectType / roles / tools / year / description stay empty until you confirm them. */
+const PROJECTS_BUILTIN = [
+  { id: "selected-film", title: "Umrah and Visit Forum in Medina", discipline: "film", vimeo: { id: "1112641202", aspect: "16:9" }, projectType: "Filmmaker", roles: [], year: "", client: null,
+    mediaType: "placeholder", image: null, video: null, poster: null, hoverPreview: false, animation: "cinematic-parallax", tools: [], description: "", extra: [] },
+  { id: "v1244019008-film", title: "Hamada Helal & Wael Al Fashny — Ashtaq", discipline: "film", vimeo: { id: "1244019008", aspect: "16:9" }, projectType: "Filmmaker", roles: [], year: "", client: null,
+    mediaType: "placeholder", image: null, video: null, poster: null, hoverPreview: false, animation: "cinematic-parallax", tools: [], description: "", extra: [] },
+  { id: "v936409710", title: "Heaven Dental Clinic", discipline: "film", vimeo: { id: "936409710", aspect: "16:9" }, projectType: "Filmmaker", roles: [], year: "", client: null,
+    mediaType: "placeholder", image: null, video: null, poster: null, hoverPreview: false, animation: "cinematic-parallax", tools: [], description: "", extra: [] },
+  { id: "v873673924", title: "Mohamed Ramadan's Concert in Aswan", discipline: "film", vimeo: { id: "873673924", aspect: "16:9" }, projectType: "Filmmaker", roles: [], year: "", client: null,
+    mediaType: "placeholder", image: null, video: null, poster: null, hoverPreview: false, animation: "cinematic-parallax", tools: [], description: "", extra: [] },
+  { id: "v872907214", title: "Mohamed Ramadan in Aswan", discipline: "film", vimeo: { id: "872907214", aspect: "16:9" }, projectType: "Filmmaker", roles: [], year: "", client: null,
+    mediaType: "placeholder", image: null, video: null, poster: null, hoverPreview: false, animation: "cinematic-parallax", tools: [], description: "", extra: [] },
+  { id: "v830872740", title: "Camel Racing in Al-Arish, North Sinai 2023", discipline: "film", vimeo: { id: "830872740", aspect: "16:9" }, projectType: "Filmmaker", roles: [], year: "", client: null,
+    mediaType: "placeholder", image: null, video: null, poster: null, hoverPreview: false, animation: "cinematic-parallax", tools: [], description: "", extra: [] },
+  { id: "v738721662", title: "Hussain AlJassmi — 30 June, Al Masa Hotel", discipline: "film", vimeo: { id: "738721662", aspect: "16:9" }, projectType: "Filmmaker", roles: [], year: "", client: null,
+    mediaType: "placeholder", image: null, video: null, poster: null, hoverPreview: false, animation: "cinematic-parallax", tools: [], description: "", extra: [] },
+  { id: "v705699515", title: "DODGE Gym Promo", discipline: "film", vimeo: { id: "705699515", aspect: "16:9" }, projectType: "Filmmaker", roles: [], year: "", client: null,
+    mediaType: "placeholder", image: null, video: null, poster: null, hoverPreview: false, animation: "cinematic-parallax", tools: [], description: "", extra: [] },
+  { id: "v666304578", title: "Ngm El Arab 2021", discipline: "film", vimeo: { id: "666304578", aspect: "16:9" }, projectType: "Filmmaker", roles: [], year: "", client: null,
+    mediaType: "placeholder", image: null, video: null, poster: null, hoverPreview: false, animation: "cinematic-parallax", tools: [], description: "", extra: [] },
+  { id: "v1244021887", title: "Desoki & Soda 2", discipline: "film", vimeo: { id: "1244021887", aspect: "16:9" }, projectType: "Filmmaker", roles: [], year: "", client: null,
+    mediaType: "placeholder", image: null, video: null, poster: null, hoverPreview: false, animation: "cinematic-parallax", tools: [], description: "", extra: [] },
+  { id: "v1244024762", title: "Carpet Factory", discipline: "editing", vimeo: { id: "1244024762", aspect: "16:9" }, projectType: "Editing", roles: [], year: "", client: null,
+    mediaType: "placeholder", image: null, video: null, poster: null, hoverPreview: false, animation: "cinematic-parallax", tools: [], description: "", extra: [] },
+  { id: "v762968709", title: "A Medical and Charitable Convoy for the People of Al-Arish", discipline: "editing", vimeo: { id: "762968709", aspect: "16:9" }, projectType: "Editing", roles: [], year: "", client: null,
+    mediaType: "placeholder", image: null, video: null, poster: null, hoverPreview: false, animation: "cinematic-parallax", tools: [], description: "", extra: [] },
+  { id: "selected-ai", title: "Anua", discipline: "ai", vimeo: { id: "1244025482", aspect: "9:16" }, projectType: "AI", roles: [], year: "", client: null,
+    mediaType: "placeholder", image: null, video: null, poster: null, hoverPreview: false, animation: "cinematic-parallax", tools: [], description: "", extra: [] },
+  { id: "v1244025481", title: "Villa El 7arthia AI", discipline: "ai", vimeo: { id: "1244025481", aspect: "9:16" }, projectType: "AI", roles: [], year: "", client: null,
+    mediaType: "placeholder", image: null, video: null, poster: null, hoverPreview: false, animation: "cinematic-parallax", tools: [], description: "", extra: [] },
+  { id: "v1244025480", title: "Abaya", discipline: "ai", vimeo: { id: "1244025480", aspect: "9:16" }, projectType: "AI", roles: [], year: "", client: null,
+    mediaType: "placeholder", image: null, video: null, poster: null, hoverPreview: false, animation: "cinematic-parallax", tools: [], description: "", extra: [] },
+  { id: "v1244027480", title: "ACACIA Investment", discipline: "film", vimeo: { id: "1244027480", aspect: "9:16" }, projectType: "Filmmaker", roles: [], year: "", client: null,
+    mediaType: "placeholder", image: null, video: null, poster: null, hoverPreview: false, animation: "cinematic-parallax", tools: [], description: "", extra: [] },
+  { id: "v1244025479", title: "Canon MAXIFY MB5140", discipline: "ai", vimeo: { id: "1244025479", aspect: "9:16" }, projectType: "AI", roles: [], year: "", client: null,
+    mediaType: "placeholder", image: null, video: null, poster: null, hoverPreview: false, animation: "cinematic-parallax", tools: [], description: "", extra: [] },
+  { id: "selected-3d", title: "Body Splash", discipline: "3d", vimeo: { id: "1112640654", aspect: "9:16" }, projectType: "3D", roles: [], year: "", client: null,
+    mediaType: "placeholder", image: null, video: null, poster: null, hoverPreview: false, animation: "static-fade", tools: [], description: "", extra: [] },
+  { id: "v1112642066", title: "Project CGI With Joy & Roy", discipline: "3d", vimeo: { id: "1112642066", aspect: "9:16" }, projectType: "3D", roles: [], year: "", client: null,
+    mediaType: "placeholder", image: null, video: null, poster: null, hoverPreview: false, animation: "static-fade", tools: [], description: "", extra: [] },
+  { id: "v1244018380", title: "Spray Leaves", discipline: "film", vimeo: { id: "1244018380", aspect: "9:16" }, projectType: "Filmmaker", roles: [], year: "", client: null,
+    mediaType: "placeholder", image: null, video: null, poster: null, hoverPreview: false, animation: "cinematic-parallax", tools: [], description: "", extra: [] },
+  { id: "v1127168318", title: "Mascara Leaves", discipline: "film", vimeo: { id: "1127168318", aspect: "9:16" }, projectType: "Filmmaker", roles: [], year: "", client: null,
+    mediaType: "placeholder", image: null, video: null, poster: null, hoverPreview: false, animation: "cinematic-parallax", tools: [], description: "", extra: [] },
+  { id: "v1112645393", title: "Spray Go Thick From Hair Daily", discipline: "film", vimeo: { id: "1112645393", aspect: "9:16" }, projectType: "Filmmaker", roles: [], year: "", client: null,
+    mediaType: "placeholder", image: null, video: null, poster: null, hoverPreview: false, animation: "cinematic-parallax", tools: [], description: "", extra: [] },
+  { id: "v1244178594", title: "Twenty Two Curtains Factory", discipline: "editing", vimeo: { id: "1244178594", aspect: "16:9" }, projectType: "Editing", roles: [], year: "", client: null,
+    mediaType: "placeholder", image: null, video: null, poster: null, hoverPreview: false, animation: "cinematic-parallax", tools: [], description: "", extra: [] },
+  { id: "v1244178595", title: "Twenty Two Villa Venicia — Main Majlis", discipline: "editing", vimeo: { id: "1244178595", aspect: "9:16" }, projectType: "Editing", roles: [], year: "", client: null,
+    mediaType: "placeholder", image: null, video: null, poster: null, hoverPreview: false, animation: "cinematic-parallax", tools: [], description: "", extra: [] },
+  { id: "v1244021885", title: "Vitamin C 3", discipline: "editing", vimeo: { id: "1244021885", aspect: "9:16" }, projectType: "Editing", roles: [], year: "", client: null,
+    mediaType: "placeholder", image: null, video: null, poster: null, hoverPreview: false, animation: "cinematic-parallax", tools: [], description: "", extra: [] },
+  { id: "v1244021889", title: "البشرة الدهنية", discipline: "editing", vimeo: { id: "1244021889", aspect: "9:16" }, projectType: "Editing", roles: [], year: "", client: null,
+    mediaType: "placeholder", image: null, video: null, poster: null, hoverPreview: false, animation: "cinematic-parallax", tools: [], description: "", extra: [] },
+];
+
+/* Project data comes from projects.js (generated by admin.html) when that file sits next to this page;
+   otherwise the built-in list above is used. Missing fields get safe defaults. */
+const PROJECT_DEFAULTS = { projectType: "", roles: [], year: "", client: null, mediaType: "placeholder", image: null, video: null,
+  poster: null, hoverPreview: false, animation: "cinematic-parallax", tools: [], description: "", extra: [] };
+const PROJECTS = (Array.isArray(window.PROJECTS_DATA) && window.PROJECTS_DATA.length ? window.PROJECTS_DATA : PROJECTS_BUILTIN)
+  .map(p => Object.assign({}, PROJECT_DEFAULTS, p));
+
+const REDUCE_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const IS_MOBILE = window.matchMedia('(max-width:860px)').matches;
+
+/* Builds the visual for a project card, the detail hero, or the site hero.
+   Falls back to the labeled placeholder block whenever no real media has
+   been supplied yet, so the layout never breaks while you're filling in
+   content. */
+function buildMedia({ mediaType, image, video, poster, idx, label, autoplay }) {
+  const el = document.createElement('div');
+  el.className = 'media-fill';
+
+  if (mediaType === 'video' && video) {
+    const v = document.createElement('video');
+    v.src = video; v.muted = true; v.loop = true; v.playsInline = true;
+    v.preload = autoplay ? 'auto' : 'metadata';
+    if (poster) v.poster = poster;
+    if (autoplay && !REDUCE_MOTION) { v.autoplay = true; }
+    v.addEventListener('loadeddata', () => v.classList.add('loaded'));
+    el.appendChild(v);
+  } else if (mediaType === 'image' && image) {
+    const img = document.createElement('img');
+    img.src = image; img.alt = label || '';
+    img.loading = 'lazy';
+    img.addEventListener('load', () => img.classList.add('loaded'));
+    el.appendChild(img);
+  } else {
+    const ph = document.createElement('div');
+    ph.className = 'ph';
+    ph.style.position = 'absolute'; ph.style.inset = '0'; ph.style.height = '100%';
+    ph.innerHTML = `<span class="idx">${idx || ''}</span>`;
+    el.appendChild(ph);
+  }
+  return el;
+}
+
+/* ========================= RENDER WORK GRID ========================= */
+const grid = document.getElementById('grid');
+const CAT_LABEL = { film:"FILMMAKER", editing:"EDITING", ai:"AI", "3d":"3D" };
+
+// "Commercial Film" — "Cinematography · Editing"
+function typeLine(p){ return p.projectType; }
+function rolesLine(p){ return (p.roles || []).join(' · ').toUpperCase(); }
+
+PROJECTS.forEach((p, i) => {
+  const card = document.createElement('article');
+  card.className = 'card reveal';
+  card.dataset.discipline = p.discipline;
+  card.dataset.id = p.id;
+
+  const visual = document.createElement('div');
+  visual.className = `card-visual anim-${p.animation || 'cinematic-parallax'}`;
+  visual.setAttribute('data-cursor', 'view');
+  visual.appendChild(buildMedia({
+    mediaType: p.mediaType, image: p.image, video: p.video, poster: p.poster,
+    idx: String(i + 2).padStart(2, '0'), label: p.mediaType === 'placeholder' || !p.mediaType ? 'PLACEHOLDER' : p.title
+  }));
+
+  const meta = document.createElement('div');
+  meta.className = 'card-meta';
+  meta.innerHTML = `
+    <div class="card-title">${p.title}</div>
+    <div class="card-tags"><span class="card-type">${typeLine(p)}</span><span class="card-roles">${rolesLine(p)}</span></div>
+  `;
+
+  card.appendChild(visual);
+  card.appendChild(meta);
+  card.addEventListener('click', () => openDetail(p.id));
+
+  // hover-to-play preview for cards backed by real video
+  const vid = visual.querySelector('video');
+  if (vid && !vid.autoplay && p.hoverPreview !== false) {
+    card.addEventListener('mouseenter', () => vid.play().catch(() => {}));
+    card.addEventListener('mouseleave', () => { vid.pause(); vid.currentTime = 0; });
+  }
+
+  grid.appendChild(card);
+});
+
+/* ========================= SHOWREEL: 4 independent horizontal carousels =========================
+   One carousel per discipline, built straight from PROJECTS (no separate data source, no
+   duplicate "Selected Work" block). Each project's `video`/`poster` fields are the exact
+   slots to drop a Cloudinary URL into later — nothing else needs to change when that happens. */
+/* Each carousel is built from PROJECTS.filter(p => p.discipline === X) — there is no
+   fixed card count anywhere in this code. Right now that's 3 real entries per
+   discipline (1 featured + 2 catalogue); add up to 2 more real entries per
+   discipline to PROJECTS above (same object shape as the others) and each
+   carousel will automatically render all 5 ahead of its View All card —
+   nothing below needs to change. */
+const CAROUSEL_ORDER = [
+  { discipline: "film",    num: "01", label: "FILMMAKER" },
+  { discipline: "editing", num: "02", label: "EDITING" },
+  { discipline: "ai",      num: "03", label: "AI" },
+  { discipline: "3d",      num: "04", label: "3D" }
+];
+const showreelEl = document.getElementById('showreel');
+const PLAY_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3l16 9-16 9V3z"/></svg>';
+
+function goToFilteredWork(discipline){
+  const btn = document.querySelector(`.filter-btn[data-filter="${discipline}"]`);
+  if (btn) btn.click(); // reuses the existing filter logic — no duplicate filtering code
+  const work = document.getElementById('work');
+  if (work) work.scrollIntoView({ behavior: REDUCE_MOTION ? 'auto' : 'smooth', block: 'start' });
+}
+
+/* ========================= VIMEO =========================
+   To play a project through the Vimeo iframe player, add
+       vimeo: { id: "VIDEO_ID", aspect: "9:16" }      // aspect = width:height ("16:9" for landscape)
+       vimeo: { id: "VIDEO_ID", hash: "abc123def4", aspect: "16:9" }   // unlisted video: hash = the h= value in Vimeo's embed code
+       vimeo: "https://vimeo.com/VIDEO_ID"             // or just paste the link (add the aspect via the object form for vertical videos)
+   The card thumbnail is fetched from Vimeo automatically (set `poster` to override it).
+   to its entry in PROJECTS. The iframe is only created when the project's detail page
+   opens (never while browsing the carousel), has no autoplay, and is removed on close. If the host page blocks the iframe (Content Security
+   Policy / ERR_BLOCKED_BY_CSP, as in the Claude Artifact preview), a clean "Open on Vimeo" fallback is
+   shown instead; its link defaults to https://vimeo.com/<id> (override with vimeo.url). */
+const VIMEO_EMBED_PARAMS = 'badge=0&autopause=0&player_id=0&app_id=58479';
+function fmtDur(s){ s = Math.round(Number(s) || 0); return s ? Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0') : ''; }
+function fmtFormat(p){
+  if (!p.vimeo || !p.vimeo.aspect) return '';
+  const [w, h] = String(p.vimeo.aspect).split(':').map(Number);
+  if (!w || !h) return '';
+  const kind = h > w ? 'Vertical' : (w > h ? 'Landscape' : 'Square');
+  return `${kind} ${p.vimeo.aspect}`;
+}
+function addDurChips(p){
+  const t = fmtDur(p.duration); if (!t) return;
+  document.querySelectorAll(`.carousel-card[data-pid="${p.id}"] .carousel-visual, .card[data-id="${p.id}"] .card-visual`).forEach(vis => {
+    let c = vis.querySelector('.dur-chip');
+    if (!c) { c = document.createElement('span'); c.className = 'dur-chip'; c.setAttribute('aria-label', 'Duration'); vis.appendChild(c); }
+    c.textContent = t;
+  });
+}
+function vimeoPageUrl(v){ return `https://vimeo.com/${v.id}${v.hash ? '/' + v.hash : ''}`; }
+function vimeoEmbedUrl(v){ return `https://player.vimeo.com/video/${v.id}?${v.hash ? 'h=' + v.hash + '&' : ''}${VIMEO_EMBED_PARAMS}`; }
+// allow pasting a Vimeo link instead of the object form
+PROJECTS.forEach(p => {
+  if (typeof p.vimeo === 'string') {
+    const s = p.vimeo.trim();
+    const idm = s.match(/(?:vimeo\.com\/(?:video\/)?|^)(\d+)/i);
+    const hm = s.match(/[?&]h=([a-z0-9]+)/i) || s.match(/vimeo\.com\/(?:video\/)?\d+\/([a-z0-9]+)/i);
+    p.vimeo = idm ? { id: idm[1], hash: hm ? hm[1] : null } : null;
+  }
+});
+let vimeoCleanup = null;
+function showVimeoFallback(p, box){
+  if (!box.isConnected) return;
+  box.innerHTML = '';
+  const url = p.vimeo.url || vimeoPageUrl(p.vimeo);
+  const wrap = document.createElement('div');
+  wrap.className = 'vimeo-fallback';
+  wrap.innerHTML = `<p>The embedded player couldn't be loaded here.</p><a class="btn-primary" href="${url}" target="_blank" rel="noopener noreferrer"><span>Open on Vimeo \u2197</span></a>`;
+  box.appendChild(wrap);
+}
+function renderVimeoStage(p){
+  stopVimeo();
+  const [w, h] = String(p.vimeo.aspect || '16:9').split(':').map(Number);
+  detailHero.classList.add('vimeo-stage');
+  detailHero.style.setProperty('--vw', w || 16);
+  detailHero.style.setProperty('--vh', h || 9);
+  const box = document.createElement('div');
+  box.className = 'vimeo-ratio';
+  detailHero.appendChild(box);
+
+  // If the host page's CSP blocks player.vimeo.com, show the fallback instead of the browser error page.
+  // The listener is registered before the iframe is added so the violation event can't be missed.
+  const onBlocked = (e) => { if (String(e.blockedURI || '').includes('vimeo.com')) showVimeoFallback(p, box); };
+  document.addEventListener('securitypolicyviolation', onBlocked);
+  vimeoCleanup = () => document.removeEventListener('securitypolicyviolation', onBlocked);
+
+  const f = document.createElement('iframe');
+  f.src = vimeoEmbedUrl(p.vimeo);
+  f.title = `${p.title} - video player`;
+  f.allow = 'autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media';
+  f.allowFullscreen = true;
+  f.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
+  box.appendChild(f);
+}
+function stopVimeo(){
+  if (vimeoCleanup) { vimeoCleanup(); vimeoCleanup = null; }
+  detailHero.querySelectorAll('iframe').forEach(f => { f.src = 'about:blank'; f.remove(); }); // removing the iframe stops playback
+}
+
+/* Thumbnails: ask Vimeo for each video's poster (oEmbed) so cards show the real frame without uploading anything.
+   If the request is blocked (e.g. inside the Claude preview) the placeholder simply stays. */
+function isPortraitVimeo(p){
+  const [w, h] = String((p.vimeo && p.vimeo.aspect) || '16:9').split(':').map(Number);
+  return h > w;
+}
+function applyPoster(p){
+  document.querySelectorAll(`.carousel-card[data-pid="${p.id}"] .carousel-visual, .card[data-id="${p.id}"] .card-visual`).forEach(vis => {
+    const fill = vis.querySelector('.media-fill');
+    if (!fill) return;
+    // swap the placeholder only once the picture has really loaded; if it fails the card keeps its placeholder
+    const img = document.createElement('img');
+    img.alt = p.title; img.decoding = 'async';
+    img.addEventListener('load', () => {
+      img.classList.add('loaded');
+      fill.innerHTML = '';
+      fill.appendChild(img);
+      vis.classList.add('fit'); if (isPortraitVimeo(p)) vis.classList.add('portrait');
+      vis.style.setProperty('--poster', `url("${p.poster}")`);
+    });
+    img.addEventListener('error', () => { if (p.posterFallback && p.poster !== p.posterFallback) { p.poster = p.posterFallback; applyPoster(p); } });
+    img.src = p.poster;
+  });
+}
+function loadVimeoThumbs(){
+  PROJECTS.filter(p => p.vimeo && !p.poster).forEach(async p => {
+    try {
+      const r = await fetch(`https://vimeo.com/api/oembed.json?url=${encodeURIComponent(vimeoPageUrl(p.vimeo))}&width=1280`);
+      if (!r.ok) throw new Error('oembed ' + r.status);
+      const d = await r.json();
+      if (!d.thumbnail_url) throw new Error('no thumbnail');
+      if (!p.vimeo.aspect && d.width && d.height) p.vimeo.aspect = `${d.width}:${d.height}`;
+      if (!p.duration && d.duration) { p.duration = d.duration; addDurChips(p); }
+      // oEmbed hands back a 640px image, which looks soft on a 760px card (and worse on retina).
+      // Vimeo's CDN serves the same frame at any size: ask for one that matches the screen.
+      const hiRes = (window.devicePixelRatio || 1) > 1.5 && window.innerWidth > 900 ? 'd_1920' : 'd_1280';
+      p.posterFallback = d.thumbnail_url;
+      p.poster = /-d_\d+(x\d+)?/.test(d.thumbnail_url) ? d.thumbnail_url.replace(/-d_\d+(x\d+)?/, '-' + hiRes) : d.thumbnail_url;
+      applyPoster(p);
+    } catch (e) {
+      // the host page blocks requests to Vimeo (e.g. an app preview): try a public thumbnail image by video id instead
+      if (!p.vimeo.hash) { p.poster = `https://vumbnail.com/${p.vimeo.id}.jpg`; applyPoster(p); }
+    }
+  });
+}
+
+function playProject(p, visual){
+  if (p.vimeo || !p.video) { openDetail(p.id); return; } // no real file yet — fall back to the detail page
+  document.querySelectorAll('.carousel-visual video').forEach(v => v.pause()); // only one plays at a time
+  const v = document.createElement('video');
+  v.className = 'carousel-native';
+  v.src = p.video; v.controls = true; v.playsInline = true; v.autoplay = true;
+  if (p.poster) v.poster = p.poster;
+  visual.innerHTML = '';
+  visual.appendChild(v);
+  v.play().catch(() => {});
+}
+
+function initCarouselBehavior(track, prevBtn, nextBtn, dots){
+  function cardStep(){
+    const first = track.children[0];
+    const gap = parseFloat(getComputedStyle(track).columnGap || getComputedStyle(track).gap || 0) || 0;
+    return first ? first.getBoundingClientRect().width + gap : track.clientWidth;
+  }
+  const behavior = () => REDUCE_MOTION ? 'auto' : 'smooth';
+  prevBtn.addEventListener('click', () => track.scrollBy({ left: -cardStep(), behavior: behavior() }));
+  nextBtn.addEventListener('click', () => track.scrollBy({ left: cardStep(), behavior: behavior() }));
+  track.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight') { track.scrollBy({ left: cardStep(), behavior: behavior() }); e.preventDefault(); }
+    else if (e.key === 'ArrowLeft') { track.scrollBy({ left: -cardStep(), behavior: behavior() }); e.preventDefault(); }
+  });
+
+  // desktop mouse drag-to-scroll (touch devices already scroll natively)
+  let dragging = false, startX = 0, startScroll = 0, moved = false;
+  track.addEventListener('pointerdown', (e) => {
+    if (e.pointerType === 'touch') return;
+    dragging = true; moved = false; startX = e.clientX; startScroll = track.scrollLeft;
+    track.classList.add('dragging');
+  });
+  track.addEventListener('pointermove', (e) => {
+    if (!dragging) return;
+    const dx = e.clientX - startX;
+    if (Math.abs(dx) > 4 && !moved) {
+      moved = true;
+      // capture the pointer only once it is a real drag, so a plain click still reaches the card
+      try { track.setPointerCapture(e.pointerId); } catch (err) {}
+    }
+    track.scrollLeft = startScroll - dx;
+  });
+  const endDrag = () => { dragging = false; track.classList.remove('dragging'); };
+  track.addEventListener('pointerup', endDrag);
+  track.addEventListener('pointerleave', endDrag);
+  track.addEventListener('click', (e) => { if (moved) { e.stopPropagation(); moved = false; } }, true);
+
+  // photos drift slightly slower than their cards (only matters once real images are in)
+  function parallax(){
+    if (REDUCE_MOTION) return;
+    const tr = track.getBoundingClientRect();
+    const mid = tr.left + tr.width / 2;
+    track.querySelectorAll('.carousel-visual').forEach(v => {
+      const fill = v.querySelector('.media-fill');
+      if (!fill) return;
+      const r = v.getBoundingClientRect();
+      const rel = Math.max(-1, Math.min(1, ((r.left + r.width / 2) - mid) / Math.max(tr.width, 1)));
+      fill.style.setProperty('--px', (rel * r.width * 0.035).toFixed(1) + 'px');
+    });
+  }
+  window.addEventListener('resize', parallax, { passive: true });
+
+  let ticking = false;
+  function update(){
+    ticking = false;
+    parallax();
+    const idx = Math.round(track.scrollLeft / Math.max(cardStep(), 1));
+    [...dots.children].forEach((d, i) => d.classList.toggle('active', i === idx));
+    prevBtn.disabled = track.scrollLeft < 4;
+    nextBtn.disabled = track.scrollLeft > track.scrollWidth - track.clientWidth - 4;
+  }
+  track.addEventListener('scroll', () => { if (!ticking) { requestAnimationFrame(update); ticking = true; } }, { passive: true });
+  update();
+}
+
+CAROUSEL_ORDER.forEach(({ discipline, num, label }) => {
+  const list = PROJECTS.filter(p => p.discipline === discipline).slice(0, 5); // selected work = first 5; the rest live in All Projects
+  if (!list.length) return;
+
+  const section = document.createElement('section');
+  section.className = 'carousel-section';
+  section.dataset.discipline = discipline;
+  section.setAttribute('aria-label', label + ' projects');
+
+  const head = document.createElement('div');
+  head.className = 'carousel-head reveal';
+  head.innerHTML = `<span class="carousel-num">${num}</span><span class="carousel-label"><span>${label}</span></span>`;
+  section.appendChild(head);
+
+  /* AI backdrop loop: loads only when the section is near the screen, plays only while visible.
+     Skipped (static poster instead) for reduced motion, data-saver and slow connections. */
+  if (discipline === 'ai') {
+    const bg = document.createElement('div');
+    bg.className = 'section-bg'; bg.setAttribute('aria-hidden', 'true');
+    section.classList.add('has-bg');
+    section.insertBefore(bg, section.firstChild);
+    const conn = navigator.connection || {};
+    const lite = REDUCE_MOTION || conn.saveData || /(^|-)2g$/.test(conn.effectiveType || '') ||
+                 (window.innerWidth < 700 && (navigator.hardwareConcurrency || 4) <= 4);
+    let vid = null, started = false;
+    const start = () => {
+      if (started) return; started = true;
+      if (lite) { const im = new Image(); im.alt = ''; im.src = 'media-ai-loop-poster.jpg'; im.onload = () => { bg.appendChild(im); bg.classList.add('on'); }; return; }
+      vid = document.createElement('video');
+      vid.muted = true; vid.loop = true; vid.playsInline = true; vid.preload = 'auto'; vid.setAttribute('muted', ''); vid.poster = 'media-ai-loop-poster.jpg';
+      [['media-ai-loop.webm', 'video/webm'], ['media-ai-loop.mp4', 'video/mp4']].forEach(([src, type]) => { const so = document.createElement('source'); so.src = src; so.type = type; vid.appendChild(so); });
+      vid.addEventListener('canplay', () => bg.classList.add('on'), { once: true });
+      bg.appendChild(vid);
+    };
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(entries => entries.forEach(e => {
+        if (e.isIntersecting) { start(); if (vid) vid.play().catch(() => {}); }
+        else if (vid) vid.pause();
+      }), { rootMargin: '300px 0px' }).observe(section);
+    } else { start(); }
+  }
+
+  const viewport = document.createElement('div');
+  viewport.className = 'carousel-viewport';
+  const prevBtn = document.createElement('button');
+  prevBtn.type = 'button'; prevBtn.className = 'carousel-arrow prev'; prevBtn.setAttribute('aria-label', 'Previous project'); prevBtn.textContent = '‹';
+  const nextBtn = document.createElement('button');
+  nextBtn.type = 'button'; nextBtn.className = 'carousel-arrow next'; nextBtn.setAttribute('aria-label', 'Next project'); nextBtn.textContent = '›';
+
+  const track = document.createElement('div');
+  track.className = 'carousel-track reveal';
+  track.setAttribute('data-cursor', 'view');
+  track.dataset.cursorLabel = 'DRAG';
+  track.setAttribute('role', 'list');
+  track.tabIndex = 0;
+  track.setAttribute('aria-label', label + ' projects, scrollable');
+
+  list.forEach((p, i) => {
+    const card = document.createElement('article');
+    card.className = 'carousel-card';
+    card.setAttribute('role', 'listitem');
+    card.dataset.pid = p.id;
+    card.style.setProperty('--i', i);
+
+    const visual = document.createElement('div');
+    visual.className = 'carousel-visual';
+    visual.setAttribute('data-cursor', 'view');
+    visual.dataset.cursorLabel = (p.vimeo || p.video) ? 'PLAY' : 'VIEW';
+    visual.appendChild(buildMedia({
+      mediaType: p.poster ? 'image' : 'placeholder', image: p.poster,
+      idx: String(i + 1).padStart(2, '0'), label: p.title
+    }));
+
+    const play = document.createElement('button');
+    play.type = 'button'; play.className = 'carousel-play';
+    play.setAttribute('aria-label', 'Play ' + p.title);
+    play.innerHTML = PLAY_SVG;
+    play.addEventListener('click', (e) => { e.stopPropagation(); playProject(p, visual); });
+    visual.appendChild(play);
+    if (p.vimeo) { visual.style.cursor = 'pointer'; visual.addEventListener('click', () => playProject(p, visual)); }
+
+    const meta = document.createElement('div');
+    meta.className = 'carousel-meta';
+    meta.innerHTML = `<div class="card-title">${p.title}</div><div class="card-tags"><span class="card-type">${typeLine(p)}</span><span class="card-roles">${rolesLine(p)}</span></div>`;
+
+    card.appendChild(visual);
+    card.appendChild(meta);
+    track.appendChild(card);
+  });
+
+  // final card: gateway into All Projects, pre-filtered to this discipline
+  const viewAllCard = document.createElement('article');
+  viewAllCard.className = 'carousel-card view-all-card';
+  viewAllCard.setAttribute('role', 'listitem');
+  viewAllCard.style.setProperty('--i', list.length);
+  const viewAllVisual = document.createElement('div');
+  viewAllVisual.className = 'carousel-visual';
+  viewAllVisual.setAttribute('data-cursor', 'view');
+  viewAllVisual.dataset.cursorLabel = 'EXPLORE';
+  viewAllVisual.tabIndex = 0;
+  viewAllVisual.setAttribute('role', 'link');
+  viewAllVisual.setAttribute('aria-label', `Explore all ${label} projects`);
+  viewAllVisual.innerHTML = `<span class="view-all-arrow">↗</span><span class="view-all-text">EXPLORE ALL ${label} PROJECTS</span>`;
+  viewAllVisual.addEventListener('click', () => goToFilteredWork(discipline));
+  viewAllVisual.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); goToFilteredWork(discipline); } });
+  viewAllCard.appendChild(viewAllVisual);
+  // invisible spacer matching .carousel-meta's reserved height, so this card's total
+  // height equals a real project card's and the row never leaves a gap beneath it
+  const viewAllSpacer = document.createElement('div');
+  viewAllSpacer.className = 'carousel-meta';
+  viewAllSpacer.setAttribute('aria-hidden', 'true');
+  viewAllSpacer.style.visibility = 'hidden';
+  viewAllCard.appendChild(viewAllSpacer);
+  track.appendChild(viewAllCard);
+
+  viewport.appendChild(prevBtn);
+  viewport.appendChild(track);
+  viewport.appendChild(nextBtn);
+  section.appendChild(viewport);
+
+  const dotCount = list.length + 1; // + the View All card
+  const dots = document.createElement('div');
+  dots.className = 'carousel-dots';
+  Array.from({ length: dotCount }).forEach((_, i) => {
+    const d = document.createElement('span');
+    d.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+    d.addEventListener('click', () => {
+      const card = track.children[i];
+      if (card) track.scrollTo({ left: card.offsetLeft - track.offsetLeft, behavior: REDUCE_MOTION ? 'auto' : 'smooth' });
+    });
+    dots.appendChild(d);
+  });
+  section.appendChild(dots);
+
+  showreelEl.appendChild(section);
+  initCarouselBehavior(track, prevBtn, nextBtn, dots);
+});
+
+// guarantee every carousel starts on its first card on a fresh load — web fonts
+// and image/poster loads can shift layout after initial paint and drift the
+// scroll-snap position; this only runs once, on load, never during normal use.
+window.addEventListener('load', () => {
+  document.querySelectorAll('.carousel-track').forEach(t => { t.scrollLeft = 0; });
+});
+
+
+/* ========================= FILTERING ========================= */
+const filterBtns = document.querySelectorAll('.filter-btn');
+filterBtns.forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    filterBtns.forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    const f = btn.dataset.filter;
+    let n = 0;
+    document.querySelectorAll('.card').forEach(card=>{
+      const match = f === 'all' || card.dataset.discipline === f;
+      card.classList.toggle('hidden', !match);
+      card.classList.remove('refresh');
+      if (match) card.style.setProperty('--d', Math.min(n++, 8));
+    });
+    void grid.offsetWidth; // restart the entrance animation
+    if (!REDUCE_MOTION) document.querySelectorAll('.card:not(.hidden)').forEach(card => card.classList.add('refresh'));
+  });
+});
+
+/* ========================= REVEAL ON SCROLL ========================= */
+const revealEls = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('in');
+      io.unobserve(e.target);
+    }
+  });
+},{ threshold:0.15, rootMargin:"0px 0px -8% 0px" });
+revealEls.forEach(el=>io.observe(el));
+
+/* ========================= NAV SOLID ON SCROLL ========================= */
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', ()=>{
+  nav.classList.toggle('solid', window.scrollY > 40);
+}, { passive:true });
+
+/* ========================= MOBILE MENU ========================= */
+const menuBtn = document.getElementById('menuBtn');
+const mobileNav = document.getElementById('mobileNav');
+menuBtn.addEventListener('click', ()=>{
+  const open = mobileNav.classList.toggle('open');
+  menuBtn.classList.toggle('open', open);
+  menuBtn.setAttribute('aria-expanded', open);
+  mobileNav.setAttribute('aria-hidden', !open);
+});
+mobileNav.querySelectorAll('a').forEach(a=>a.addEventListener('click', ()=>{
+  mobileNav.classList.remove('open'); menuBtn.classList.remove('open');
+  menuBtn.setAttribute('aria-expanded', false);
+}));
+
+/* ========================= CUSTOM CURSOR ========================= */
+const cursor = document.getElementById('cursor');
+const prefersFine = window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+if(prefersFine){
+  // one listener: the nearest element with data-cursor decides the label (PLAY / VIEW / DRAG / EXPLORE)
+  window.addEventListener('pointermove', (e)=>{
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+    const t = e.target.closest ? e.target.closest('[data-cursor], .next-project') : null;
+    if (t) {
+      const label = t.dataset.cursorLabel || 'VIEW';
+      if (cursor.textContent !== label) cursor.textContent = label;
+      cursor.classList.add('on');
+    } else {
+      cursor.classList.remove('on');
+    }
+  });
+  document.addEventListener('mouseleave', () => cursor.classList.remove('on'));
+}
+
+/* ========================= LIVING HERO BACKGROUND ========================= */
+const heroBgParallax = document.getElementById('heroBgParallax');
+const heroBgOverlay = document.getElementById('heroBgOverlay');
+const heroBg = document.getElementById('heroBg');
+const heroContent = document.getElementById('heroContent');
+const heroSection = document.getElementById('hero');
+
+heroBgParallax.appendChild(buildMedia({
+  mediaType: HERO_MEDIA.type, image: HERO_MEDIA.image, video: HERO_MEDIA.video, poster: HERO_MEDIA.poster,
+  autoplay: true, idx: '00', label: 'HERO BACKGROUND — REPLACE WITH YOUR PHOTO OR VIDEO'
+}));
+
+(function initLivingBackground(){
+  if (REDUCE_MOTION) return; // static frame only, per prefers-reduced-motion
+
+  const pointerIntensity = IS_MOBILE ? 0 : 14;   // px of cursor-driven parallax
+  const scrollIntensity  = IS_MOBILE ? 12 : 34;  // px of scroll-driven parallax (kept small on mobile so the crop never drifts past its safe buffer)
+  let px = 0, py = 0, sy = 0, ticking = false;
+
+  function apply(){
+    ticking = false;
+    heroBgParallax.style.transform = `translate3d(${px + sy}px, ${py + sy * .4}px, 0)`;
+  }
+  function request(){ if(!ticking){ requestAnimationFrame(apply); ticking = true; } }
+
+  if (pointerIntensity && window.matchMedia('(hover:hover) and (pointer:fine)').matches) {
+    heroSection.addEventListener('pointermove', (e) => {
+      const r = heroSection.getBoundingClientRect();
+      const nx = (e.clientX - r.left) / r.width - 0.5;
+      const ny = (e.clientY - r.top) / r.height - 0.5;
+      px = nx * pointerIntensity; py = ny * pointerIntensity;
+      request();
+    });
+  }
+
+  window.addEventListener('scroll', () => {
+    const h = heroSection.offsetHeight || 1;
+    const progress = Math.min(Math.max(window.scrollY / h, 0), 1);
+    sy = -progress * scrollIntensity;
+    heroContent.style.transform = `translateY(${progress * 60}px)`;
+    heroContent.style.opacity = String(Math.max(0, 1 - progress * 1.15));
+    heroBgOverlay.style.opacity = String(1 + progress * 0.3);
+    heroBg.style.transform = `scale(${1 + progress * 0.06})`;
+    request();
+  }, { passive:true });
+})();
+
+/* ========================= PROJECT DETAIL OVERLAY ========================= */
+const detail = document.getElementById('detail');
+const detailTitle = document.getElementById('detailTitle');
+const detailType = document.getElementById('detailType');
+const detailRole = document.getElementById('detailRole');
+const detailTools = document.getElementById('detailTools');
+const detailYear = document.getElementById('detailYear');
+const detailDesc = document.getElementById('detailDesc');
+const detailExtra = document.getElementById('detailExtra');
+const detailHero = document.getElementById('detailHero');
+const nextProject = document.getElementById('nextProject');
+const nextTitle = document.getElementById('nextTitle');
+let lastFocused = null;
+
+function openDetail(id){
+  const idx = PROJECTS.findIndex(p=>p.id===id);
+  if(idx === -1) return;
+  const p = PROJECTS[idx];
+  detailTitle.textContent = p.title;
+  detailType.textContent = p.projectType;
+  detailRole.textContent = (p.roles || []).join(' · ');
+  detailTools.textContent = (p.tools || []).join(', ');
+  detailYear.textContent = p.client ? `${p.year} — ${p.client}` : p.year;
+  detailDesc.textContent = p.description || '';
+  detailDesc.hidden = !p.description;
+  document.getElementById('detailDur').textContent = fmtDur(p.duration);
+  document.getElementById('detailFmt').textContent = fmtFormat(p);
+  // never show an empty label: hide any fact that has no value yet
+  document.querySelectorAll('.detail-facts > div').forEach(c => { c.hidden = !c.querySelector('.fact-val').textContent.trim(); });
+  stopVimeo();
+  detailHero.innerHTML = '';
+  detailHero.className = 'detail-hero';
+  if (p.vimeo) {
+    renderVimeoStage(p);
+  } else detailHero.appendChild(buildMedia({
+    mediaType: p.mediaType, image: p.image, video: p.video, poster: p.poster, autoplay: true, fill: true,
+    idx: p.year, label: p.mediaType === 'placeholder' || !p.mediaType ? `${p.title.toUpperCase()} — REPLACE WITH FULLSCREEN PROJECT VIDEO` : p.title
+  }));
+
+  detailExtra.innerHTML = '';
+  (p.extra || []).forEach(block=>{
+    const div = document.createElement('div');
+    div.className = 'ph';
+    div.innerHTML = `<span class="idx">＋</span><span>${block.label.toUpperCase()} — PLACEHOLDER</span>`;
+    detailExtra.appendChild(div);
+  });
+
+  const next = PROJECTS[(idx+1) % PROJECTS.length];
+  nextTitle.textContent = next.title;
+  nextProject.onclick = ()=> openDetail(next.id);
+
+  lastFocused = document.activeElement;
+  detail.classList.add('open');
+  detail.classList.remove('enter'); void detail.offsetWidth; detail.classList.add('enter'); // replay the entrance animation
+  detail.setAttribute('aria-hidden','false');
+  detail.scrollTop = 0;
+  document.body.style.overflow = 'hidden';
+  document.getElementById('detailClose').focus();
+  history.pushState({project:id}, '', '#'+id);
+}
+
+function closeDetail(){
+  stopVimeo();
+  detail.classList.remove('open');
+  detail.setAttribute('aria-hidden','true');
+  document.body.style.overflow = '';
+  if(lastFocused) lastFocused.focus();
+  if(location.hash) history.pushState('', document.title, location.pathname + location.search);
+}
+
+document.getElementById('detailClose').addEventListener('click', closeDetail);
+// reuse the approved geometric ATY logo from the main nav inside the project page (no second copy of the image data)
+(function(){
+  const navImg = document.querySelector('a.brand-logo img');
+  const slot = document.getElementById('detailBrand');
+  if (navImg && slot) { const c = navImg.cloneNode(); c.alt = ''; slot.textContent = ''; slot.appendChild(c); }
+  else if (slot) slot.textContent = 'ATY';
+})();
+document.addEventListener('keydown', (e)=>{
+  if(e.key === 'Escape' && detail.classList.contains('open')) closeDetail();
+});
+window.addEventListener('popstate', ()=>{
+  if(detail.classList.contains('open')) closeDetail();
+});
+
+/* ========================= SOCIAL LINKS =========================
+   Edit URLs here — this is the one place to update them. Leave a platform
+   as null to keep its icon visible but inactive (no link, dimmed, no hover)
+   until the real profile URL is available. */
+const SOCIAL_LINKS = {
+  facebook:  "https://www.facebook.com/ahmedketo28/",
+  instagram: "https://www.instagram.com/ahmed_tarek_youssef/",
+  linkedin:  "https://www.linkedin.com/in/ahmed-tarek-youssef-1908401a2/",
+  vimeo:     "https://vimeo.com/user93180789"
+};
+const SOCIAL_ICONS = {
+  facebook:  '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12z"/></svg>',
+  instagram: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 2 .3 2.4.5.6.2 1 .5 1.5 1 .4.4.7.9 1 1.5.2.5.4 1.2.5 2.4.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.3 2-.5 2.4a4 4 0 0 1-1 1.5c-.4.4-.9.7-1.5 1-.5.2-1.2.4-2.4.5-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-2-.3-2.4-.5a4 4 0 0 1-1.5-1 4 4 0 0 1-1-1.5c-.2-.5-.4-1.2-.5-2.4C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.9c.1-1.2.3-2 .5-2.4.2-.6.5-1 1-1.5.4-.4.9-.7 1.5-1 .5-.2 1.2-.4 2.4-.5C8.4 2.2 8.8 2.2 12 2.2zm0 1.8c-3.1 0-3.5 0-4.7.1-1 .1-1.6.2-2 .4-.5.2-.8.4-1.2.7-.3.4-.5.7-.7 1.2-.1.4-.3 1-.4 2C3 9.5 3 9.9 3 13s0 3.5.1 4.7c.1 1 .2 1.6.4 2 .2.5.4.8.7 1.2.4.3.7.5 1.2.7.4.1 1 .3 2 .4 1.2.1 1.6.1 4.7.1s3.5 0 4.7-.1c1-.1 1.6-.2 2-.4.5-.2.8-.4 1.2-.7.3-.4.5-.7.7-1.2.1-.4.3-1 .4-2 .1-1.2.1-1.6.1-4.7s0-3.5-.1-4.7c-.1-1-.2-1.6-.4-2a3.1 3.1 0 0 0-.7-1.2 3.1 3.1 0 0 0-1.2-.7c-.4-.1-1-.3-2-.4C15.5 4 15.1 4 12 4zm0 3.4a5.6 5.6 0 1 1 0 11.2 5.6 5.6 0 0 1 0-11.2zm0 1.8a3.8 3.8 0 1 0 0 7.6 3.8 3.8 0 0 0 0-7.6zm5.8-2a1.3 1.3 0 1 1 0 2.6 1.3 1.3 0 0 1 0-2.6z"/></svg>',
+  linkedin:  '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3V9zm7 0h3.8v1.7h.1c.5-1 1.8-2 3.7-2 4 0 4.7 2.6 4.7 6V21h-4v-5.3c0-1.3 0-2.9-1.8-2.9s-2 1.4-2 2.8V21h-4V9z"/></svg>',
+  vimeo:     '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22.4 7.3c-.1 2.2-1.6 5.2-4.6 9-3.1 3.9-5.7 5.9-7.8 5.9-1.3 0-2.4-1.2-3.3-3.6L5 12.1C4.3 9.7 3.6 8.5 2.8 8.5c-.2 0-.8.4-1.8 1.1L0 8.3c1.1-1 2.2-1.9 3.3-2.9 1.5-1.3 2.6-2 3.3-2 1.7-.2 2.8 1 3.2 3.6.5 2.8.8 4.6 1 5.2.5 2.4 1.1 3.6 1.8 3.6.5 0 1.3-.8 2.3-2.5 1-1.6 1.6-2.9 1.6-3.7.1-1.4-.4-2.1-1.6-2.1-.6 0-1.2.1-1.8.4 1.2-3.9 3.4-5.8 6.7-5.7 2.5.1 3.6 1.7 3.6 4.8z"/></svg>'
+};
+const socialEl = document.getElementById('socialLinks');
+if (socialEl) {
+  Object.keys(SOCIAL_ICONS).forEach(platform => {
+    const url = SOCIAL_LINKS[platform];
+    const label = ({ facebook:'Facebook', instagram:'Instagram', linkedin:'LinkedIn', vimeo:'Vimeo' })[platform] || platform;
+    const el = document.createElement(url ? 'a' : 'span');
+    el.innerHTML = SOCIAL_ICONS[platform];
+    if (url) {
+      el.href = url; el.target = '_blank'; el.rel = 'noopener noreferrer';
+      el.title = label;
+      el.setAttribute('aria-label', `Ahmed Tarek on ${label} (opens in a new tab)`);
+    } else {
+      el.className = 'social-disabled';
+      el.setAttribute('aria-disabled', 'true');
+      el.setAttribute('aria-label', `${label} — link coming soon`);
+    }
+    socialEl.appendChild(el);
+  });
+}
+
+// Contact links read from the same config as the footer icons, so there is one place to edit
+const CONTACT_EMAIL = "Ahmedketo975@gmail.com";   // put the real address here, e.g. "name@domain.com" — the EMAIL link stays hidden while this is empty
+(function(){
+  const set = (id, url) => { const a = document.getElementById(id); if (!a) return; if (url) a.href = url; else a.remove(); };
+  set('contactInstagram', SOCIAL_LINKS.instagram);
+  set('contactLinkedin', SOCIAL_LINKS.linkedin);
+  const em = document.getElementById('contactEmail');
+  if (em && CONTACT_EMAIL) { em.href = 'mailto:' + CONTACT_EMAIL; em.textContent = 'EMAIL — ' + CONTACT_EMAIL; em.hidden = false; }
+  else if (em) em.remove();
+})();
+
+PROJECTS.forEach(addDurChips);
+if (typeof fetch === 'function') loadVimeoThumbs();
+
+
+/* ========================= LIVING BACKGROUND (scroll-driven, light) ========================= */
+(function(){
+  const fx = document.getElementById('fx');
+  const wrap = document.getElementById('afterHero');
+  if (!fx || !wrap) return;
+  const blobs = [...fx.querySelectorAll('.fx-blob')];
+  const streak = fx.querySelector('.fx-streak');
+  const path = [ {ph:0.0, sx:.30, sy:.20}, {ph:1.9, sx:.34, sy:.24}, {ph:3.7, sx:.28, sy:.26}, {ph:5.2, sx:.32, sy:.18} ];
+  let ticking = false, visible = true;
+  function frame(){
+    ticking = false;
+    if (!visible || REDUCE_MOTION) return;
+    const y = window.scrollY || 0, w = window.innerWidth, h = window.innerHeight;
+    blobs.forEach((b, i) => {
+      const c = path[i % path.length];
+      const x = Math.sin(y / 1100 + c.ph) * c.sx * w;
+      const yy = Math.cos(y / 1450 + c.ph * 1.7) * c.sy * h;
+      b.style.transform = `translate3d(${x.toFixed(1)}px,${yy.toFixed(1)}px,0)`;
+    });
+    if (streak) streak.style.transform = `translate3d(${(Math.sin(y / 900) * 16).toFixed(1)}vw,${(Math.sin(y / 1300) * 16).toFixed(1)}vh,0)`;
+  }
+  function req(){ if (!ticking) { ticking = true; requestAnimationFrame(frame); } }
+  window.addEventListener('scroll', req, { passive: true });
+  window.addEventListener('resize', req, { passive: true });
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(es => { visible = es[0].isIntersecting; if (visible) req(); }, { threshold: 0 }).observe(wrap);
+    // colour mood follows the section in the middle of the screen
+    const root = document.documentElement;
+    const io = new IntersectionObserver(es => {
+      es.forEach(e => { if (e.isIntersecting) root.dataset.tone = e.target.dataset.discipline || e.target.dataset.tone || 'base'; });
+    }, { rootMargin: '-48% 0px -48% 0px', threshold: 0 });
+    document.querySelectorAll('#afterHero .carousel-section, #afterHero > section[data-tone]').forEach(el => io.observe(el));
+  }
+  frame();
+})();
+
+/* Deep link support: open a project directly via #project-id on load */
+window.addEventListener('DOMContentLoaded', ()=>{
+  const hash = location.hash.replace('#','');
+  if(PROJECTS.some(p=>p.id===hash)) openDetail(hash);
+});
+</script>
+<script>
+/* Editing timeline: the selected work laid out as an edit sequence in an NLE-style panel; the playhead scrubs with
+   the page scroll. Built from PROJECTS (real titles and durations only). No media files; idle when off screen. */
+(function(){
+  try {
+    const host = document.querySelector('.carousel-section[data-discipline="editing"]');
+    if (!host || typeof PROJECTS === 'undefined') return;
+    const mobile = window.matchMedia('(max-width:700px)').matches;
+    const FPS = 25;
+    const dur = p => Math.max(6, +p.duration || 30);
+    const w = s => Math.round(80 + Math.sqrt(s) * (mobile ? 14 : 21));
+    const seen = new Set();
+    const vMain = PROJECTS.filter(p => (p.discipline === 'film' || p.discipline === 'editing') && !seen.has(p.vimeo && p.vimeo.id) && seen.add(p.vimeo && p.vimeo.id));
+    const vTop  = PROJECTS.filter(p => p.discipline === 'ai' || p.discipline === '3d');
+    if (vMain.length < 3) return;
+
+    const GAP = 0, LEAD = 30;
+    let x = LEAD, t = 0; const segs = [];
+    vMain.forEach(p => { const d = dur(p), cw = w(d); segs.push({ p, x0: x, x1: x + cw, t0: t, t1: t + d }); x += cw + GAP; t += d; });
+    const W = x + 160;
+
+    let seed = 11; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+    const wave = cw => { const n = Math.max(10, Math.floor(cw / 3)); let d = '';
+      for (let i = 0; i < n; i++) { const env = .35 + .65 * Math.abs(Math.sin(i / n * Math.PI * (2 + rnd() * 3)));
+        const h = Math.max(.05, env * (.2 + rnd() * .8)) * 50, xx = (i / n * 100).toFixed(2);
+        d += `M${xx} ${50 - h}h${(70 / n).toFixed(2)}v${(h * 2).toFixed(1)}h-${(70 / n).toFixed(2)}z`; }
+      return `<svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path d="${d}"/></svg>`; };
+    const tc = s => { const f = Math.floor((s % 1) * FPS), ss = Math.floor(s);
+      return [Math.floor(ss / 3600), Math.floor(ss / 60) % 60, ss % 60, f].map(n => String(n).padStart(2, '0')).join(':'); };
+    const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;' }[c]));
+    const timeAt = px => { const s = segs.find(g => px < g.x1) || segs[segs.length - 1];
+      return px <= s.x0 ? s.t0 : s.t0 + Math.min(1, (px - s.x0) / (s.x1 - s.x0)) * (s.t1 - s.t0); };
+
+    const I = {   // tiny line icons drawn for this panel
+      snap:'<svg viewBox="0 0 12 12"><path d="M2 2v4a4 4 0 0 0 8 0V2M2 4h2M8 4h2"/></svg>',
+      link:'<svg viewBox="0 0 12 12"><path d="M5 7l2-2M4 5L2.5 6.5a2 2 0 0 0 3 3L7 8M8 7l1.5-1.5a2 2 0 0 0-3-3L5 4"/></svg>',
+      mark:'<svg viewBox="0 0 12 12"><path d="M3 2h6v8L6 8 3 10z"/></svg>',
+      wren:'<svg viewBox="0 0 12 12"><path d="M7.5 2a2.5 2.5 0 0 0 2.5 3L5 10 2 7l5-5z"/></svg>',
+      lock:'<svg viewBox="0 0 12 12"><rect x="2.5" y="5.5" width="7" height="5" rx="1"/><path d="M4 5.5V4a2 2 0 0 1 4 0v1.5"/></svg>',
+      eye:'<svg viewBox="0 0 12 12"><path d="M1 6s2-3.5 5-3.5S11 6 11 6 9 9.5 6 9.5 1 6 1 6z"/><circle cx="6" cy="6" r="1.4"/></svg>',
+      sync:'<svg viewBox="0 0 12 12"><path d="M2 6a4 4 0 0 1 7-2.6M10 6a4 4 0 0 1-7 2.6M9 1.5v2H7M3 10.5v-2h2"/></svg>',
+      mic:'<svg viewBox="0 0 12 12"><rect x="4.5" y="1.5" width="3" height="5.5" rx="1.5"/><path d="M3 6a3 3 0 0 0 6 0M6 9v1.5"/></svg>'
+    };
+    const vHead = (n, on, cls) => `<div class="pr-row v ${cls}"><span class="ic">${I.lock}</span><b class="src">V${n}</b><b class="tgt${on ? ' on' : ''}">V${n}</b><span class="ic">${I.sync}</span><span class="ic">${I.eye}</span></div>`;
+    const aHead = (n, on, cls) => `<div class="pr-row a ${cls}"><span class="ic">${I.lock}</span><b class="src">A${n}</b><b class="tgt${on ? ' on' : ''}">A${n}</b><b class="ms">M</b><b class="ms">S</b><span class="ic">${I.mic}</span></div>`;
+    const eHead = (l) => `<div class="pr-row e x"><span class="ic">${I.lock}</span><b class="src">${l}</b><b class="tgt">${l}</b></div>`;
+
+    const clip = (s, cls, i) => `<div class="pr-clip ${cls}" data-pid="${esc(s.p.id)}" style="left:${s.x0}px;width:${s.x1 - s.x0}px" data-cursor="view" data-cursor-label="VIEW" title="${esc(s.p.title)}"><i class="th"></i><div class="lb">${i % 3 === 0 ? '<em class="fx">fx</em>' : ''}<span>${esc(s.p.title)}</span></div></div>`;
+    const top = vTop.map((p, i) => { const a = segs[Math.min(segs.length - 1, Math.round((i + .5) * segs.length / vTop.length))], cw = Math.round(w(dur(p)) * .8);
+      return { p, x0: a.x0 + 24, x1: a.x0 + 24 + cw }; });
+    let a2 = ''; for (let i = 0; i < segs.length; i += 4) { const a = segs[i], b = segs[Math.min(segs.length - 1, i + 3)];
+      a2 += `<div class="pr-clip a" style="left:${a.x0}px;width:${b.x1 - a.x0}px"><div class="lb"><span>Music Bed ${i / 4 + 1}</span></div>${wave(b.x1 - a.x0)}</div>`; }
+    let ruler = ''; for (let px = LEAD; px < W - 120; px += 120) ruler += `<b style="left:${px}px">${tc(timeAt(px))}</b>`;
+
+    const pr = document.createElement('div');
+    pr.className = 'pr';
+    pr.setAttribute('aria-label', 'Edit timeline of selected work. Scroll to scrub; select a clip to open it.');
+    pr.innerHTML = `
+      <div class="pr-tabs"><span class="pr-tab on"><span class="x">×</span>Selected Work<span class="m">≡</span></span><span class="pr-tab">Showreel 2026</span><span class="pr-hint">SCROLL TO SCRUB</span></div>
+      <div class="pr-body">
+        <div class="pr-left">
+          <div class="pr-tcbox"><div class="pr-tc">00:00:00:00</div><div class="pr-tools">${I.snap.replace('<svg', '<svg class="on"')}${I.link.replace('<svg', '<svg class="on"')}${I.mark}${I.wren}</div></div>
+          ${eHead('V3')}${vHead(2, false, 'x')}${vHead(1, true, '')}${aHead(1, true, '')}${aHead(2, false, 'x')}${eHead('A3')}
+        </div>
+        <div class="pr-right">
+          <div class="pr-strip" style="width:${W}px">
+            <div class="pr-ruler">${ruler}<div class="pr-render"><i></i></div></div>
+            <div class="pr-track e x"></div>
+            <div class="pr-track v x">${top.map((s, i) => clip(s, 'ovl', i + 1)).join('')}</div>
+            <div class="pr-track v">${segs.map((s, i) => clip(s, s.p.discipline === 'editing' ? 'ed' : '', i)).join('')}</div>
+            <div class="pr-track a">${segs.map(s => `<div class="pr-clip a" style="left:${s.x0}px;width:${s.x1 - s.x0}px">${wave(s.x1 - s.x0)}</div>`).join('')}</div>
+            <div class="pr-track a x">${a2}</div>
+            <div class="pr-track e x"></div>
+          </div>
+          <div class="pr-ph"></div>
+        </div>
+        <div class="pr-vs"><i></i></div>
+      </div>
+      <div class="pr-bottom"><span></span><div class="pr-hs"><i></i></div><span></span></div>`;
+    host.appendChild(pr);
+
+    const right = pr.querySelector('.pr-right'), strip = pr.querySelector('.pr-strip'), tcEl = pr.querySelector('.pr-tc'),
+          rend = pr.querySelector('.pr-render i'), ph = pr.querySelector('.pr-ph'), hs = pr.querySelector('.pr-hs i');
+    const v1 = [...pr.querySelectorAll('.pr-track.v:not(.x) .pr-clip')], a1 = [...pr.querySelectorAll('.pr-track.a:not(.x) .pr-clip')];
+    const v2 = [...pr.querySelectorAll('.pr-track.v.x .pr-clip')], a2c = [...pr.querySelectorAll('.pr-track.a.x .pr-clip')];
+
+    pr.addEventListener('click', e => { const c = e.target.closest('.pr-clip[data-pid]'); if (c && typeof openDetail === 'function') openDetail(c.dataset.pid); });
+
+    // head-frame thumbnails, as an editor shows on expanded video tracks (uses the posters the cards already loaded)
+    let tries = 0; const thumbs = () => { let missing = 0;
+      pr.querySelectorAll('.pr-clip[data-pid]:not(.has-th)').forEach(c => { const p = PROJECTS.find(q => q.id === c.dataset.pid);
+        if (p && p.poster) { const th = c.querySelector('.th'); th.style.backgroundImage = `url("${p.poster}")`;
+          const port = typeof isPortraitVimeo === 'function' && isPortraitVimeo(p); c.style.setProperty('--thw', (port ? 28 : 78) + 'px');
+          if (c.offsetWidth > (port ? 70 : 130)) c.classList.add('has-th'); } else missing++; });
+      if (missing && ++tries < 12) setTimeout(thumbs, 1500); };
+    setTimeout(thumbs, 1200);
+
+    let last = -1;
+    const draw = p => {
+      const sw = right.clientWidth, hx = Math.round(sw * (mobile ? .38 : .3));
+      ph.style.left = hx + 'px';
+      const pos = LEAD + p * (W - 160 - LEAD);
+      strip.style.transform = `translate3d(${(hx - pos).toFixed(1)}px,0,0)`;
+      rend.style.width = pos + 'px';
+      const vis = Math.min(1, sw / W); hs.style.width = (vis * 100).toFixed(1) + '%'; hs.style.left = ((1 - vis) * p * 100).toFixed(2) + '%';
+      let i = segs.findIndex(s => pos >= s.x0 && pos < s.x1); if (i < 0) i = pos < LEAD ? -1 : segs.length - 1;
+      const s = segs[i]; tcEl.textContent = tc(s ? s.t0 + Math.min(1, (pos - s.x0) / (s.x1 - s.x0)) * (s.t1 - s.t0) : 0);
+      if (i !== last) { v1.forEach((c, k) => c.classList.toggle('live', k === i)); a1.forEach((c, k) => c.classList.toggle('live', k === i)); last = i; }
+      v2.forEach((c, k) => c.classList.toggle('live', pos >= top[k].x0 && pos < top[k].x1));
+      a2c.forEach(c => { const l = parseFloat(c.style.left); c.classList.toggle('live', pos >= l && pos < l + parseFloat(c.style.width)); });
+    };
+    const progress = () => { const r = pr.getBoundingClientRect(), vh = window.innerHeight;
+      return Math.min(1, Math.max(0, (vh * .92 - r.top) / (vh * .84))); };
+
+    if (REDUCE_MOTION) { pr.classList.add('in'); draw(.3); return; }
+    let raf = 0, on = false;
+    const tick = () => { raf = 0; draw(progress()); };
+    const onScroll = () => { if (!raf) raf = requestAnimationFrame(tick); };
+    new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) { pr.classList.add('in'); if (!on) { on = true; addEventListener('scroll', onScroll, { passive: true }); addEventListener('resize', onScroll); onScroll(); } }
+      else if (on) { on = false; removeEventListener('scroll', onScroll); removeEventListener('resize', onScroll); }
+    }), { rootMargin: '120px 0px' }).observe(pr);
+    draw(progress());
+  } catch (err) { console.warn('timeline skipped', err); }
+})();
+</script>
+<script>
+/* EDIT SUITE (lab). Phases, driven by scroll:
+   A  section rises over the hero: the room resolves out of a zoom-blur
+   B  camera pushes into the monitor until the screen fills the viewport (below the nav)
+   C  scrolling (or dragging the timeline) scrubs four sequences; the clip under the playhead shows in the
+      Program monitor, and after a short pause its real Vimeo video plays there, muted.
+   Only real project data (titles, categories, durations, Vimeo ids). One video iframe at most, removed on move. */
+(function(){
+  try {
+    const section = document.getElementById('suite');
+    if (!section || typeof PROJECTS === 'undefined') return;
+    const $ = (s, r = section) => r.querySelector(s);
+    const stage = $('.sx-stage'), cam = $('.sx-cam'), roomImg = $('.sx-cam img.base'), ghosts = [...section.querySelectorAll('.sx-ghost')],
+          screen = $('.sx-screen'), ui = $('.sx-ui'), cap = $('.sx-cap');
+    const SCREEN = { x0: .2410, y0: .2601, x1: .7590, y1: .5988 };   // monitor's visible screen, as fractions of the room photo
+    const IMG = { w: 1452, h: 815 };
+    const FPS = 25;
+    const mobile = () => window.innerWidth <= 760;
+    const navH = () => (document.getElementById('nav') || { offsetHeight: 0 }).offsetHeight;
+    const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;' }[c]));
+    const tc = s => { s = Math.max(0, s); const f = Math.floor((s % 1) * FPS), ss = Math.floor(s);
+      return [Math.floor(ss / 3600), Math.floor(ss / 60) % 60, ss % 60, f].map(n => String(n).padStart(2, '0')).join(':'); };
+    const dur = p => Math.max(6, +p.duration || 30);
+    const ease = t => t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+    const posterOf = p => p.poster || (p.vimeo && p.vimeo.id ? `https://vumbnail.com/${p.vimeo.id}.jpg` : '');
+    const tall = p => typeof isPortraitVimeo === 'function' && isPortraitVimeo(p);
+
+    /* ---------- data: four sequences ---------- */
+    const SEQ = [['film', 'Filmmaker', ''], ['editing', 'Editing', 'ed'], ['ai', 'AI', 'ai'], ['3d', '3D', 'd3']]
+      .map(([id, name, cls]) => { const seen = new Set();
+        return { id, name, cls, clips: PROJECTS.filter(p => p.discipline === id && p.vimeo && p.vimeo.id && !seen.has(p.vimeo.id) && seen.add(p.vimeo.id)) }; })
+      .filter(s => s.clips.length);
+    const ALL = []; SEQ.forEach((s, si) => s.clips.forEach((p, ci) => ALL.push({ p, si, ci })));
+    if (!ALL.length) return;
+
+    /* ---------- build UI ---------- */
+    const W = c => Math.round(110 + Math.sqrt(dur(c)) * 20);
+    let seed = 5; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+    const wave = cw => { const n = Math.max(10, Math.floor(cw / 3)); let d = '';
+      for (let i = 0; i < n; i++) { const e = .35 + .65 * Math.abs(Math.sin(i / n * Math.PI * (2 + rnd() * 3))), h = Math.max(.05, e * (.2 + rnd() * .8)) * 50, x = (i / n * 100).toFixed(2);
+        d += `M${x} ${50 - h}h${(70 / n).toFixed(2)}v${(h * 2).toFixed(1)}h-${(70 / n).toFixed(2)}z`; }
+      return `<svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path d="${d}"/></svg>`; };
+    SEQ.forEach(s => { let x = 0, t = 0; s.geo = s.clips.map(p => { const w = W(p), g = { x0: x, x1: x + w, t0: t, t1: t + dur(p) }; x += w; t += dur(p); return g; }); s.width = x; });
+
+    const seqHTML = s => {
+      let ruler = ''; for (let px = 0; px < s.width + 400; px += 120) { const g = s.geo.find(g => px < g.x1) || s.geo[s.geo.length - 1];
+        ruler += `<b style="left:${px}px">${tc(g.t0 + clamp((px - g.x0) / (g.x1 - g.x0), 0, 1) * (g.t1 - g.t0))}</b>`; }
+      return `<div class="sx-strip" data-seq="${s.id}" hidden style="width:${s.width + 600}px">
+        <div class="sx-ruler">${ruler}<div class="rb"><i></i></div></div>
+        <div class="sx-tr v">${s.clips.map((p, i) => `<div class="sx-c ${s.cls}" data-k="${ALL.findIndex(a => a.p === p)}" style="left:${s.geo[i].x0}px;width:${s.geo[i].x1 - s.geo[i].x0}px;--thw:${tall(p) ? 30 : 64}px"><i class="th"></i><div class="lb">${esc(p.title)}</div></div>`).join('')}</div>
+        <div class="sx-tr">${s.clips.map((p, i) => `<div class="sx-c a" style="left:${s.geo[i].x0}px;width:${s.geo[i].x1 - s.geo[i].x0}px">${wave(s.geo[i].x1 - s.geo[i].x0)}</div>`).join('')}</div>
+      </div>`; };
+
+    const ICON = { prev:'<svg viewBox="0 0 12 12"><path d="M2 2h1.5v8H2zM10 2v8L4 6z"/></svg>', back:'<svg viewBox="0 0 12 12"><path d="M3 2h1.5v8H3zM10 2v8L5 6z"/></svg>',
+      play:'<svg class="play" viewBox="0 0 12 12"><path d="M3 1.5v9l7.5-4.5z"/></svg>', fwd:'<svg viewBox="0 0 12 12"><path d="M9 2h-1.5v8H9zM2 2v8l5-4z"/></svg>', next:'<svg viewBox="0 0 12 12"><path d="M10 2H8.5v8H10zM2 2v8l6-4z"/></svg>' };
+    ui.innerHTML = `
+      <div class="sx-bar"><span>Assembly</span><span class="on">Editing</span><span>Color</span><span>Effects</span><span>Audio</span><span>Graphics</span><span class="sp">SCROLL OR DRAG THE TIMELINE</span></div>
+      <div class="sx-panel sx-meta-p"><div class="sx-tabs"><span class="on">Effect Controls</span><span>Metadata</span><span>Audio Mixer</span></div>
+        <div class="sx-meta"><div class="clipname"></div>
+          <div class="row"><span>Sequence</span><span data-m="seq"></span></div>
+          <div class="row"><span>Duration</span><span data-m="dur"></span></div>
+          <div class="row"><span>Frame</span><span data-m="ar"></span></div>
+          <div class="row"><span>Source</span><span>Vimeo</span></div>
+          <div class="grp"><i>fx</i> Motion</div><div class="grp"><i>fx</i> Opacity</div><div class="grp"><i>fx</i> Time Remapping</div><div class="grp"><i>fx</i> Lumetri Color</div>
+        </div></div>
+      <div class="sx-panel sx-prog"><div class="sx-tabs"><span class="on">Program: <b data-m="pname" style="font-weight:500"></b><em>≡</em></span></div>
+        <div class="sx-view" title="Open the full video"><div class="sx-frame"><img alt=""><img alt=""><div class="badge">PLAYING</div><div class="open">OPEN FULL VIDEO ↗</div></div></div>
+        <div class="sx-trans"><span class="tc" data-m="ptc">00:00:00:00</span><span class="btns">${ICON.prev}${ICON.back}${ICON.play}${ICON.fwd}${ICON.next}</span><span class="fit">Fit ▾</span><span class="du" data-m="pdu"></span></div></div>
+      <div class="sx-panel sx-bin-p"><div class="sx-tabs"><span class="on">Project: Ahmed Tarek</span><span>Media Browser</span></div><div class="sx-bin"></div></div>
+      <div class="sx-lowR"><div class="sx-panel sx-tl"><div class="sx-tabs">${SEQ.map(s => `<span data-tab="${s.id}">${s.name}</span>`).join('')}</div>
+          <div class="sx-tlbody"><div class="sx-heads"><div class="tcs" data-m="ttc">00:00:00:00</div><div class="h v"><b>V1</b><b class="on">V1</b></div><div class="h"><b>A1</b><b class="on">A1</b></div></div>
+            <div class="sx-tracks">${SEQ.map(seqHTML).join('')}<div class="sx-ph"></div></div></div></div>
+        <div class="sx-meters">${'<i></i>'.repeat(2)}</div></div>`;
+
+    const M = k => ui.querySelector(`[data-m="${k}"]`);
+    const frame = ui.querySelector('.sx-frame'), imgs = [...frame.querySelectorAll('img')], tracks = ui.querySelector('.sx-tracks'),
+          ph = ui.querySelector('.sx-ph'), bin = ui.querySelector('.sx-bin'), meters = [...ui.querySelectorAll('.sx-meters i')];
+    const strips = Object.fromEntries([...ui.querySelectorAll('.sx-strip')].map(e => [e.dataset.seq, e]));
+    const clipEls = [...ui.querySelectorAll('.sx-tr.v .sx-c')];
+
+    /* ---------- geometry ---------- */
+    let vw = 0, vh = 0, base = { s: 1, x: 0, y: 0 }, end = { k: 1 }, phB = 0, phC = 0, perClip = 0, secTop = 0;
+    const layout = () => {
+      vw = window.innerWidth; vh = window.innerHeight;
+      const scrW = (SCREEN.x1 - SCREEN.x0) * IMG.w, scrH = (SCREEN.y1 - SCREEN.y0) * IMG.h;
+      const cover = Math.max(vw / IMG.w, vh / IMG.h);
+      base.s = Math.min(cover, .94 * vw / scrW);                      // phones: keep the whole monitor in frame
+      const cx = (SCREEN.x0 + SCREEN.x1) / 2 * IMG.w;
+      base.x = vw / 2 - cx * base.s; base.y = vh / 2 - IMG.h / 2 * base.s;
+      cam.style.width = IMG.w + 'px'; cam.style.height = IMG.h + 'px';
+      const top = navH(), availH = vh - top;
+      end.k = Math.max(vw / (scrW * base.s), availH / (scrH * base.s)) * 1.002;
+      phB = vh * 1.2; perClip = mobile() ? 230 : 260; phC = perClip * ALL.length;
+      section.style.height = (vh + phB + phC + vh * .35) + 'px';
+      // UI renders at its final size, then is scaled to cover whatever the screen rect is
+      ui.style.width = vw - 0 + 'px'; ui.style.height = availH + 'px';
+      secTop = section.getBoundingClientRect().top + window.scrollY;
+      bin.innerHTML = ''; drawBin(lastSeq);
+    };
+
+    /* ---------- bin ---------- */
+    let lastSeq = -1;
+    const drawBin = si => { if (si < 0) return; const s = SEQ[si];
+      bin.innerHTML = s.clips.map(p => `<div class="sx-item" data-k="${ALL.findIndex(a => a.p === p)}"><i style="background-image:url('${posterOf(p)}')"></i><span>${esc(p.title)}</span><em>${tc(dur(p)).slice(3, 8)}</em></div>`).join(''); };
+
+    /* ---------- program monitor ---------- */
+    let cur = -1, front = 0, iframe = null, vidTimer = 0, idleTimer = 0, moving = false;
+    const showClip = k => {
+      const { p } = ALL[k]; const src = posterOf(p);
+      const next = imgs[1 - front]; next.src = src; next.style.objectFit = 'contain';
+      next.onload = () => { next.classList.add('on'); imgs[front].classList.remove('on'); front = 1 - front; };
+      if (next.complete && next.naturalWidth) next.onload();
+      ui.querySelector('.clipname').textContent = p.title;
+      M('seq').textContent = SEQ[ALL[k].si].name; M('dur').textContent = tc(dur(p)); M('ar').textContent = tall(p) ? '9:16 vertical' : (p.vimeo.aspect || '16:9');
+      M('pname').textContent = mobile() ? p.title : SEQ[ALL[k].si].name; M('pdu').textContent = tc(dur(p));
+      bin.querySelectorAll('.sx-item').forEach(e => e.classList.toggle('on', +e.dataset.k === k));
+    };
+    const killVideo = () => { clearTimeout(vidTimer); if (iframe) { iframe.remove(); iframe = null; } frame.classList.remove('playing'); };
+    const startVideo = k => {
+      killVideo();
+      const conn = navigator.connection || {};
+      if (REDUCE_MOTION || conn.saveData) return;
+      const { p } = ALL[k], v = p.vimeo, start = Math.floor(dur(p) * .28);
+      const f = document.createElement('iframe');
+      f.className = tall(p) ? 'tall' : 'wide'; f.allow = 'autoplay; fullscreen; picture-in-picture'; f.title = p.title; f.loading = 'eager';
+      f.src = `https://player.vimeo.com/video/${v.id}?${v.hash ? 'h=' + v.hash + '&' : ''}background=1&autoplay=1&muted=1&loop=1&dnt=1#t=${start}s`;
+      f.addEventListener('load', () => { vidTimer = setTimeout(() => { if (iframe === f) { f.classList.add('live'); frame.classList.add('playing'); } }, 900); });
+      frame.appendChild(f); iframe = f;
+    };
+    const onMove = () => {
+      if (!moving) { moving = true; frame.classList.add('scrub'); killVideo(); }
+      clearTimeout(idleTimer);
+      idleTimer = setTimeout(() => { moving = false; frame.classList.remove('scrub'); if (cur >= 0 && phase === 'C') vidTimer = setTimeout(() => startVideo(cur), 350); }, 220);
+    };
+    ui.querySelector('.sx-view').addEventListener('click', () => { if (cur >= 0 && typeof openDetail === 'function') openDetail(ALL[cur].p.id); });
+
+    /* ---------- scrub state ---------- */
+    let phase = 'A', lastPos = -1;
+    const setScrub = q => {            // q: 0..1 across all clips of all sequences
+      const fpos = clamp(q, 0, .99999) * ALL.length, k = Math.floor(fpos), u = fpos - k, a = ALL[k], s = SEQ[a.si], g = s.geo[a.ci];
+      if (a.si !== lastSeq) { Object.values(strips).forEach(e => e.hidden = true); strips[s.id].hidden = false;
+        ui.querySelectorAll('[data-tab]').forEach(e => e.classList.toggle('on', e.dataset.tab === s.id)); drawBin(a.si); lastSeq = a.si; }
+      const tw = tracks.clientWidth, hx = Math.round(tw * (mobile() ? .5 : .4)) ;
+      ph.style.left = hx + 'px';
+      const x = g.x0 + u * (g.x1 - g.x0);
+      strips[s.id].style.transform = `translate3d(${(hx - x).toFixed(1)}px,0,0)`;
+      strips[s.id].querySelector('.rb i').style.width = x + 'px';
+      const t = g.t0 + u * (g.t1 - g.t0), tt = tc(t);
+      M('ttc').textContent = tt; M('ptc').textContent = tc(u * dur(a.p));
+      if (k !== cur) { cur = k; clipEls.forEach(e => e.classList.toggle('live', +e.dataset.k === k)); showClip(k); }
+      if (Math.abs(q - lastPos) > 1e-5) { onMove(); lastPos = q; }
+    };
+
+    /* thumbnails on clips once posters arrive */
+    let tries = 0; const thumbs = () => { let miss = 0;
+      clipEls.forEach(e => { if (e.dataset.th) return; const p = ALL[+e.dataset.k].p; if (p.poster) { e.querySelector('.th').style.backgroundImage = `url("${p.poster}")`; e.dataset.th = 1; } else miss++; });
+      if (cur >= 0 && imgs[front].src.includes('vumbnail') && ALL[cur].p.poster) showClip(cur);
+      if (miss && ++tries < 15) setTimeout(thumbs, 1200); };
+    setTimeout(thumbs, 800);
+
+    /* ---------- camera ---------- */
+    const draw = () => {
+      const top = section.getBoundingClientRect().top, y = -top;          // y: px scrolled past the section top
+      const sCx = (SCREEN.x0 + SCREEN.x1) / 2 * IMG.w, sCy = (SCREEN.y0 + SCREEN.y1) / 2 * IMG.h;
+      // A: entering (top from vh to 0) -> zoom-blur resolve
+      const a = clamp(1 - top / vh, 0, 1), ea = ease(a), blur = (1 - ea) * 16;
+      // B: push in
+      const b = clamp(y / phB, 0, 1), eb = ease(b);
+      const k0 = base.s, k = k0 * (1 + (end.k - 1) * eb) * (1 + (1 - ea) * .22);
+      const nt0 = navH();
+      const Fbx = (vw / 2 - base.x) / k0, Fby = (vh / 2 - base.y) / k0;         // image point at viewport centre, at rest
+      const Fx = Fbx + (sCx - Fbx) * eb, Fy = Fby + (sCy - Fby) * eb;            // ...moves to the screen centre
+      const Vx = vw / 2, Vy = vh / 2 + (nt0 / 2) * eb;                            // screen ends centred below the nav
+      const camX = Vx - Fx * k, camY = Vy - Fy * k;
+      cam.style.transform = `translate3d(${camX.toFixed(2)}px,${camY.toFixed(2)}px,0) scale(${k.toFixed(4)})`;
+      roomImg.style.filter = blur > .1 ? `blur(${blur.toFixed(1)}px) brightness(${(.55 + .45 * ea).toFixed(2)})` : (eb > 0 ? `brightness(${(1 - .5 * eb).toFixed(2)})` : 'none');
+      ghosts.forEach((g, i) => { g.style.opacity = ((1 - ea) * .32).toFixed(3); g.style.transform = `scale(${(1 + (1 - ea) * .06 * (i + 1)).toFixed(4)})`; });
+      // screen rect on the viewport
+      let L = camX + SCREEN.x0 * IMG.w * k, T = camY + SCREEN.y0 * IMG.h * k, R = camX + SCREEN.x1 * IMG.w * k, B = camY + SCREEN.y1 * IMG.h * k;
+      const nt = navH();
+      if (eb >= .999) { L = 0; T = nt; R = vw; B = vh; }
+      L = Math.max(L, 0); R = Math.min(R, vw); T = Math.max(T, eb > .5 ? nt * eb : 0); B = Math.min(B, vh);
+      const sw = Math.max(1, R - L), sh = Math.max(1, B - T);
+      screen.style.cssText = `left:${L}px;top:${T}px;width:${sw}px;height:${sh}px;--glass:${(1 - eb).toFixed(2)};border-radius:${(1 - eb) * 3}px`;
+      const uw = vw, uh = vh - nt, sc = Math.max(sw / uw, sh / uh);
+      ui.style.transform = `translate(${((sw - uw * sc) / 2).toFixed(1)}px,${((sh - uh * sc) / 2).toFixed(1)}px) scale(${sc.toFixed(4)})`;
+      ui.style.filter = blur > .1 ? `blur(${(blur * .6).toFixed(1)}px)` : 'none';
+      cap.style.opacity = (ea * (1 - clamp(b * 3, 0, 1))).toFixed(2);
+      // C: scrub
+      const c = clamp((y - phB) / phC, 0, 1);
+      phase = y < phB ? (top > 0 ? 'A' : 'B') : 'C';
+      setScrub(c);
+      if (phase !== 'C') { clearTimeout(vidTimer); if (iframe) killVideo(); }
+    };
+
+    /* ---------- seek helpers: tabs, bin, clips, drag ---------- */
+    const scrollForQ = q => secTop + phB + q * phC;
+    const seekClip = k => window.scrollTo({ top: scrollForQ((k + .5) / ALL.length), behavior: 'smooth' });
+    ui.addEventListener('click', e => {
+      const tab = e.target.closest('[data-tab]'); if (tab) { const k = ALL.findIndex(a => SEQ[a.si].id === tab.dataset.tab); if (k >= 0) seekClip(k); return; }
+      const it = e.target.closest('.sx-item[data-k], .sx-c[data-k]'); if (it) seekClip(+it.dataset.k);
+    });
+    let drag = null;
+    tracks.addEventListener('pointerdown', e => { if (e.button) return; drag = { x: e.clientX, y: e.clientY, sy: window.scrollY, on: false }; });
+    window.addEventListener('pointermove', e => { if (!drag) return; const dx = e.clientX - drag.x, dy = e.clientY - drag.y;
+      if (!drag.on) { if (Math.abs(dx) < 6 || Math.abs(dx) < Math.abs(dy)) return; drag.on = true; tracks.classList.add('drag'); try { tracks.setPointerCapture(e.pointerId); } catch (_) {} }
+      const avgW = SEQ.reduce((a, s) => a + s.width, 0) / ALL.length;
+      window.scrollTo({ top: drag.sy - dx / avgW * perClip, behavior: 'instant' }); e.preventDefault(); }, { passive: false });
+    const endDrag = () => { if (drag && drag.on) { tracks.classList.remove('drag'); tracks.addEventListener('click', ev => ev.stopPropagation(), { capture: true, once: true }); } drag = null; };
+    window.addEventListener('pointerup', endDrag); window.addEventListener('pointercancel', endDrag);
+
+    /* ---------- meters (only while a video is playing) ---------- */
+    let mt = 0; setInterval(() => { if (!frame.classList.contains('playing') || document.hidden) { meters.forEach(m => m.style.height = '6%'); return; }
+      mt += .4; meters.forEach((m, i) => m.style.height = (35 + 40 * Math.abs(Math.sin(mt * (1.3 + i * .4))) * (.6 + Math.random() * .4)).toFixed(0) + '%'); }, 120);
+
+    /* ---------- loop ---------- */
+    let raf = 0, active = false;
+    const tick = () => { raf = 0; draw(); };
+    const onScroll = () => { if (!raf) raf = requestAnimationFrame(tick); };
+    new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting && !active) { active = true; addEventListener('scroll', onScroll, { passive: true }); onScroll(); }
+      else if (!e.isIntersecting && active) { active = false; removeEventListener('scroll', onScroll); killVideo(); }
+    }), { rootMargin: '200px 0px' }).observe(section);
+    let rt = 0; addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => { layout(); draw(); }, 120); });
+    const go = () => { layout(); draw(); };
+    if (roomImg.complete) go(); else roomImg.addEventListener('load', go, { once: true });
+    go();
+  } catch (err) { console.warn('edit suite skipped', err); }
+})();
+</script>
+</body>
+</html>
