@@ -2081,7 +2081,7 @@ window.addEventListener('DOMContentLoaded', ()=>{
     /* ---------- geometry ---------- */
     let vw = 0, vh = 0, base = { s: 1, x: 0, y: 0 }, end = { k: 1 }, phB = 0, phC = 0, perClip = 0, secTop = 0;
     const layout = () => {
-      vw = window.innerWidth; vh = window.innerHeight;
+      vw = document.documentElement.clientWidth || window.innerWidth; vh = window.innerHeight;
       const scrW = (SCREEN.x1 - SCREEN.x0) * IMG.w, scrH = (SCREEN.y1 - SCREEN.y0) * IMG.h;
       const cover = Math.max(vw / IMG.w, vh / IMG.h);
       base.s = Math.min(cover, .94 * vw / scrW);                      // phones: keep the whole monitor in frame
