@@ -566,6 +566,12 @@
   .ct-item:hover{ background:#262626; }
   .ct-item.on{ background:#2b3b52 !important; color:#fff; }
   @media (max-width:760px){ .ct-bin-h, .ct-item{ grid-template-columns:1fr 70px; } .ct-bin-h span:nth-child(2), .ct-item .sq{ display:none; } #cut .ct-bin{ height:56vw; } }
+  /* bigger Program monitor: wider panel, taller picture */
+  #cut .wrap{ max-width:1720px; padding-left:3vw; padding-right:3vw; }
+  #cut .ct-frame{ width:min(100%, max(640px, calc((100vh - 370px) * 16 / 9))); }   /* as big as fits with the timeline still on screen */
+  #cut .ct-screen{ padding:8px 0; }
+  #cut .ct-scroll{ cursor:ew-resize; }
+  @media (max-width:760px){ #cut .wrap{ padding-left:4vw; padding-right:4vw; } #cut .ct-frame{ width:100%; } }
   /* ---------- Showreel: four independent horizontal carousels (one per discipline) ---------- */
   #showreel{ position:relative; z-index:1; padding:10vh 0 4vh; }
   .carousel-section{ padding:5vh 0; }
@@ -2430,9 +2436,9 @@ window.addEventListener('DOMContentLoaded', ()=>{
     addEventListener('pointermove', e => { if (!drag) return; const dx = e.clientX - drag.x; if (Math.abs(dx) > 5) { moved = true; scroller.classList.add('drag'); } if (moved) scroller.scrollLeft = drag.l - dx; });
     addEventListener('pointerup', () => { drag = null; scroller.classList.remove('drag'); });
     // ---- desktop: page scroll drives the timeline left / right; phones: swipe it by hand ----
-    const pin = matchMedia('(hover:hover) and (min-width:761px)').matches && !REDUCE_MOTION;
+    const pin = false;   // the page scrolls normally; the wheel moves the timeline only while the pointer is over it
     const prog = sec.querySelector('.ct-prog i'), hint = sec.querySelector('[data-hint]');
-    hint.textContent = pin ? 'SCROLL TO MOVE THE TIMELINE · CLICK A CLIP TO PLAY' : 'SWIPE THE TIMELINE · TAP A CLIP TO PLAY';
+    hint.textContent = matchMedia('(hover:hover)').matches ? 'SCROLL OVER THE TIMELINE TO MOVE IT · CLICK A CLIP TO PLAY' : 'SWIPE THE TIMELINE · TAP A CLIP TO PLAY';
     let maxX = 0;
     const range = () => sec.offsetHeight - innerHeight;
     const fit = () => { if (!pin) return; maxX = Math.max(0, strip.scrollWidth - scroller.clientWidth);
@@ -2448,6 +2454,15 @@ window.addEventListener('DOMContentLoaded', ()=>{
     } else {
       scroller.addEventListener('scroll', () => { const m = scroller.scrollWidth - scroller.clientWidth; prog.style.width = (m > 0 ? scroller.scrollLeft / m * 100 : 0).toFixed(2) + '%'; }, { passive: true });
     }
+    // wheel over the timeline slides it sideways; at either end the page takes over again (never traps the scroll)
+    scroller.addEventListener('wheel', e => {
+      if (e.ctrlKey) return;
+      let d = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
+      if (e.deltaMode === 1) d *= 16; else if (e.deltaMode === 2) d *= scroller.clientWidth;
+      const max = scroller.scrollWidth - scroller.clientWidth;
+      if ((d < 0 && scroller.scrollLeft <= 0) || (d > 0 && scroller.scrollLeft >= max - 1)) return;
+      e.preventDefault(); scroller.scrollLeft += d * 1.4;
+    }, { passive: false });
     // ---- Project tab: the list (bin, list view) ----
     const bin = sec.querySelector('.ct-bin'), binL = sec.querySelector('.ct-bin-l'), screenEl = sec.querySelector('.ct-screen');
     const pane = which => { sec.querySelectorAll('[data-pane]').forEach(t => t.classList.toggle('on', t.dataset.pane === which));
