@@ -5,9 +5,7 @@ window.PROJECTS_DATA = [
   {"id": "v873673924", "title": "Mohamed Ramadan's Concert in Aswan", "discipline": "film", "vimeo": {"id": "873673924", "aspect": "16:9"}, "projectType": "Filmmaker", "duration": 96},
   {"id": "v830872740", "title": "Camel Racing in Al-Arish, North Sinai 2023", "discipline": "film", "vimeo": {"id": "830872740", "aspect": "16:9"}, "projectType": "Filmmaker", "duration": 84},
   {"id": "v936409710", "title": "Heaven Dental Clinic", "discipline": "film", "vimeo": {"id": "936409710", "aspect": "16:9"}, "projectType": "Filmmaker", "duration": 44},
-  {"id": "v705699515", "title": "DODGE Gym Promo", "discipline": "film", "vimeo": {"id": "705699515", "aspect": "16:9"}, "projectType": "Filmmaker", "duration": 63},
   {"id": "v666304578", "title": "Ngm El Arab 2021", "discipline": "film", "vimeo": {"id": "666304578", "aspect": "16:9"}, "projectType": "Filmmaker", "duration": 42},
-  {"id": "v1244021887", "title": "Desoki & Soda 2", "discipline": "film", "vimeo": {"id": "1244021887", "aspect": "16:9"}, "projectType": "Filmmaker", "duration": 62},
   {"id": "v1244024762", "title": "Carpet Factory", "discipline": "editing", "vimeo": {"id": "1244024762", "aspect": "16:9"}, "projectType": "Editing", "duration": 52},
   {"id": "v762968709", "title": "A Medical and Charitable Convoy for the People of Al-Arish", "discipline": "editing", "vimeo": {"id": "762968709", "aspect": "16:9"}, "projectType": "Editing", "duration": 37},
   {"id": "selected-ai", "title": "Anua", "discipline": "ai", "vimeo": {"id": "1244025482", "aspect": "9:16"}, "projectType": "AI", "duration": 25},
@@ -23,5 +21,6 @@ window.PROJECTS_DATA = [
   {"id": "v1244178594", "title": "Twenty Two Curtains Factory", "discipline": "editing", "vimeo": {"id": "1244178594", "aspect": "16:9"}, "projectType": "Editing", "duration": 30},
   {"id": "v1244178595", "title": "Twenty Two Villa Venicia — Main Majlis", "discipline": "editing", "vimeo": {"id": "1244178595", "aspect": "9:16"}, "projectType": "Editing", "duration": 30},
   {"id": "v1244021885", "title": "Vitamin C 3", "discipline": "editing", "vimeo": {"id": "1244021885", "aspect": "9:16"}, "projectType": "Editing", "duration": 32},
-  {"id": "v1244021889", "title": "البشرة الدهنية", "discipline": "editing", "vimeo": {"id": "1244021889", "aspect": "9:16"}, "projectType": "Editing", "duration": 29}
+  {"id": "v1244021889", "title": "البشرة الدهنية", "discipline": "editing", "vimeo": {"id": "1244021889", "aspect": "9:16"}, "projectType": "Editing", "duration": 29},
+  {"id": "v1244021887", "title": "Desoki & Soda 2", "discipline": "editing", "vimeo": {"id": "1244021887", "aspect": "16:9"}, "projectType": "Editing", "duration": 62},
 ];

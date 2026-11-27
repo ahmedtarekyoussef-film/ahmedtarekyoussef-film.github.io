@@ -532,6 +532,40 @@
     .ct-screen{ padding:0; }
     .ct-scroll{ cursor:auto; }
   }
+  /* desktop: the section pins, and scrolling the page slides the timeline left / right */
+  #cut.pin{ padding:0; }
+  #cut.pin .ct-sticky{ position:sticky; top:0; height:100vh; height:100svh; display:flex; flex-direction:column; justify-content:center;
+    padding:calc(var(--nav-h) + 1.5vh) 0 2.5vh; box-sizing:border-box; }
+  #cut.pin .sec-head{ margin-bottom:1.6rem; }
+  #cut.pin .ct-frame{ width:min(100%, calc((100vh - var(--nav-h) - 400px) * 16 / 9)); }
+  #cut.pin .ct-screen{ padding:6px 0; }
+  #cut.pin .ct-scroll{ cursor:ew-resize; scrollbar-width:none; }
+  #cut.pin .ct-scroll::-webkit-scrollbar{ display:none; }
+  .ct-prog{ position:relative; height:3px; background:#232323; }
+  .ct-prog i{ position:absolute; left:0; top:0; bottom:0; width:0; background:var(--accent); box-shadow:0 0 10px rgba(196,168,118,.6); }
+  .ct-hint{ font-family:'Space Grotesk',sans-serif; font-size:.64rem; letter-spacing:.22em; color:var(--fg-faint); margin-top:.9rem; text-align:right; }
+  @media (max-width:760px){ .ct-hint{ text-align:left; } }
+  /* Project panel tab: the list, as an editor's bin in list view */
+  .ct-head span[data-pane]{ cursor:pointer; }
+  .ct-head span[data-pane]:not(.on):hover{ color:#cfcfcf; }
+  .ct-bin{ background:#1d1d1d; height:calc(min(100%, calc(62vh * 16 / 9)) * 9 / 16); min-height:260px; display:flex; flex-direction:column; }
+  #cut .ct-bin{ height:var(--binH, 46vh); }
+  .ct-bin[hidden], .ct-screen[hidden]{ display:none !important; }
+  .ct-bin-h, .ct-item{ display:grid; grid-template-columns:1fr 140px 120px; gap:12px; align-items:center; padding:0 14px; }
+  .ct-bin-h{ height:28px; flex:0 0 28px; color:#8a8a8a; border-bottom:1px solid #2a2a2a; background:#202020; }
+  .ct-bin-h span:last-child, .ct-item .du{ text-align:right; }
+  .ct-bin-l{ flex:1; overflow:auto; scrollbar-width:thin; scrollbar-color:#3a3a3a #1a1a1a; }
+  .ct-item{ height:44px; border-bottom:1px solid #222; cursor:pointer; color:#cfcfcf; }
+  .ct-item:nth-child(even){ background:#1a1a1a; }
+  .ct-item .nm{ display:flex; align-items:center; gap:10px; min-width:0; }
+  .ct-item .nm i{ flex:0 0 56px; height:32px; background:#000 center/cover; border-radius:2px; }
+  .ct-item .nm em{ flex:0 0 10px; height:10px; border-radius:2px; background:#8d86d9; }
+  .ct-item .nm em.editing{ background:#a68be0; } .ct-item .nm em.ai{ background:#cf7aa6; } .ct-item .nm em.d3{ background:#d9a35a; }
+  .ct-item .nm span{ white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .ct-item .sq{ color:#8a8a8a; } .ct-item .du{ color:#4ea1ff; font-variant-numeric:tabular-nums; }
+  .ct-item:hover{ background:#262626; }
+  .ct-item.on{ background:#2b3b52 !important; color:#fff; }
+  @media (max-width:760px){ .ct-bin-h, .ct-item{ grid-template-columns:1fr 70px; } .ct-bin-h span:nth-child(2), .ct-item .sq{ display:none; } #cut .ct-bin{ height:56vw; } }
   /* ---------- Showreel: four independent horizontal carousels (one per discipline) ---------- */
   #showreel{ position:relative; z-index:1; padding:10vh 0 4vh; }
   .carousel-section{ padding:5vh 0; }
@@ -950,7 +984,7 @@
   </section>
 
   <!-- TIMELINE + PROGRAM MONITOR -->
-  <section id="cut" data-tone="base"><div class="wrap">
+  <section id="cut" data-tone="base"><div class="ct-sticky"><div class="wrap">
     <div class="sec-head reveal">
       <h2 class="sec-title">Timeline</h2>
       <div class="ct-tabs" role="tablist" aria-label="Sequences">
@@ -963,7 +997,8 @@
     </div>
     <div class="ct-panel">
       <div class="ct-box">
-        <div class="ct-head"><span class="on">Program: <b data-seq-name style="font-weight:500;margin-left:.35em">Selected Work</b>&nbsp;&nbsp;&#8801;</span><span class="r">CLICK A CLIP TO PLAY</span></div>
+        <div class="ct-head"><span class="on" data-pane="prog" role="tab">Program: <b data-seq-name style="font-weight:500;margin-left:.35em">Selected Work</b>&nbsp;&nbsp;&#8801;</span><span data-pane="bin" role="tab">Project: Ahmed Tarek&nbsp;&nbsp;&#8801;</span><span class="r">CLICK A CLIP TO PLAY</span></div>
+        <div class="ct-bin" hidden><div class="ct-bin-h"><span>Name</span><span>Sequence</span><span>Media Duration</span></div><div class="ct-bin-l"></div></div>
         <div class="ct-screen"><div class="ct-frame" data-cursor="play" data-cursor-label="PLAY"><img alt=""><span class="pl"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3l16 9-16 9V3z"/></svg></span></div></div>
         <div class="ct-trans"><span class="tc">00:00:00:00</span><span class="nm"></span><span class="du"></span></div>
       </div>
@@ -971,8 +1006,10 @@
         <div class="ct-heads"><div class="tc">00:00:00:00</div><div class="h v"><b>V1</b><b class="on">V1</b></div><div class="h a"><b>A1</b><b class="on">A1</b></div></div>
         <div class="ct-scroll"><div class="ct-strip"></div></div>
       </div>
+      <div class="ct-prog" aria-hidden="true"><i></i></div>
     </div>
-  </div></section>
+    <div class="ct-hint" data-hint></div>
+  </div></div></section>
 
   <section id="showreel" aria-label="Selected work" style="display:none"></section>
 
@@ -2253,7 +2290,7 @@ window.addEventListener('DOMContentLoaded', ()=>{
     }
 
     /* ---------------- INDEX ---------------- */
-    const index = document.getElementById('index');
+    const index = document.querySelector('.ix-sec') || document.getElementById('index');
     if (index) {
       const list = index.querySelector('.ix-list'), float = document.querySelector('.ix-float'), fimg = float.querySelector('img'), fcap = float.querySelector('.cap');
       const seen = new Set();
@@ -2340,7 +2377,7 @@ window.addEventListener('DOMContentLoaded', ()=>{
         <div class="ct-tr v">${list.map((p, i) => `<div class="ct-c ${CLS[p.discipline] || ''}" data-i="${i}" data-cursor="play" data-cursor-label="PLAY" style="left:${geo[i].x0}px;width:${geo[i].x1 - geo[i].x0 - 2}px;--thw:${tall(p) ? 42 : 96}px" title="${esc(p.title)}"><i class="th"></i><div class="lb">${esc(p.title)}</div><div class="du">${tc(dur(p)).slice(3, 8)}</div></div>`).join('')}</div>
         <div class="ct-tr a">${list.map((p, i) => `<div class="ct-c a" data-a="${i}" style="left:${geo[i].x0}px;width:${geo[i].x1 - geo[i].x0 - 2}px">${wave(geo[i].x1 - geo[i].x0)}</div>`).join('')}</div>
         <div class="ct-ph"></div>`;
-      thumbs(); stop(); sel = -1; select(0, false); scroller.scrollLeft = 0;
+      thumbs(); stop(); sel = -1; select(0, false); scroller.scrollLeft = 0; if (typeof drawBin === 'function' && !bin.hidden) drawBin(); if (typeof fit === 'function') requestAnimationFrame(() => fit());
     };
     let tries = 0; const thumbs = () => { let miss = 0;
       strip.querySelectorAll('.ct-c[data-i]').forEach(c => { const p = list[+c.dataset.i]; if (p.poster) c.querySelector('.th').style.backgroundImage = `url("${p.poster}")`; else miss++; });
@@ -2351,7 +2388,7 @@ window.addEventListener('DOMContentLoaded', ()=>{
     const movePH = (x, jump) => { const el = ph(); el.classList.toggle('jump', !!jump); el.style.left = x + 'px'; strip.querySelector('.ct-ruler .rb i').style.width = x + 'px';
       // keep the playhead in view
       const vl = scroller.scrollLeft, vw = scroller.clientWidth;
-      if (x < vl + 40 || x > vl + vw - 80) scroller.scrollTo({ left: Math.max(0, x - vw * .3), behavior: jump ? 'smooth' : 'auto' }); };
+      if (!sec.classList.contains('pin') && (x < vl + 40 || x > vl + vw - 80)) scroller.scrollTo({ left: Math.max(0, x - vw * .3), behavior: jump ? 'smooth' : 'auto' }); };
     const setTime = (i, s) => { const g = geo[i], p = list[i], u = Math.min(1, s / dur(p));
       movePH(g.x0 + u * (g.x1 - g.x0 - 2), false); tcEl.textContent = tc(s); htc.textContent = tc(g.t0 + s); };
 
@@ -2359,6 +2396,7 @@ window.addEventListener('DOMContentLoaded', ()=>{
       if (i < 0 || i >= list.length) return;
       const p = list[i]; sel = i;
       strip.querySelectorAll('.ct-c').forEach(c => c.classList.toggle('sel', +(c.dataset.i ?? c.dataset.a) === i));
+      sec.querySelectorAll('.ct-item').forEach(r => r.classList.toggle('on', +r.dataset.b === i));
       fimg.src = posterOf(p); nmEl.textContent = p.title; duEl.textContent = tc(dur(p)); tcEl.textContent = tc(0); htc.textContent = tc(geo[i].t0);
       movePH(geo[i].x0, true);
       if (play) start(i); else stop();
@@ -2388,12 +2426,42 @@ window.addEventListener('DOMContentLoaded', ()=>{
     // clicks on clips (ignored right after a drag)
     let drag = null, moved = false;
     strip.addEventListener('click', e => { if (moved) { moved = false; return; } const c = e.target.closest('.ct-c[data-i]'); if (c) select(+c.dataset.i, true); });
-    scroller.addEventListener('pointerdown', e => { if (e.pointerType !== 'mouse' || e.button) return; drag = { x: e.clientX, l: scroller.scrollLeft }; moved = false; });
+    scroller.addEventListener('pointerdown', e => { if (e.pointerType !== 'mouse' || e.button || sec.classList.contains('pin')) return; drag = { x: e.clientX, l: scroller.scrollLeft }; moved = false; });
     addEventListener('pointermove', e => { if (!drag) return; const dx = e.clientX - drag.x; if (Math.abs(dx) > 5) { moved = true; scroller.classList.add('drag'); } if (moved) scroller.scrollLeft = drag.l - dx; });
     addEventListener('pointerup', () => { drag = null; scroller.classList.remove('drag'); });
+    // ---- desktop: page scroll drives the timeline left / right; phones: swipe it by hand ----
+    const pin = matchMedia('(hover:hover) and (min-width:761px)').matches && !REDUCE_MOTION;
+    const prog = sec.querySelector('.ct-prog i'), hint = sec.querySelector('[data-hint]');
+    hint.textContent = pin ? 'SCROLL TO MOVE THE TIMELINE · CLICK A CLIP TO PLAY' : 'SWIPE THE TIMELINE · TAP A CLIP TO PLAY';
+    let maxX = 0;
+    const range = () => sec.offsetHeight - innerHeight;
+    const fit = () => { if (!pin) return; maxX = Math.max(0, strip.scrollWidth - scroller.clientWidth);
+      sec.style.height = (innerHeight + maxX * 1.15) + 'px'; sync(); };
+    const sync = () => { const r = sec.getBoundingClientRect(), q = range() > 0 ? Math.min(1, Math.max(0, -r.top / range())) : 0;
+      if (pin) scroller.scrollLeft = q * maxX; prog.style.width = (q * 100).toFixed(2) + '%'; };
+    if (pin) {
+      sec.classList.add('pin');
+      let raf = 0; addEventListener('scroll', () => { if (!raf) raf = requestAnimationFrame(() => { raf = 0; sync(); }); }, { passive: true });
+      addEventListener('resize', fit);
+      // a sideways trackpad swipe over the timeline also moves the page (and so the timeline)
+      scroller.addEventListener('wheel', e => { if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) { e.preventDefault(); scrollBy(0, e.deltaX * 1.15); } }, { passive: false });
+    } else {
+      scroller.addEventListener('scroll', () => { const m = scroller.scrollWidth - scroller.clientWidth; prog.style.width = (m > 0 ? scroller.scrollLeft / m * 100 : 0).toFixed(2) + '%'; }, { passive: true });
+    }
+    // ---- Project tab: the list (bin, list view) ----
+    const bin = sec.querySelector('.ct-bin'), binL = sec.querySelector('.ct-bin-l'), screenEl = sec.querySelector('.ct-screen');
+    const pane = which => { sec.querySelectorAll('[data-pane]').forEach(t => t.classList.toggle('on', t.dataset.pane === which));
+      const isBin = which === 'bin'; if (isBin) sec.style.setProperty('--binH', screenEl.offsetHeight + 'px'); bin.hidden = !isBin; screenEl.hidden = isBin; if (isBin) stop(); };
+    const drawBin = () => { binL.innerHTML = list.map((p, i) => `<div class="ct-item${i === sel ? ' on' : ''}" data-b="${i}" data-cursor="play" data-cursor-label="PLAY"><span class="nm"><em class="${CLS[p.discipline] || ''}"></em><i style="background-image:url('${posterOf(p)}')"></i><span>${esc(p.title)}</span></span><span class="sq">${NAMES[p.discipline]}</span><span class="du">${tc(dur(p))}</span></div>`).join(''); };
+    sec.querySelector('.ct-head').addEventListener('click', e => { const t = e.target.closest('[data-pane]'); if (t) { if (t.dataset.pane === 'bin') drawBin(); pane(t.dataset.pane); } });
+    binL.addEventListener('click', e => { const r = e.target.closest('.ct-item'); if (!r) return; const i = +r.dataset.b;
+      pane('prog'); select(i, true);
+      if (sec.classList.contains('pin') && maxX > 0) {          // bring that clip into view on the scroll-driven timeline
+        const x = Math.max(0, Math.min(maxX, geo[i].x0 - scroller.clientWidth * .3));
+        scrollTo({ top: sec.getBoundingClientRect().top + scrollY + x / maxX * range(), behavior: 'smooth' }); } });
     // stop playback when the section leaves the screen
     new IntersectionObserver(es => es.forEach(e => { if (!e.isIntersecting) stop(); })).observe(sec);
-    build('all');
+    build('all'); fit();
   } catch (err) { console.warn('timeline skipped', err); }
 })();
 </script>
