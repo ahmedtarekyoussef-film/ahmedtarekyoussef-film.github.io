@@ -364,140 +364,83 @@
     .pr{ transition:none; opacity:1; transform:none; }
     .pr-clip.live::after, .pr-hint::before{ animation:none; }
   }
-  /* ================= EDIT SUITE (lab) =================
-     Scroll: the room resolves from a zoom-blur, the camera pushes into the monitor, the monitor becomes an
-     NLE-style workspace, and further scrolling scrubs the sequences. Generic editor look, no third-party logos. */
-  #suite{ position:relative; z-index:1; background:#050505; }
-  .sx-stage{ position:sticky; top:0; height:100vh; height:100svh; overflow:hidden; background:#050505; }
-  .sx-cam{ position:absolute; left:0; top:0; transform-origin:0 0; will-change:transform; }
-  .sx-cam img{ display:block; width:100%; height:100%; user-select:none; -webkit-user-drag:none; }
-  .sx-ghost{ position:absolute; inset:0; transform-origin:50% 50%; opacity:0; pointer-events:none; }
-  .sx-room-shade{ position:absolute; inset:0; pointer-events:none;
-    background:radial-gradient(120% 90% at 50% 45%, transparent 45%, rgba(0,0,0,.65) 100%),
-               linear-gradient(180deg, #050505 0, transparent 14%, transparent 80%, #050505 100%); }
-  .sx-cap{ position:absolute; left:6vw; bottom:7vh; z-index:6; pointer-events:none; color:var(--fg);
-    font-family:'Space Grotesk',sans-serif; transition:opacity .4s ease; }
-  .sx-cap small{ display:block; font-size:.68rem; letter-spacing:.32em; color:var(--accent); margin-bottom:.8rem; }
-  .sx-cap b{ font-family:'Fraunces',serif; font-weight:400; font-size:clamp(1.6rem,3.4vw,3rem); letter-spacing:-.01em; }
-  .sx-cap span{ display:block; margin-top:.8rem; font-size:.72rem; letter-spacing:.22em; color:var(--fg-dim); }
+  /* ================= ROLES: the work plays inside the letters =================
+     A sticky stage; each scroll step shows one discipline as giant type, and that discipline's lead project
+     plays (muted, Vimeo background mode) inside the letters. The type is a "multiply" layer: white letters
+     let the footage through, the near-black field hides it. One video at a time. */
+  #roles{ position:relative; z-index:1; background:var(--bg); }
+  .rl-stage{ position:sticky; top:0; height:100vh; height:100svh; overflow:hidden; background:#000; }
+  .rl-media{ position:absolute; inset:0; overflow:hidden; background:radial-gradient(70% 60% at 50% 50%, #6b5a3c, #2a241a 60%, #14120e); } /* letters stay readable before footage loads */
+  .rl-media img, .rl-media iframe{ position:absolute; left:50%; top:50%; transform:translate(-50%,-50%) scale(var(--rz,1.08)); border:0; pointer-events:none;
+    transition:opacity .9s var(--ease); }
+  .rl-media img{ width:100%; height:100%; object-fit:cover; filter:saturate(1.1) contrast(1.05); }
+  .rl-media .off{ opacity:0; }
+  .rl-mask{ position:absolute; inset:0; background:var(--bg); mix-blend-mode:multiply; display:flex; align-items:center; justify-content:center; pointer-events:none; }
+  .rl-word{ position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;
+    font-family:'Space Grotesk',sans-serif; font-weight:600; text-transform:uppercase; color:#fff; line-height:.84; letter-spacing:-.045em;
+    font-size:min(14.2vw, 26vh); }
+  .rl-word .ln{ display:block; overflow:hidden; padding:0 .02em; }
+  .rl-word .ch{ display:inline-block; transform:translateY(105%); transition:transform .9s var(--ease); transition-delay:calc(var(--i) * 28ms); }
+  .rl-word.on .ch{ transform:none; }
+  .rl-word.out .ch{ transform:translateY(-105%); transition-duration:.6s; transition-delay:calc(var(--i) * 14ms); }
+  .rl-hud{ position:absolute; left:6vw; right:6vw; bottom:6vh; display:flex; justify-content:space-between; align-items:flex-end; gap:2rem; z-index:3;
+    font-family:'Space Grotesk',sans-serif; color:var(--fg-dim); font-size:.68rem; letter-spacing:.2em; text-transform:uppercase; pointer-events:none; }
+  .rl-hud b{ color:var(--fg); font-weight:500; letter-spacing:.06em; text-transform:none; font-size:.92rem; display:block; margin-top:.45rem; max-width:46vw; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .rl-hud .ix{ font-variant-numeric:tabular-nums; color:var(--accent); }
+  .rl-top{ position:absolute; left:6vw; right:6vw; top:calc(var(--nav-h) + 3vh); display:flex; justify-content:space-between; z-index:3; pointer-events:none;
+    font-family:'Space Grotesk',sans-serif; font-size:.68rem; letter-spacing:.24em; color:var(--fg-faint); }
+  .rl-bar{ position:absolute; left:0; bottom:0; height:2px; width:0; background:var(--accent); z-index:3; box-shadow:0 0 12px rgba(196,168,118,.6); }
+  .rl-go{ pointer-events:auto; color:var(--fg); border-bottom:1px solid var(--accent); padding-bottom:3px; letter-spacing:.22em; font-size:.66rem; }
+  @media (max-width:760px){ .rl-word{ font-size:min(15.5vw, 22vh); } .rl-hud b{ max-width:60vw; font-size:.82rem; } .rl-hud{ bottom:5vh; } }
+  @media (prefers-reduced-motion: reduce){ .rl-word .ch{ transition:none; } }
 
-  /* the screen: positioned each frame over the monitor, grows to the full viewport */
-  .sx-screen{ position:absolute; z-index:4; overflow:hidden; background:#151515; border-radius:2px;
-    box-shadow:0 0 60px rgba(70,120,255,.18); }
-  .sx-screen::after{ content:''; position:absolute; inset:0; pointer-events:none; z-index:20; opacity:var(--glass,.0);
-    background:linear-gradient(115deg, rgba(255,255,255,.10) 0, rgba(255,255,255,0) 32%), radial-gradient(140% 120% at 50% 50%, transparent 55%, rgba(0,0,0,.55)); }
-  .sx-ui{ position:absolute; left:0; top:0; transform-origin:0 0; display:grid; color:#b9b9b9;
-    font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; font-size:11px;
-    grid-template-columns: 30% 1fr; grid-template-rows: 28px 56% 1fr; gap:3px; background:#0f0f0f; padding:3px; user-select:none; -webkit-user-select:none; }
-  .sx-bar{ grid-column:1 / -1; display:flex; align-items:center; gap:22px; padding:0 14px; background:#1b1b1b; color:#8a8a8a; white-space:nowrap; overflow:hidden; }
-  .sx-bar .on{ color:#e6e6e6; box-shadow:inset 0 -2px 0 #2d8ceb; padding:7px 0; }
-  .sx-bar .sp{ margin-left:auto; color:#666; letter-spacing:.14em; font-size:10px; }
-  .sx-panel{ background:#1d1d1d; border-radius:3px; overflow:hidden; display:flex; flex-direction:column; min-width:0; min-height:0; }
-  .sx-tabs{ display:flex; height:26px; flex:0 0 26px; align-items:stretch; border-bottom:1px solid #2a2a2a; background:#1a1a1a; overflow:hidden; }
-  .sx-tabs span{ display:flex; align-items:center; padding:0 12px; color:#878787; white-space:nowrap; cursor:pointer; }
-  .sx-tabs span.on{ color:#ececec; background:#1d1d1d; box-shadow:inset 0 -2px 0 #2d8ceb; }
-  .sx-tabs span em{ font-style:normal; color:#666; margin-left:6px; }
-
-  /* metadata / effect controls */
-  .sx-meta{ padding:12px 14px; overflow:hidden; display:flex; flex-direction:column; gap:7px; }
-  .sx-meta .clipname{ color:#d8d8d8; font-size:12px; padding-bottom:8px; border-bottom:1px solid #2a2a2a; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-  .sx-meta .row{ display:flex; justify-content:space-between; gap:10px; }
-  .sx-meta .row span:first-child{ color:#7d7d7d; }
-  .sx-meta .row span:last-child{ color:#4ea1ff; font-variant-numeric:tabular-nums; text-align:right; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-  .sx-meta .grp{ margin-top:6px; color:#a8a8a8; display:flex; align-items:center; gap:6px; }
-  .sx-meta .grp i{ font-style:italic; font-weight:700; font-size:9px; color:#f3d36b; background:#2b2b2b; padding:0 3px; border-radius:2px; }
-  .sx-meta .grp::before{ content:'›'; color:#666; }
-
-  /* program monitor */
-  .sx-prog .sx-tabs span:first-child{ color:#ececec; }
-  .sx-view{ position:relative; flex:1; min-height:0; background:#0c0c0c; display:grid; place-items:center; cursor:pointer; }
-  .sx-frame{ position:relative; height:100%; max-width:100%; aspect-ratio:16/9; background:#000; overflow:hidden; }
-  .sx-frame img{ position:absolute; inset:0; width:100%; height:100%; object-fit:contain; opacity:0; transition:opacity .35s ease, filter .25s ease, transform .4s ease; }
-  .sx-frame img.on{ opacity:1; }
-  .sx-frame.scrub img{ filter:blur(5px) brightness(.85); transform:scale(1.03); }
-  .sx-frame iframe{ position:absolute; border:0; opacity:0; transition:opacity .6s ease; pointer-events:none; }
-  .sx-frame iframe.wide{ inset:0; width:100%; height:100%; }
-  .sx-frame iframe.tall{ top:0; bottom:0; left:50%; height:100%; aspect-ratio:9/16; transform:translateX(-50%); }
-  .sx-frame iframe.live{ opacity:1; }
-  .sx-frame .badge{ position:absolute; left:10px; top:10px; z-index:3; font-size:10px; letter-spacing:.14em; color:#fff; background:rgba(0,0,0,.45); padding:3px 7px; border-radius:2px; opacity:0; transition:opacity .4s; }
-  .sx-frame .badge::before{ content:''; display:inline-block; width:6px; height:6px; border-radius:50%; background:#e0463c; margin-right:6px; vertical-align:1px; }
-  .sx-frame.playing .badge{ opacity:1; }
-  .sx-frame .open{ position:absolute; right:10px; bottom:10px; z-index:3; font-size:10px; letter-spacing:.16em; color:#fff; background:rgba(0,0,0,.5); padding:5px 9px; border-radius:2px; opacity:0; transition:opacity .3s; }
-  .sx-view:hover .open{ opacity:1; }
-  .sx-trans{ height:34px; flex:0 0 34px; display:flex; align-items:center; gap:14px; padding:0 12px; border-top:1px solid #262626; }
-  .sx-trans .tc{ color:#2d8ceb; font-size:14px; font-variant-numeric:tabular-nums; min-width:96px; }
-  .sx-trans .du{ color:#8a8a8a; font-variant-numeric:tabular-nums; margin-left:auto; }
-  .sx-trans .fit{ color:#8a8a8a; border:1px solid #333; padding:1px 6px; border-radius:2px; }
-  .sx-trans .btns{ display:flex; gap:12px; margin:0 auto; }
-  .sx-trans .btns svg{ width:13px; height:13px; fill:#9a9a9a; }
-  .sx-trans .btns svg.play{ fill:#e6e6e6; }
-
-  /* project bin */
-  .sx-bin{ overflow:hidden; padding:6px; display:flex; flex-direction:column; gap:3px; }
-  .sx-item{ display:flex; align-items:center; gap:8px; padding:4px 6px; border-radius:2px; cursor:pointer; color:#b0b0b0; min-width:0; }
-  .sx-item i{ flex:0 0 46px; height:26px; background:#000 center/cover; border-radius:1px; }
-  .sx-item span{ flex:1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-  .sx-item em{ font-style:normal; color:#777; font-variant-numeric:tabular-nums; }
-  .sx-item:hover{ background:#262626; }
-  .sx-item.on{ background:#2b3b52; color:#fff; }
-
-  /* timeline */
-  .sx-lowR{ display:grid; grid-template-columns:1fr 18px; gap:3px; min-width:0; min-height:0; }
-  .sx-tl .sx-tabs span{ gap:8px; }
-  .sx-tl .sx-tabs span::before{ content:'×'; color:#666; }
-  .sx-tlbody{ position:relative; flex:1; display:grid; grid-template-columns:96px 1fr; min-height:0; }
-  .sx-heads{ background:#232323; border-right:1px solid #2f2f2f; display:flex; flex-direction:column; }
-  .sx-heads .tcs{ height:40px; padding:4px 8px; border-bottom:1px solid #2f2f2f; color:#2d8ceb; font-size:13px; font-variant-numeric:tabular-nums; }
-  .sx-heads .h{ flex:1; display:flex; align-items:center; gap:4px; padding:0 6px; border-bottom:1px solid #1b1b1b; }
-  .sx-heads .h b{ font-weight:500; font-size:10px; min-width:22px; height:16px; display:inline-grid; place-items:center; border-radius:2px; background:#2e2e2e; border:1px solid #3a3a3a; color:#c9c9c9; }
-  .sx-heads .h b.on{ background:#3b5f8c; border-color:#4f7fb8; color:#fff; }
-  .sx-heads .h.v{ flex:1.25; }
-  .sx-tracks{ position:relative; overflow:hidden; cursor:grab; touch-action:pan-y; display:flex; flex-direction:column; }
-  .sx-tracks.drag{ cursor:grabbing; }
-  .sx-strip[hidden]{ display:none !important; }
-  .sx-strip{ position:relative; display:flex; flex-direction:column; height:100%; will-change:transform; }
-  .sx-ruler{ position:relative; height:40px; flex:0 0 40px; background:#232323; border-bottom:1px solid #2f2f2f; }
-  .sx-ruler::after{ content:''; position:absolute; left:0; right:0; bottom:6px; height:10px;
-    background:repeating-linear-gradient(90deg,#555 0 1px,transparent 1px 12px) 0 100%/100% 4px no-repeat,
-               repeating-linear-gradient(90deg,#999 0 1px,transparent 1px 120px) 0 100%/100% 10px no-repeat; }
-  .sx-ruler b{ position:absolute; top:6px; font-weight:400; font-size:10px; color:#9a9a9a; transform:translateX(4px); font-variant-numeric:tabular-nums; white-space:nowrap; }
-  .sx-ruler .rb{ position:absolute; left:0; right:0; bottom:0; height:3px; background:#c8a52a; opacity:.8; }
-  .sx-ruler .rb i{ position:absolute; left:0; top:0; bottom:0; width:0; background:#3fae4f; }
-  .sx-tr{ position:relative; flex:1; border-bottom:1px solid #1a1a1a; background:#1f1f1f; }
-  .sx-tr.v{ flex:1.25; } .sx-tr:nth-child(odd){ background:#1c1c1c; }
-  .sx-c{ position:absolute; top:2px; bottom:2px; border-radius:2px; overflow:hidden; background:#8d86d9; border:1px solid rgba(0,0,0,.45); color:#111; cursor:pointer;
-    box-shadow:inset 0 1px 0 rgba(255,255,255,.18); transition:filter .25s, box-shadow .25s; }
-  .sx-c.ed{ background:#a68be0; } .sx-c.ai{ background:#cf7aa6; } .sx-c.d3{ background:#d9a35a; }
-  .sx-c .th{ position:absolute; left:0; top:0; bottom:0; width:var(--thw,64px); background:#000 center/cover; border-right:1px solid rgba(0,0,0,.5); }
-  .sx-c .lb{ position:absolute; left:calc(var(--thw,64px) + 6px); right:6px; top:4px; font-size:10.5px; font-weight:500; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-  .sx-c.a{ background:#3f9a6b; cursor:default; }
-  .sx-c.a svg{ position:absolute; left:0; top:3px; width:100%; height:calc(100% - 6px); }
-  .sx-c.a svg path{ fill:rgba(210,255,225,.55); }
-  .sx-c::after{ content:''; position:absolute; inset:0; transform:translateX(-120%); pointer-events:none;
-    background:linear-gradient(100deg,transparent 25%,rgba(255,255,255,.45) 50%,transparent 75%); }
-  .sx-c.live{ filter:brightness(1.18); box-shadow:inset 0 0 0 1px #fff, 0 0 18px rgba(255,255,255,.2); }
-  .sx-c.live::after{ animation:sxSweep 2s ease-in-out infinite; }
-  @keyframes sxSweep{ to{ transform:translateX(120%); } }
-  .sx-ph{ position:absolute; top:0; bottom:0; left:40%; width:1px; background:#2d8ceb; z-index:5; pointer-events:none; box-shadow:0 0 10px rgba(45,140,235,.7); }
-  .sx-ph::before{ content:''; position:absolute; top:16px; left:-7px; width:15px; height:18px; background:#2d8ceb; clip-path:polygon(0 0,100% 0,100% 62%,50% 100%,0 62%); }
-  .sx-meters{ background:#1d1d1d; border-radius:3px; display:flex; gap:3px; padding:30px 3px 6px; align-items:flex-end; }
-  .sx-meters i{ flex:1; height:6%; background:linear-gradient(0deg,#3fae4f 0 70%,#d8c13a 70% 88%,#e0463c 88%); border-radius:1px; transition:height .12s linear; }
-
-  /* mobile: monitor on top, timeline under it; bin + effect controls hidden */
-  @media (max-width:760px){
-    .sx-ui{ grid-template-columns:1fr; grid-template-rows:auto 1fr; }
-    .sx-bar, .sx-meta-p, .sx-bin-p, .sx-meters{ display:none !important; }
-    .sx-prog{ grid-column:1; }
-    .sx-view{ flex:0 0 auto; aspect-ratio:16/9; }
-    .sx-frame{ width:100%; height:auto; }
-    .sx-lowR{ grid-template-columns:1fr; grid-column:1; }
-    .sx-tlbody{ grid-template-columns:54px 1fr; }
-    .sx-heads .tcs{ font-size:0; }
-    .sx-trans .btns svg:not(.play){ display:none; }
-    .sx-tracks{ touch-action:pan-y; }
-    .sx-cap{ bottom:12vh; }
+  /* ================= INDEX: every project as one numbered list, with a live preview ================= */
+  #index{ position:relative; z-index:1; }
+  .ix-list{ border-top:1px solid var(--line); }
+  .ix-row{ position:relative; display:grid; grid-template-columns:4.2rem 1fr 11rem 6rem 2rem; align-items:center; gap:1.2rem; padding:1.35rem 0;
+    border-bottom:1px solid var(--line); color:var(--fg); text-decoration:none; cursor:pointer; transition:opacity .45s var(--ease); }
+  .ix-row::after{ content:''; position:absolute; left:0; bottom:-1px; height:1px; width:0; background:var(--accent); transition:width .7s var(--ease); }
+  .ix-row .n{ font-family:'Space Grotesk',sans-serif; font-size:.72rem; letter-spacing:.12em; color:var(--fg-faint); font-variant-numeric:tabular-nums; transition:color .4s; }
+  .ix-row .t{ font-family:'Fraunces',serif; font-size:clamp(1.15rem, 2.1vw, 1.9rem); line-height:1.15; letter-spacing:-.01em; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+    transition:transform .6s var(--ease), color .4s; }
+  .ix-row .c, .ix-row .d{ font-family:'Space Grotesk',sans-serif; font-size:.7rem; letter-spacing:.16em; color:var(--fg-dim); text-transform:uppercase; }
+  .ix-row .d{ font-variant-numeric:tabular-nums; text-align:right; letter-spacing:.08em; }
+  .ix-row .a{ justify-self:end; color:var(--fg-faint); transition:transform .5s var(--ease), color .4s; }
+  .ix-row .th{ display:none; }
+  .ix-list.hovering .ix-row{ opacity:.28; }
+  .ix-list.hovering .ix-row.hot{ opacity:1; }
+  .ix-row.hot::after{ width:100%; }
+  .ix-row.hot .n{ color:var(--accent); }
+  .ix-row.hot .t{ transform:translateX(14px); }
+  .ix-row.hot .a{ color:var(--accent); transform:translate(4px,-4px); }
+  .ix-row.hide{ display:none; }
+  .ix-row.rv{ opacity:0; transform:translateY(16px); }
+  .ix-row.rv.in{ opacity:1; transform:none; transition:opacity .8s var(--ease), transform .8s var(--ease); transition-delay:calc(var(--i) * 40ms); }
+  .ix-float{ position:fixed; left:0; top:0; z-index:60; width:min(30vw, 440px); aspect-ratio:16/9; pointer-events:none; overflow:hidden; background:#000;
+    border-radius:2px; opacity:0; transform:translate(-50%,-50%) scale(.86); transition:opacity .35s ease, width .4s var(--ease), aspect-ratio .4s var(--ease);
+    box-shadow:0 30px 80px rgba(0,0,0,.6); will-change:transform; }
+  .ix-float.tall{ width:min(15vw, 230px); aspect-ratio:9/16; }
+  .ix-float.on{ opacity:1; }
+  .ix-float img, .ix-float iframe{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; border:0; transition:opacity .5s ease; }
+  .ix-float iframe{ opacity:0; } .ix-float iframe.live{ opacity:1; }
+  .ix-float .cap{ position:absolute; left:10px; bottom:9px; z-index:2; font-family:'Space Grotesk',sans-serif; font-size:.6rem; letter-spacing:.2em; color:#fff;
+    text-shadow:0 1px 8px rgba(0,0,0,.6); }
+  .ix-float .cap::before{ content:''; display:inline-block; width:6px; height:6px; border-radius:50%; background:#e0463c; margin-right:6px; vertical-align:1px; opacity:0; transition:opacity .3s; }
+  .ix-float.playing .cap::before{ opacity:1; }
+  @media (hover:none), (max-width:760px){
+    .ix-row{ grid-template-columns:2.4rem 1fr 4.6rem; gap:.8rem; padding:1rem 0; }
+    .ix-row .c, .ix-row .a{ display:none; }
+    .ix-row .t{ font-size:1.02rem; white-space:normal; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; }
+    .ix-row .d{ display:none; }
+    .ix-row .th{ display:block; width:4.6rem; aspect-ratio:16/9; background:#111 center/cover; border-radius:2px; }
+    .ix-float{ display:none; }
   }
-  @media (prefers-reduced-motion: reduce){ .sx-c.live::after{ animation:none; } .sx-frame.scrub img{ filter:none; transform:none; } }
+  .ix-filters{ display:flex; gap:1.6rem; flex-wrap:wrap; }
+  .ix-btn{ font-size:.8rem; letter-spacing:.06em; color:var(--fg-faint); padding-bottom:.35rem; border-bottom:1px solid transparent; transition:color .3s var(--ease), border-color .3s var(--ease); }
+  .ix-btn:hover{ color:var(--fg-dim); } .ix-btn.active{ color:var(--fg); border-color:var(--accent); }
+  .ix-btn sup{ font-size:.6em; margin-left:.3em; color:var(--accent); }
+  .rl-stage{ isolation:isolate; }
+  .rl-hud .meta{ display:flex; gap:1.4em; }
   /* ---------- Showreel: four independent horizontal carousels (one per discipline) ---------- */
   #showreel{ position:relative; z-index:1; padding:10vh 0 4vh; }
   .carousel-section{ padding:5vh 0; }
@@ -884,19 +827,35 @@
   <!-- SHOWREEL: four independent horizontal carousels (Filmmaker / Editing / AI / 3D).
        These four carousels ARE the Selected Work experience — built entirely from
        PROJECTS below, so there is no separate duplicate "Selected Work" block. -->
-  <!-- EDIT SUITE (lab) -->
-  <section id="suite" aria-label="The edit suite: selected work on a timeline">
-    <div class="sx-stage">
-      <div class="sx-cam" aria-hidden="true"><img class="base" src="media-suite-room.jpg" alt="" width="1452" height="815" decoding="async"><img class="sx-ghost" src="media-suite-room.jpg" alt=""><img class="sx-ghost" src="media-suite-room.jpg" alt=""><img class="sx-ghost" src="media-suite-room.jpg" alt=""></div>
-      <div class="sx-room-shade" aria-hidden="true"></div>
-      <div class="sx-screen"><div class="sx-ui"></div></div>
-      <div class="sx-cap" aria-hidden="true"><small>THE EDIT SUITE</small><b>Step into the edit.</b><span>SCROLL TO ENTER</span></div>
-    </div>
-  </section>
-
   <section id="showreel" aria-label="Selected work"></section>
 
   <!-- WORK -->
+  <!-- ROLES (lab): the work plays inside the letters -->
+  <section id="roles" aria-label="Disciplines">
+    <div class="rl-stage">
+      <div class="rl-media" aria-hidden="true"></div>
+      <div class="rl-mask" aria-hidden="true"></div>
+      <div class="rl-top" aria-hidden="true"><span>WHAT I DO</span><span>SCROLL</span></div>
+      <div class="rl-hud"><div><div class="meta"><span class="ix">01 / 04</span><span class="cnt"></span></div><b></b></div><a class="rl-go" href="#" data-cursor="play" data-cursor-label="PLAY">WATCH ↗</a></div>
+      <div class="rl-bar" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <!-- INDEX (lab): every project as one numbered list -->
+  <section id="index" class="wrap" data-tone="base">
+    <div class="sec-head reveal">
+      <h2 class="sec-title">Index</h2>
+      <div class="ix-filters" role="tablist" aria-label="Filter the index">
+        <button class="ix-btn active" data-f="all">ALL<sup></sup></button>
+        <button class="ix-btn" data-f="film">FILMMAKER<sup></sup></button>
+        <button class="ix-btn" data-f="editing">EDITING<sup></sup></button>
+        <button class="ix-btn" data-f="ai">AI<sup></sup></button>
+        <button class="ix-btn" data-f="3d">3D<sup></sup></button>
+      </div>
+    </div>
+    <div class="ix-list"></div>
+  </section>
+
   <section id="work" class="wrap" data-tone="base">
     <div class="sec-head reveal">
       <h2 class="sec-title">All Projects</h2>
@@ -1997,235 +1956,114 @@ window.addEventListener('DOMContentLoaded', ()=>{
   } catch (err) { console.warn('timeline skipped', err); }
 })();
 </script>
+<div class="ix-float" aria-hidden="true"><img alt=""><span class="cap"></span></div>
 <script>
-/* EDIT SUITE (lab). Phases, driven by scroll:
-   A  section rises over the hero: the room resolves out of a zoom-blur
-   B  camera pushes into the monitor until the screen fills the viewport (below the nav)
-   C  scrolling (or dragging the timeline) scrubs four sequences; the clip under the playhead shows in the
-      Program monitor, and after a short pause its real Vimeo video plays there, muted.
-   Only real project data (titles, categories, durations, Vimeo ids). One video iframe at most, removed on move. */
+/* ROLES + INDEX (lab). Real data only: titles, categories, durations, Vimeo ids from PROJECTS. */
 (function(){
   try {
-    const section = document.getElementById('suite');
-    if (!section || typeof PROJECTS === 'undefined') return;
-    const $ = (s, r = section) => r.querySelector(s);
-    const stage = $('.sx-stage'), cam = $('.sx-cam'), roomImg = $('.sx-cam img.base'), ghosts = [...section.querySelectorAll('.sx-ghost')],
-          screen = $('.sx-screen'), ui = $('.sx-ui'), cap = $('.sx-cap');
-    const SCREEN = { x0: .2410, y0: .2601, x1: .7590, y1: .5988 };   // monitor's visible screen, as fractions of the room photo
-    const IMG = { w: 1452, h: 815 };
-    const FPS = 25;
-    const mobile = () => window.innerWidth <= 760;
-    const navH = () => (document.getElementById('nav') || { offsetHeight: 0 }).offsetHeight;
+    if (typeof PROJECTS === 'undefined') return;
     const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;' }[c]));
-    const tc = s => { s = Math.max(0, s); const f = Math.floor((s % 1) * FPS), ss = Math.floor(s);
-      return [Math.floor(ss / 3600), Math.floor(ss / 60) % 60, ss % 60, f].map(n => String(n).padStart(2, '0')).join(':'); };
-    const dur = p => Math.max(6, +p.duration || 30);
-    const ease = t => t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-    const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
     const posterOf = p => p.poster || (p.vimeo && p.vimeo.id ? `https://vumbnail.com/${p.vimeo.id}.jpg` : '');
     const tall = p => typeof isPortraitVimeo === 'function' && isPortraitVimeo(p);
+    const mmss = s => { s = Math.round(+s || 0); return `${String(Math.floor(s / 60)).padStart(2, '0')}:${String(s % 60).padStart(2, '0')}`; };
+    const lite = () => { const c = navigator.connection || {}; return REDUCE_MOTION || c.saveData || /(^|-)2g$/.test(c.effectiveType || ''); };
+    const vimeoSrc = (p, start) => { const v = p.vimeo; return `https://player.vimeo.com/video/${v.id}?${v.hash ? 'h=' + v.hash + '&' : ''}background=1&autoplay=1&muted=1&loop=1&dnt=1${start ? '#t=' + start + 's' : ''}`; };
+    const NAMES = { film: 'Filmmaker', editing: 'Editing', ai: 'AI', '3d': '3D' };
 
-    /* ---------- data: four sequences ---------- */
-    const SEQ = [['film', 'Filmmaker', ''], ['editing', 'Editing', 'ed'], ['ai', 'AI', 'ai'], ['3d', '3D', 'd3']]
-      .map(([id, name, cls]) => { const seen = new Set();
-        return { id, name, cls, clips: PROJECTS.filter(p => p.discipline === id && p.vimeo && p.vimeo.id && !seen.has(p.vimeo.id) && seen.add(p.vimeo.id)) }; })
-      .filter(s => s.clips.length);
-    const ALL = []; SEQ.forEach((s, si) => s.clips.forEach((p, ci) => ALL.push({ p, si, ci })));
-    if (!ALL.length) return;
+    /* ---------------- ROLES ---------------- */
+    const roles = document.getElementById('roles');
+    if (roles) {
+      const ROLE = [['film', ['Filmmaker']], ['editing', ['Editor']], ['ai', ['AI', 'Creative']], ['3d', ['3D', 'Artist']]]
+        .map(([d, lines]) => ({ d, lines, p: PROJECTS.find(p => p.discipline === d && p.vimeo && p.vimeo.id), n: PROJECTS.filter(p => p.discipline === d).length }))
+        .filter(r => r.p);
+      const stage = roles.querySelector('.rl-stage'), media = roles.querySelector('.rl-media'), mask = roles.querySelector('.rl-mask'),
+            bar = roles.querySelector('.rl-bar'), ix = roles.querySelector('.rl-hud .ix'), now = roles.querySelector('.rl-hud b'),
+            cnt = roles.querySelector('.rl-hud .cnt'), go = roles.querySelector('.rl-go');
+      let ci = 0;
+      mask.innerHTML = ROLE.map((r, i) => `<div class="rl-word" data-i="${i}">${r.lines.map(l => `<span class="ln">${[...l].map((c, k) => `<span class="ch" style="--i:${k}">${c === ' ' ? '&nbsp;' : esc(c)}</span>`).join('')}</span>`).join('')}</div>`).join('');
+      const words = [...mask.querySelectorAll('.rl-word')];
+      roles.style.height = `calc(${ROLE.length} * 100vh + 40vh)`;
 
-    /* ---------- build UI ---------- */
-    const W = c => Math.round(110 + Math.sqrt(dur(c)) * 20);
-    let seed = 5; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
-    const wave = cw => { const n = Math.max(10, Math.floor(cw / 3)); let d = '';
-      for (let i = 0; i < n; i++) { const e = .35 + .65 * Math.abs(Math.sin(i / n * Math.PI * (2 + rnd() * 3))), h = Math.max(.05, e * (.2 + rnd() * .8)) * 50, x = (i / n * 100).toFixed(2);
-        d += `M${x} ${50 - h}h${(70 / n).toFixed(2)}v${(h * 2).toFixed(1)}h-${(70 / n).toFixed(2)}z`; }
-      return `<svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path d="${d}"/></svg>`; };
-    SEQ.forEach(s => { let x = 0, t = 0; s.geo = s.clips.map(p => { const w = W(p), g = { x0: x, x1: x + w, t0: t, t1: t + dur(p) }; x += w; t += dur(p); return g; }); s.width = x; });
+      let img = null, frame = null, vt = 0, cur = -1, visible = false;
+      const coverSize = (el, ar) => { const W = stage.clientWidth, H = stage.clientHeight; let w = W, h = W / ar; if (h < H) { h = H; w = H * ar; } el.style.width = w + 'px'; el.style.height = h + 'px'; };
+      const show = i => {
+        if (i === cur) return; const prev = cur; cur = i; const r = ROLE[i];
+        words.forEach((w, k) => { w.classList.toggle('on', k === i); w.classList.toggle('out', prev >= 0 && k === prev && k !== i); });
+        setTimeout(() => words.forEach((w, k) => { if (k !== cur) w.classList.remove('out'); }), 700);
+        ix.textContent = `${String(i + 1).padStart(2, '0')} / ${String(ROLE.length).padStart(2, '0')}`;
+        now.textContent = r.p.title; cnt.textContent = `${r.n} ${r.n === 1 ? 'project' : 'projects'}`;
+        go.dataset.pid = r.p.id; go.href = '#' + r.p.id;
+        // poster first (instant), then the real footage
+        const im = new Image(); im.alt = ''; im.className = 'off'; im.src = posterOf(r.p);
+        im.onload = () => { im.classList.remove('off'); const old = img; img = im; if (old && old !== im) setTimeout(() => old.remove(), 900); };
+        media.appendChild(im);
+        clearTimeout(vt); if (frame) { const f = frame; f.classList.add('off'); setTimeout(() => f.remove(), 900); frame = null; }
+        if (!lite() && visible) vt = setTimeout(() => startVideo(i), 450);
+      };
+      const startVideo = i => { if (i !== cur || frame) return; const p = ROLE[i].p, ar = tall(p) ? 9 / 16 : 16 / 9;
+        const f = document.createElement('iframe'); f.className = 'off'; f.allow = 'autoplay; fullscreen'; f.title = p.title; f.tabIndex = -1;
+        coverSize(f, ar); f.dataset.ar = ar; f.src = vimeoSrc(p, Math.floor((+p.duration || 30) * .2));
+        f.addEventListener('load', () => setTimeout(() => { if (frame === f) f.classList.remove('off'); }, 900));
+        media.appendChild(f); frame = f; };
+      go.addEventListener('click', e => { e.preventDefault(); if (typeof openDetail === 'function') openDetail(go.dataset.pid); });
+      const onScroll = () => { const r = roles.getBoundingClientRect(), span = roles.offsetHeight - innerHeight;
+        const q = Math.min(1, Math.max(0, -r.top / span)); bar.style.width = (q * 100).toFixed(2) + '%';
+        show(Math.min(ROLE.length - 1, Math.floor(q * ROLE.length * .999)));
+        media.style.setProperty('--rz', (1.14 - .06 * ((q * ROLE.length) % 1)).toFixed(3)); };
+      let raf = 0; const tick = () => { raf = 0; onScroll(); };
+      new IntersectionObserver(es => es.forEach(e => {
+        visible = e.isIntersecting;
+        if (visible) { addEventListener('scroll', h, { passive: true }); onScroll(); if (!frame && cur >= 0 && !lite()) vt = setTimeout(() => startVideo(cur), 450); }
+        else { removeEventListener('scroll', h); clearTimeout(vt); if (frame) { frame.remove(); frame = null; } }
+      }), { rootMargin: '100px 0px' }).observe(roles);
+      function h(){ if (!raf) raf = requestAnimationFrame(tick); }
+      addEventListener('resize', () => { if (frame) coverSize(frame, +frame.dataset.ar); });
+      show(0);
+    }
 
-    const seqHTML = s => {
-      let ruler = ''; for (let px = 0; px < s.width + 400; px += 120) { const g = s.geo.find(g => px < g.x1) || s.geo[s.geo.length - 1];
-        ruler += `<b style="left:${px}px">${tc(g.t0 + clamp((px - g.x0) / (g.x1 - g.x0), 0, 1) * (g.t1 - g.t0))}</b>`; }
-      return `<div class="sx-strip" data-seq="${s.id}" hidden style="width:${s.width + 600}px">
-        <div class="sx-ruler">${ruler}<div class="rb"><i></i></div></div>
-        <div class="sx-tr v">${s.clips.map((p, i) => `<div class="sx-c ${s.cls}" data-k="${ALL.findIndex(a => a.p === p)}" style="left:${s.geo[i].x0}px;width:${s.geo[i].x1 - s.geo[i].x0}px;--thw:${tall(p) ? 30 : 64}px"><i class="th"></i><div class="lb">${esc(p.title)}</div></div>`).join('')}</div>
-        <div class="sx-tr">${s.clips.map((p, i) => `<div class="sx-c a" style="left:${s.geo[i].x0}px;width:${s.geo[i].x1 - s.geo[i].x0}px">${wave(s.geo[i].x1 - s.geo[i].x0)}</div>`).join('')}</div>
-      </div>`; };
+    /* ---------------- INDEX ---------------- */
+    const index = document.getElementById('index');
+    if (index) {
+      const list = index.querySelector('.ix-list'), float = document.querySelector('.ix-float'), fimg = float.querySelector('img'), fcap = float.querySelector('.cap');
+      const seen = new Set();
+      const rows = PROJECTS.filter(p => p.vimeo && p.vimeo.id && !seen.has(p.vimeo.id) && seen.add(p.vimeo.id));
+      list.innerHTML = rows.map((p, i) => `<a class="ix-row rv" href="#${esc(p.id)}" data-pid="${esc(p.id)}" data-d="${p.discipline}" style="--i:${i % 10}" data-cursor="view" data-cursor-label="OPEN">
+          <span class="n">[${String(i + 1).padStart(2, '0')}]</span><span class="t">${esc(p.title)}</span><span class="c">${NAMES[p.discipline] || ''}</span><span class="d">${mmss(p.duration)}</span><span class="a">↗</span><i class="th"></i></a>`).join('');
+      const els = [...list.querySelectorAll('.ix-row')];
+      index.querySelectorAll('.ix-filters [data-f]').forEach(b => { const f = b.dataset.f; const n = f === 'all' ? rows.length : rows.filter(p => p.discipline === f).length; b.querySelector('sup').textContent = n; });
+      index.addEventListener('click', e => {
+        const b = e.target.closest('.ix-filters [data-f]');
+        if (b) { index.querySelectorAll('.ix-filters [data-f]').forEach(x => x.classList.toggle('active', x === b));
+          let k = 0; els.forEach(r => { const on = b.dataset.f === 'all' || r.dataset.d === b.dataset.f; r.classList.toggle('hide', !on); if (on) r.querySelector('.n').textContent = `[${String(++k).padStart(2, '0')}]`; }); return; }
+        const r = e.target.closest('.ix-row'); if (r) { e.preventDefault(); if (typeof openDetail === 'function') openDetail(r.dataset.pid); }
+      });
+      // reveal
+      const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .2 });
+      els.forEach(r => REDUCE_MOTION ? r.classList.add('in') : io.observe(r));
+      // thumbnails for touch screens, once posters arrive
+      let tries = 0; const thumbs = () => { let miss = 0; els.forEach(r => { if (r.dataset.th) return; const p = rows.find(q => q.id === r.dataset.pid); if (p.poster) { r.querySelector('.th').style.backgroundImage = `url("${p.poster}")`; r.dataset.th = 1; } else miss++; }); if (miss && ++tries < 15) setTimeout(thumbs, 1200); };
+      setTimeout(thumbs, 900);
 
-    const ICON = { prev:'<svg viewBox="0 0 12 12"><path d="M2 2h1.5v8H2zM10 2v8L4 6z"/></svg>', back:'<svg viewBox="0 0 12 12"><path d="M3 2h1.5v8H3zM10 2v8L5 6z"/></svg>',
-      play:'<svg class="play" viewBox="0 0 12 12"><path d="M3 1.5v9l7.5-4.5z"/></svg>', fwd:'<svg viewBox="0 0 12 12"><path d="M9 2h-1.5v8H9zM2 2v8l5-4z"/></svg>', next:'<svg viewBox="0 0 12 12"><path d="M10 2H8.5v8H10zM2 2v8l6-4z"/></svg>' };
-    ui.innerHTML = `
-      <div class="sx-bar"><span>Assembly</span><span class="on">Editing</span><span>Color</span><span>Effects</span><span>Audio</span><span>Graphics</span><span class="sp">SCROLL OR DRAG THE TIMELINE</span></div>
-      <div class="sx-panel sx-meta-p"><div class="sx-tabs"><span class="on">Effect Controls</span><span>Metadata</span><span>Audio Mixer</span></div>
-        <div class="sx-meta"><div class="clipname"></div>
-          <div class="row"><span>Sequence</span><span data-m="seq"></span></div>
-          <div class="row"><span>Duration</span><span data-m="dur"></span></div>
-          <div class="row"><span>Frame</span><span data-m="ar"></span></div>
-          <div class="row"><span>Source</span><span>Vimeo</span></div>
-          <div class="grp"><i>fx</i> Motion</div><div class="grp"><i>fx</i> Opacity</div><div class="grp"><i>fx</i> Time Remapping</div><div class="grp"><i>fx</i> Lumetri Color</div>
-        </div></div>
-      <div class="sx-panel sx-prog"><div class="sx-tabs"><span class="on">Program: <b data-m="pname" style="font-weight:500"></b><em>≡</em></span></div>
-        <div class="sx-view" title="Open the full video"><div class="sx-frame"><img alt=""><img alt=""><div class="badge">PLAYING</div><div class="open">OPEN FULL VIDEO ↗</div></div></div>
-        <div class="sx-trans"><span class="tc" data-m="ptc">00:00:00:00</span><span class="btns">${ICON.prev}${ICON.back}${ICON.play}${ICON.fwd}${ICON.next}</span><span class="fit">Fit ▾</span><span class="du" data-m="pdu"></span></div></div>
-      <div class="sx-panel sx-bin-p"><div class="sx-tabs"><span class="on">Project: Ahmed Tarek</span><span>Media Browser</span></div><div class="sx-bin"></div></div>
-      <div class="sx-lowR"><div class="sx-panel sx-tl"><div class="sx-tabs">${SEQ.map(s => `<span data-tab="${s.id}">${s.name}</span>`).join('')}</div>
-          <div class="sx-tlbody"><div class="sx-heads"><div class="tcs" data-m="ttc">00:00:00:00</div><div class="h v"><b>V1</b><b class="on">V1</b></div><div class="h"><b>A1</b><b class="on">A1</b></div></div>
-            <div class="sx-tracks">${SEQ.map(seqHTML).join('')}<div class="sx-ph"></div></div></div></div>
-        <div class="sx-meters">${'<i></i>'.repeat(2)}</div></div>`;
-
-    const M = k => ui.querySelector(`[data-m="${k}"]`);
-    const frame = ui.querySelector('.sx-frame'), imgs = [...frame.querySelectorAll('img')], tracks = ui.querySelector('.sx-tracks'),
-          ph = ui.querySelector('.sx-ph'), bin = ui.querySelector('.sx-bin'), meters = [...ui.querySelectorAll('.sx-meters i')];
-    const strips = Object.fromEntries([...ui.querySelectorAll('.sx-strip')].map(e => [e.dataset.seq, e]));
-    const clipEls = [...ui.querySelectorAll('.sx-tr.v .sx-c')];
-
-    /* ---------- geometry ---------- */
-    let vw = 0, vh = 0, base = { s: 1, x: 0, y: 0 }, end = { k: 1 }, phB = 0, phC = 0, perClip = 0, secTop = 0;
-    const layout = () => {
-      vw = document.documentElement.clientWidth || window.innerWidth; vh = window.innerHeight;
-      const scrW = (SCREEN.x1 - SCREEN.x0) * IMG.w, scrH = (SCREEN.y1 - SCREEN.y0) * IMG.h;
-      const cover = Math.max(vw / IMG.w, vh / IMG.h);
-      base.s = Math.min(cover, .94 * vw / scrW);                      // phones: keep the whole monitor in frame
-      const cx = (SCREEN.x0 + SCREEN.x1) / 2 * IMG.w;
-      base.x = vw / 2 - cx * base.s; base.y = vh / 2 - IMG.h / 2 * base.s;
-      cam.style.width = IMG.w + 'px'; cam.style.height = IMG.h + 'px';
-      const top = navH(), availH = vh - top;
-      end.k = Math.max(vw / (scrW * base.s), availH / (scrH * base.s)) * 1.002;
-      phB = vh * 1.2; perClip = mobile() ? 230 : 260; phC = perClip * ALL.length;
-      section.style.height = (vh + phB + phC + vh * .35) + 'px';
-      // UI renders at its final size, then is scaled to cover whatever the screen rect is
-      ui.style.width = vw - 0 + 'px'; ui.style.height = availH + 'px';
-      secTop = section.getBoundingClientRect().top + window.scrollY;
-      bin.innerHTML = ''; drawBin(lastSeq);
-    };
-
-    /* ---------- bin ---------- */
-    let lastSeq = -1;
-    const drawBin = si => { if (si < 0) return; const s = SEQ[si];
-      bin.innerHTML = s.clips.map(p => `<div class="sx-item" data-k="${ALL.findIndex(a => a.p === p)}"><i style="background-image:url('${posterOf(p)}')"></i><span>${esc(p.title)}</span><em>${tc(dur(p)).slice(3, 8)}</em></div>`).join(''); };
-
-    /* ---------- program monitor ---------- */
-    let cur = -1, front = 0, iframe = null, vidTimer = 0, idleTimer = 0, moving = false;
-    const showClip = k => {
-      const { p } = ALL[k]; const src = posterOf(p);
-      const next = imgs[1 - front]; next.src = src; next.style.objectFit = 'contain';
-      next.onload = () => { next.classList.add('on'); imgs[front].classList.remove('on'); front = 1 - front; };
-      if (next.complete && next.naturalWidth) next.onload();
-      ui.querySelector('.clipname').textContent = p.title;
-      M('seq').textContent = SEQ[ALL[k].si].name; M('dur').textContent = tc(dur(p)); M('ar').textContent = tall(p) ? '9:16 vertical' : (p.vimeo.aspect || '16:9');
-      M('pname').textContent = mobile() ? p.title : SEQ[ALL[k].si].name; M('pdu').textContent = tc(dur(p));
-      bin.querySelectorAll('.sx-item').forEach(e => e.classList.toggle('on', +e.dataset.k === k));
-    };
-    const killVideo = () => { clearTimeout(vidTimer); if (iframe) { iframe.remove(); iframe = null; } frame.classList.remove('playing'); };
-    const startVideo = k => {
-      killVideo();
-      const conn = navigator.connection || {};
-      if (REDUCE_MOTION || conn.saveData) return;
-      const { p } = ALL[k], v = p.vimeo, start = Math.floor(dur(p) * .28);
-      const f = document.createElement('iframe');
-      f.className = tall(p) ? 'tall' : 'wide'; f.allow = 'autoplay; fullscreen; picture-in-picture'; f.title = p.title; f.loading = 'eager';
-      f.src = `https://player.vimeo.com/video/${v.id}?${v.hash ? 'h=' + v.hash + '&' : ''}background=1&autoplay=1&muted=1&loop=1&dnt=1#t=${start}s`;
-      f.addEventListener('load', () => { vidTimer = setTimeout(() => { if (iframe === f) { f.classList.add('live'); frame.classList.add('playing'); } }, 900); });
-      frame.appendChild(f); iframe = f;
-    };
-    const onMove = () => {
-      if (!moving) { moving = true; frame.classList.add('scrub'); killVideo(); }
-      clearTimeout(idleTimer);
-      idleTimer = setTimeout(() => { moving = false; frame.classList.remove('scrub'); if (cur >= 0 && phase === 'C') vidTimer = setTimeout(() => startVideo(cur), 350); }, 220);
-    };
-    ui.querySelector('.sx-view').addEventListener('click', () => { if (cur >= 0 && typeof openDetail === 'function') openDetail(ALL[cur].p.id); });
-
-    /* ---------- scrub state ---------- */
-    let phase = 'A', lastPos = -1;
-    const setScrub = q => {            // q: 0..1 across all clips of all sequences
-      const fpos = clamp(q, 0, .99999) * ALL.length, k = Math.floor(fpos), u = fpos - k, a = ALL[k], s = SEQ[a.si], g = s.geo[a.ci];
-      if (a.si !== lastSeq) { Object.values(strips).forEach(e => e.hidden = true); strips[s.id].hidden = false;
-        ui.querySelectorAll('[data-tab]').forEach(e => e.classList.toggle('on', e.dataset.tab === s.id)); drawBin(a.si); lastSeq = a.si; }
-      const tw = tracks.clientWidth, hx = Math.round(tw * (mobile() ? .5 : .4)) ;
-      ph.style.left = hx + 'px';
-      const x = g.x0 + u * (g.x1 - g.x0);
-      strips[s.id].style.transform = `translate3d(${(hx - x).toFixed(1)}px,0,0)`;
-      strips[s.id].querySelector('.rb i').style.width = x + 'px';
-      const t = g.t0 + u * (g.t1 - g.t0), tt = tc(t);
-      M('ttc').textContent = tt; M('ptc').textContent = tc(u * dur(a.p));
-      if (k !== cur) { cur = k; clipEls.forEach(e => e.classList.toggle('live', +e.dataset.k === k)); showClip(k); }
-      if (Math.abs(q - lastPos) > 1e-5) { onMove(); lastPos = q; }
-    };
-
-    /* thumbnails on clips once posters arrive */
-    let tries = 0; const thumbs = () => { let miss = 0;
-      clipEls.forEach(e => { if (e.dataset.th) return; const p = ALL[+e.dataset.k].p; if (p.poster) { e.querySelector('.th').style.backgroundImage = `url("${p.poster}")`; e.dataset.th = 1; } else miss++; });
-      if (cur >= 0 && imgs[front].src.includes('vumbnail') && ALL[cur].p.poster) showClip(cur);
-      if (miss && ++tries < 15) setTimeout(thumbs, 1200); };
-    setTimeout(thumbs, 800);
-
-    /* ---------- camera ---------- */
-    const draw = () => {
-      const top = section.getBoundingClientRect().top, y = -top;          // y: px scrolled past the section top
-      const sCx = (SCREEN.x0 + SCREEN.x1) / 2 * IMG.w, sCy = (SCREEN.y0 + SCREEN.y1) / 2 * IMG.h;
-      // A: entering (top from vh to 0) -> zoom-blur resolve
-      const a = clamp(1 - top / vh, 0, 1), ea = ease(a), blur = (1 - ea) * 16;
-      // B: push in
-      const b = clamp(y / phB, 0, 1), eb = ease(b);
-      const k0 = base.s, k = k0 * (1 + (end.k - 1) * eb) * (1 + (1 - ea) * .22);
-      const nt0 = navH();
-      const Fbx = (vw / 2 - base.x) / k0, Fby = (vh / 2 - base.y) / k0;         // image point at viewport centre, at rest
-      const Fx = Fbx + (sCx - Fbx) * eb, Fy = Fby + (sCy - Fby) * eb;            // ...moves to the screen centre
-      const Vx = vw / 2, Vy = vh / 2 + (nt0 / 2) * eb;                            // screen ends centred below the nav
-      const camX = Vx - Fx * k, camY = Vy - Fy * k;
-      cam.style.transform = `translate3d(${camX.toFixed(2)}px,${camY.toFixed(2)}px,0) scale(${k.toFixed(4)})`;
-      roomImg.style.filter = blur > .1 ? `blur(${blur.toFixed(1)}px) brightness(${(.55 + .45 * ea).toFixed(2)})` : (eb > 0 ? `brightness(${(1 - .5 * eb).toFixed(2)})` : 'none');
-      ghosts.forEach((g, i) => { g.style.opacity = ((1 - ea) * .32).toFixed(3); g.style.transform = `scale(${(1 + (1 - ea) * .06 * (i + 1)).toFixed(4)})`; });
-      // screen rect on the viewport
-      let L = camX + SCREEN.x0 * IMG.w * k, T = camY + SCREEN.y0 * IMG.h * k, R = camX + SCREEN.x1 * IMG.w * k, B = camY + SCREEN.y1 * IMG.h * k;
-      const nt = navH();
-      if (eb >= .999) { L = 0; T = nt; R = vw; B = vh; }
-      L = Math.max(L, 0); R = Math.min(R, vw); T = Math.max(T, eb > .5 ? nt * eb : 0); B = Math.min(B, vh);
-      const sw = Math.max(1, R - L), sh = Math.max(1, B - T);
-      screen.style.cssText = `left:${L}px;top:${T}px;width:${sw}px;height:${sh}px;--glass:${(1 - eb).toFixed(2)};border-radius:${(1 - eb) * 3}px`;
-      const uw = vw, uh = vh - nt, sc = Math.max(sw / uw, sh / uh);
-      ui.style.transform = `translate(${((sw - uw * sc) / 2).toFixed(1)}px,${((sh - uh * sc) / 2).toFixed(1)}px) scale(${sc.toFixed(4)})`;
-      ui.style.filter = blur > .1 ? `blur(${(blur * .6).toFixed(1)}px)` : 'none';
-      cap.style.opacity = (ea * (1 - clamp(b * 3, 0, 1))).toFixed(2);
-      // C: scrub
-      const c = clamp((y - phB) / phC, 0, 1);
-      phase = y < phB ? (top > 0 ? 'A' : 'B') : 'C';
-      setScrub(c);
-      if (phase !== 'C') { clearTimeout(vidTimer); if (iframe) killVideo(); }
-    };
-
-    /* ---------- seek helpers: tabs, bin, clips, drag ---------- */
-    const scrollForQ = q => secTop + phB + q * phC;
-    const seekClip = k => window.scrollTo({ top: scrollForQ((k + .5) / ALL.length), behavior: 'smooth' });
-    ui.addEventListener('click', e => {
-      const tab = e.target.closest('[data-tab]'); if (tab) { const k = ALL.findIndex(a => SEQ[a.si].id === tab.dataset.tab); if (k >= 0) seekClip(k); return; }
-      const it = e.target.closest('.sx-item[data-k], .sx-c[data-k]'); if (it) seekClip(+it.dataset.k);
-    });
-    let drag = null;
-    tracks.addEventListener('pointerdown', e => { if (e.button) return; drag = { x: e.clientX, y: e.clientY, sy: window.scrollY, on: false }; });
-    window.addEventListener('pointermove', e => { if (!drag) return; const dx = e.clientX - drag.x, dy = e.clientY - drag.y;
-      if (!drag.on) { if (Math.abs(dx) < 6 || Math.abs(dx) < Math.abs(dy)) return; drag.on = true; tracks.classList.add('drag'); try { tracks.setPointerCapture(e.pointerId); } catch (_) {} }
-      const avgW = SEQ.reduce((a, s) => a + s.width, 0) / ALL.length;
-      window.scrollTo({ top: drag.sy - dx / avgW * perClip, behavior: 'instant' }); e.preventDefault(); }, { passive: false });
-    const endDrag = () => { if (drag && drag.on) { tracks.classList.remove('drag'); tracks.addEventListener('click', ev => ev.stopPropagation(), { capture: true, once: true }); } drag = null; };
-    window.addEventListener('pointerup', endDrag); window.addEventListener('pointercancel', endDrag);
-
-    /* ---------- meters (only while a video is playing) ---------- */
-    let mt = 0; setInterval(() => { if (!frame.classList.contains('playing') || document.hidden) { meters.forEach(m => m.style.height = '6%'); return; }
-      mt += .4; meters.forEach((m, i) => m.style.height = (35 + 40 * Math.abs(Math.sin(mt * (1.3 + i * .4))) * (.6 + Math.random() * .4)).toFixed(0) + '%'); }, 120);
-
-    /* ---------- loop ---------- */
-    let raf = 0, active = false;
-    const tick = () => { raf = 0; draw(); };
-    const onScroll = () => { if (!raf) raf = requestAnimationFrame(tick); };
-    new IntersectionObserver(es => es.forEach(e => {
-      if (e.isIntersecting && !active) { active = true; addEventListener('scroll', onScroll, { passive: true }); onScroll(); }
-      else if (!e.isIntersecting && active) { active = false; removeEventListener('scroll', onScroll); killVideo(); }
-    }), { rootMargin: '200px 0px' }).observe(section);
-    let rt = 0; addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => { layout(); draw(); }, 120); });
-    const go = () => { layout(); draw(); };
-    if (roomImg.complete) go(); else roomImg.addEventListener('load', go, { once: true });
-    go();
-  } catch (err) { console.warn('edit suite skipped', err); }
+      // floating preview that trails the cursor (desktop)
+      if (matchMedia('(hover:hover) and (min-width:761px)').matches) {
+        let mx = innerWidth / 2, my = innerHeight / 2, fx = mx, fy = my, vx = 0, hot = null, frame = null, vt = 0, run = false;
+        const loop = () => { const dx = mx - fx, dy = my - fy; fx += dx * .14; fy += dy * .14; vx = vx * .8 + dx * .02;
+          float.style.transform = `translate(${fx.toFixed(1)}px,${fy.toFixed(1)}px) translate(-50%,-50%) rotate(${Math.max(-6, Math.min(6, vx)).toFixed(2)}deg) scale(${hot ? 1 : .86})`;
+          if (run) requestAnimationFrame(loop); };
+        const kill = () => { clearTimeout(vt); if (frame) { frame.remove(); frame = null; } float.classList.remove('playing'); };
+        const enter = r => { if (hot === r) return; hot && hot.classList.remove('hot'); hot = r; r.classList.add('hot'); list.classList.add('hovering');
+          const p = rows.find(q => q.id === r.dataset.pid); float.classList.toggle('tall', tall(p)); fimg.src = posterOf(p); fcap.textContent = (NAMES[p.discipline] || '').toUpperCase();
+          float.classList.add('on'); kill();
+          if (!lite()) vt = setTimeout(() => { const f = document.createElement('iframe'); f.allow = 'autoplay'; f.tabIndex = -1; f.title = p.title; f.src = vimeoSrc(p, Math.floor((+p.duration || 30) * .25));
+            f.addEventListener('load', () => setTimeout(() => { if (frame === f) { f.classList.add('live'); float.classList.add('playing'); } }, 800)); float.insertBefore(f, fcap); frame = f; }, 380); };
+        const leave = () => { hot && hot.classList.remove('hot'); hot = null; list.classList.remove('hovering'); float.classList.remove('on'); kill(); };
+        list.addEventListener('pointermove', e => { mx = e.clientX; my = e.clientY; const r = e.target.closest('.ix-row'); if (r) enter(r); });
+        list.addEventListener('pointerleave', leave);
+        addEventListener('scroll', () => { if (hot) { const el = document.elementFromPoint(mx, my); const r = el && el.closest && el.closest('.ix-row'); r ? enter(r) : leave(); } }, { passive: true });
+        new IntersectionObserver(es => es.forEach(e => { run = e.isIntersecting; if (run) requestAnimationFrame(loop); else leave(); })).observe(index);
+      }
+    }
+  } catch (err) { console.warn('roles/index skipped', err); }
 })();
 </script>
 </body>
