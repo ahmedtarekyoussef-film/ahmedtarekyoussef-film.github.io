@@ -850,7 +850,7 @@
   </div>
 </div>
 
-<script src="projects.js?v=20261127a"></script>
+<script src="projects.js?v=20261127b"></script>
 <script>
 /* =========================================================================
    HERO BACKGROUND MEDIA
@@ -1021,7 +1021,7 @@ const grid = document.getElementById('grid');
 const CAT_LABEL = { film:"FILMMAKER", editing:"EDITING", ai:"AI", "3d":"3D" };
 
 // "Commercial Film" — "Cinematography · Editing"
-function typeLine(p){ return p.projectType; }
+function typeLine(p){ return p.subtitle ? `${p.projectType} · ${p.subtitle}` : p.projectType; }   // e.g. "Filmmaker · Concert · Aswan"
 function rolesLine(p){ return (p.roles || []).join(' · ').toUpperCase(); }
 
 PROJECTS.forEach((p, i) => {
@@ -1567,7 +1567,7 @@ function openDetail(id){
   if(idx === -1) return;
   const p = PROJECTS[idx];
   detailTitle.textContent = p.title;
-  detailType.textContent = p.projectType;
+  detailType.textContent = typeLine(p);
   detailRole.textContent = (p.roles || []).join(' · ');
   detailTools.textContent = (p.tools || []).join(', ');
   detailYear.textContent = p.client ? `${p.year} — ${p.client}` : p.year;
