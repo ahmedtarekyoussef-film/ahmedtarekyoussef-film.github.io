@@ -2154,7 +2154,10 @@ window.addEventListener('DOMContentLoaded', ()=>{
     const words = [...mask.querySelectorAll('.rl-word')];
     let img = null, frame = null, vt = 0, cur = -1, visible = false;
     const coverSize = (el, ar) => { const W = pic.clientWidth, H = pic.clientHeight; let w = W, h = W / ar; if (h < H) { h = H; w = H * ar; } el.style.width = w + 'px'; el.style.height = h + 'px'; };
-    const startVideo = i => { if (i !== cur || frame || lite() || !visible) return; const p = ROLE[i].p, ar = tall(p) ? 9 / 16 : 16 / 9;
+    // phones/tablets: no live iframe behind the letters — mobile browsers draw video on a separate layer that
+    // ignores the blend, so the footage would show uncut. The project's still frame (slow push-in) is used instead.
+    const touch = matchMedia('(hover:none), (pointer:coarse)').matches;
+    const startVideo = i => { if (i !== cur || frame || lite() || touch || !visible) return; const p = ROLE[i].p, ar = tall(p) ? 9 / 16 : 16 / 9;
       const f = document.createElement('iframe'); f.className = 'off'; f.allow = 'autoplay; fullscreen'; f.title = p.title; f.tabIndex = -1;
       coverSize(f, ar); f.dataset.ar = ar; f.src = vimeoSrc(p, Math.floor((+p.duration || 30) * .2));
       f.addEventListener('load', () => setTimeout(() => { if (frame === f) f.classList.remove('off'); }, 900));
